@@ -1,0 +1,14 @@
+# app-specific aliases
+
+## tmux
+alias ta='tmux attach'
+alias tl='tmux ls'
+alias tk='tmux kill-server'
+alias t='tmux new'
+
+## vim
+alias vi='vim'
+
+## vs code
+alias vsc="code ."
+alias vscn="code --new-window"

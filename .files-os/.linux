@@ -1,0 +1,3 @@
+# linux (really unbuntu) config
+
+alias up='sudo apt update && apt upgrade'
