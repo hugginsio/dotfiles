@@ -2,7 +2,10 @@
 
 echo "Setting up..."
 
-alias config='$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+function config() {
+  $(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME
+}
+
 cd $HOME
 
 # If repo directory does not exist, clone it

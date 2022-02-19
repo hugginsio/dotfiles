@@ -11,3 +11,8 @@ unset FILE
 OS_DOTFILE="$HOME/.files-os/.${$(uname -s):l}"
 [ -r "$OS_DOTFILE" ] && [ -f "$OS_DOTFILE" ] && source "$OS_DOTFILE";
 unset OS_DOTFILE
+
+## loads host-specfic dotfiles
+HOST_DOTFILE="$HOME/.files-host/.${$(hostname -s | cut -c1-4):l}"
+[ -r "$HOST_DOTFILE" ] && [ -f "$HOST_DOTFILE" ] && source "$HOST_DOTFILE";
+unset HOST_DOTFILE

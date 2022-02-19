@@ -10,5 +10,8 @@ alias t='tmux new'
 alias vi='vim'
 
 ## vs code
-alias vsc="code ."
-alias vscn="code --new-window"
+alias vsc='code .'
+alias vscn='code . --new-window'
+
+## idea
+alias idea='open -a "IntelliJ IDEA.app" --args "$@"'
