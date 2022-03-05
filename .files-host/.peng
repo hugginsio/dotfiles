@@ -1,3 +1,10 @@
-# penguin-specific dotfiles
+# penguin
 
+## homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+## combo 'up' alias
+alias up='sudo apt update && sudo apt upgrade && brew update && brew upgrade && brew cleanup'
+
+## load NVM
+source "$HOME/.files-common/shard/nvm"
