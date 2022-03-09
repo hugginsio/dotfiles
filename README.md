@@ -1,6 +1,6 @@
 # dotfiles
 
-My macOS & Ubuntu dotfiles. For now, mostly aliases and themes. In the future, I'd like to expand `.files-bootstrap` to automate as much of the setup process as possible for new machines.
+My macOS & Linux dotfiles. For now, mostly aliases and themes. In the future, I'd like to expand `.files-bootstrap` to automate as much of the setup process as possible for new machines.
 
 ## Shell Behavior
 
