@@ -24,5 +24,7 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 
-echo "Don't forget to populate '.extra' with your gitconfig, etc."
+echo "Don't forget to populate '.extra':"
+echo " - git config --global user.name"
+echo " - git config --global user.email"
 exit && rm -rf $HOME/.files-bootstrap

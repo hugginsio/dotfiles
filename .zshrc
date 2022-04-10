@@ -16,3 +16,7 @@ unset OS_DOTFILE
 HOST_DOTFILE="$HOME/.files-host/.${$(hostname -s | cut -c1-4):l}"
 [ -r "$HOST_DOTFILE" ] && [ -f "$HOST_DOTFILE" ] && source "$HOST_DOTFILE";
 unset HOST_DOTFILE
+
+EXTRA_DOTFILE="$HOME/.extra"
+[ -r "$EXTRA_DOTFILE" ] && [ -f "$EXTRA_DOTFILE" ] && source "$EXTRA_DOTFILE";
+unset EXTRA_DOTFILE
