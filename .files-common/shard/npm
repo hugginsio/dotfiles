@@ -1,0 +1,4 @@
+# common npm aliases
+
+alias npmcheck='npx npm-check -u'
+alias npmvet='npx npmvet -s'

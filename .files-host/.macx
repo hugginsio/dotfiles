@@ -7,3 +7,6 @@ alias trivyscan='echo "Scanning ${PWD##*/}..." && trivy fs --security-checks vul
 ## google cloud autocomplete
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+## load NPM aliases
+source "$HOME/.files-common/shard/npm"

@@ -8,3 +8,6 @@ alias up='sudo apt update && sudo apt upgrade -y && brew update && brew upgrade 
 
 ## load NVM
 source "$HOME/.files-common/shard/nvm"
+
+## load NPM aliases
+source "$HOME/.files-common/shard/npm"
