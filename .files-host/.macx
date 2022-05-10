@@ -1,8 +1,9 @@
 # MACX
 
 ## aliases
-alias spid='"$HOME/OneDrive - J.B. Hunt Transport/Custom/Mac/secure-pid-maker.sh"'
-alias trivyscan='echo "Scanning ${PWD##*/}..." && trivy fs --security-checks vuln,config . > "$HOME/OneDrive - J.B. Hunt Transport/TrivyScan/${PWD##*/}.txt" && echo "Saved to OneDrive/TrivyScan/${PWD##*/}.txt"'
+alias cds='cd $HOME/Library/CloudStorage/OneDrive-J.B.HuntTransport/Scripting'
+alias spid='"$HOME/Library/CloudStorage/OneDrive-J.B.HuntTransport/Custom/Mac/secure-pid-maker.sh"'
+alias trivyscan='echo "Scanning ${PWD##*/}..." && trivy fs --security-checks vuln,config . > "$HOME/Library/CloudStorage/OneDrive-J.B.HuntTransport/TrivyScan/${PWD##*/}.txt" && echo "Saved to OneDrive/TrivyScan/${PWD##*/}.txt"'
 
 ## google cloud autocomplete
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
