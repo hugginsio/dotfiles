@@ -1,0 +1,37 @@
+# macOS specific config
+
+## env
+
+### load NVM
+
+source "$HOME/.hugginsio/common/shard/nvm"
+
+## path
+
+declare -a PREPEND_TO_PATH=(
+    "$HOME/.deno/bin" # deno ts
+    "/usr/local/bin"
+)
+
+declare -a APPEND_TO_PATH=(
+    "/usr/bin"
+    "/usr/local/sbin"
+)
+
+for INDEX in ${PREPEND_TO_PATH[@]}
+do
+    if [ -d "$INDEX" ]; then
+        dotfiles_prepend_to_path $INDEX
+    fi
+done
+
+for INDEX in ${APPEND_TO_PATH[@]}
+do
+    if [ -d "$INDEX" ]; then
+        dotfiles_append_to_path $INDEX
+    fi
+done
+
+unset PREPEND_TO_PATH APPEND_TO_PATH INDEX
+
+dotfiles_clean_path

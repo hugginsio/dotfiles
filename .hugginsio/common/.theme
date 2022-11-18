@@ -1,0 +1,66 @@
+# terminal theme
+
+setopt prompt_subst
+autoload -Uz vcs_info
+autoload -Uz colors
+
+zstyle ':vcs_info:*' stagedstr '*'
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' actionformats ' %b|%a'
+zstyle ':vcs_info:*' formats ' %b%c%u'
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+zstyle ':vcs_info:*' enable git
+
++vi-git-untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+    [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]];
+  then
+    hook_com[unstaged]+='??'
+  fi
+}
+
+prompt_color() {
+  local readonly PREV_EXIT_CODE=$?
+  
+  if [[ $PREV_EXIT_CODE -ne 0 ]]; then
+    echo "%F{1}"
+  else
+    echo "%F{2}"
+  fi
+}
+
+check_ssh() {
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    echo " %F{8}(%n@%m)%f"
+  fi
+}
+
+check_toolbox() {
+  if [ "$(uname -n)" = "toolbox" ]; then
+    echo " %F{8}(%m)%f"
+  fi
+}
+
+preexec() {
+  cmd_start="$SECONDS"
+  exec_timer=$(($(date +%s)))
+}
+
+precmd() {
+  vcs_info
+  if [ $exec_timer ]; then
+    now=$(($(date +%s)))
+    elapsed=$(($now-$exec_timer))
+
+    if [ $elapsed -gt 2 ]; then
+      RPROMPT="%F{8}${elapsed}s%f"
+    else
+      RPROMPT=""
+    fi
+
+    unset exec_timer
+  fi
+}
+
+PROMPT=$'\n%F{4}%7~%f%F{8}${vcs_info_msg_0_}%f$(check_ssh)$(check_toolbox)\n$(prompt_color)%#%f '

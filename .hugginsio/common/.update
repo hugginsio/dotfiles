@@ -1,0 +1,43 @@
+# functions for generating and maintaining the update function
+
+dotfiles_update_reset() {
+  DOTFILES_UPDATE_COMMAND=""
+}
+
+dotfiles_update_append() {
+  local readonly ADDITIONALUPDATECOMMAND=${1:?"A string to append to the update command must be specified."}
+  if [[ -z $DOTFILES_UPDATE_COMMAND ]]; then
+    DOTFILES_UPDATE_COMMAND="$ADDITIONALUPDATECOMMAND"
+  else
+    DOTFILES_UPDATE_COMMAND="$DOTFILES_UPDATE_COMMAND && $ADDITIONALUPDATECOMMAND"
+  fi;
+
+  alias up="$DOTFILES_UPDATE_COMMAND"
+}
+
+dotfiles_update_bootstrap() {
+  if [[ -z $DOTFILES_UPDATE_COMMAND ]]; then 
+    if apt_loc="$(type -p apt-get)" || [[ -z $apt_loc ]]; then
+      dotfiles_update_append "sudo apt update && sudo apt upgrade -y && sudo apt autoremove"
+    fi
+
+    if dnf_loc="$(type -p dnf)" || [[ -z $dnf_loc ]]; then
+      dotfiles_update_append "sudo dnf upgrade -y --refresh && sudo dnf autoremove"
+    fi
+
+    if rpmostree_loc="$(type -p rpm-ostree)" || [[ -z $rpmostree_loc ]]; then
+      dotfiles_update_append "rpm-ostree upgrade"
+    fi
+
+    if homebrew_loc="$(type -p brew)" || [[ -z $homebrew_loc ]]; then
+      dotfiles_update_append "brew update && brew upgrade && brew cleanup"
+    fi
+
+    if gcloud_loc="$(type -p gcloud)" || [[ -z $gcloud_loc ]]; then
+      dotfiles_update_append "gcloud components update -q"
+    fi
+
+    dotfiles_update_append "config pull"
+    dotfiles_update_append "reload"
+  fi
+}
