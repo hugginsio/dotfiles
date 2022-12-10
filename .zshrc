@@ -29,3 +29,6 @@ unset HOST_DOTFILE
 EXTRA_DOTFILE="$HOME/.extra"
 [ -r "$EXTRA_DOTFILE" ] && [ -f "$EXTRA_DOTFILE" ] && source "$EXTRA_DOTFILE";
 unset EXTRA_DOTFILE
+
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
