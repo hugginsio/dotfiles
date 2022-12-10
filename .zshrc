@@ -30,5 +30,9 @@ EXTRA_DOTFILE="$HOME/.extra"
 [ -r "$EXTRA_DOTFILE" ] && [ -f "$EXTRA_DOTFILE" ] && source "$EXTRA_DOTFILE";
 unset EXTRA_DOTFILE
 
+## zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 # initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+autoload -Uz compinit promptinit && compinit
