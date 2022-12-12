@@ -90,3 +90,6 @@ symbol = " "
 
 [spack]
 symbol = "🅢 "
+
+[username]
+format = "[$user]($style) on "
