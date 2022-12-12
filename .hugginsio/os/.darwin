@@ -1,11 +1,5 @@
 # macOS specific config
 
-## env
-
-### load NVM
-
-source "$HOME/.hugginsio/common/shard/nvm"
-
 ## path
 
 declare -a PREPEND_TO_PATH=(
