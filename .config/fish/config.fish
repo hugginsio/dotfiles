@@ -5,6 +5,8 @@
 set -Ux DOTFILES $HOME/.hugginsio-fish
 
 if test "$DOTFILES_ARE_CONFIGURED" != "true"
+  ## global prompt
+
   function dotfiles_source -d "Sources a configuration file if it exists"
     for arg in $argv
       if test -r $arg && test -f $arg
@@ -40,4 +42,7 @@ if test "$DOTFILES_ARE_CONFIGURED" != "true"
   ## set DOTFILES_ARE_CONFIGURED
   
   set -Ux DOTFILES_ARE_CONFIGURED true
+else
+  ## per-prompt configuration
+  dotfiles_source $DOTFILES/common/prompt.fish
 end
