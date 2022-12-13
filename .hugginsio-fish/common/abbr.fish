@@ -25,10 +25,3 @@ abbr -a ta 'tmux attach'
 abbr -a tl 'tmux ls'
 abbr -a tk 'tmux kill-server'
 abbr -a t 'tmux new'
-
-## neovim
-
-if command -qs nvim
-  abbr -a vi 'nvim'
-  abbr -a vim 'nvim'
-end
