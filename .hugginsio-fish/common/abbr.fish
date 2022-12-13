@@ -16,12 +16,3 @@ abbr -a myip 'curl icanhazip.com'
 abbr -a nuke 'rm -rf'
 abbr -a p 'ps -f'
 abbr -a please 'sudo'
-
-# app-specific abbreviations
-
-## tmux
-
-abbr -a ta 'tmux attach'
-abbr -a tl 'tmux ls'
-abbr -a tk 'tmux kill-server'
-abbr -a t 'tmux new'
