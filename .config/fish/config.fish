@@ -15,6 +15,10 @@ function dotfiles_source -d "Sources a configuration file if it exists"
   end
 end
 
+function fish_greeting
+  clear
+end
+
 if not test "$DOTFILES_ARE_CONFIGURED" = true
   ## global prompt
 
