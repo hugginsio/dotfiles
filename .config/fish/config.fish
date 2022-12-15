@@ -19,9 +19,7 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
 
   ### load common configuration files
 
-  for FILE in $DOTFILES/common/*.fish
-    dotfiles_source $FILE
-  end
+  dotfiles_source $DOTFILES/common/*.fish
 
   ### load host-specific configuration
 
@@ -33,9 +31,7 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
 
   ### load application configuration files
 
-  for FILE in $DOTFILES/apps/*.fish
-    dotfiles_source $FILE
-  end
+  dotfiles_source $DOTFILES/apps/*.fish
 
   ### load extra configuration
 
@@ -43,14 +39,15 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
 
   ### set DOTFILES_ARE_CONFIGURED
   
-  set -Ux DOTFILES_ARE_CONFIGURED true
+  set -gx DOTFILES_ARE_CONFIGURED true
 else
   ## per-prompt configuration
 
+  ### starship and the dotfiles util need to always be available
   dotfiles_source $DOTFILES/common/prompt.fish $DOTFILES/common/dotfiles.fish
 end
 
-function exit_handler --on-event fish_exit
+function on_exit --on-event fish_exit
   if test (pgrep fish -c) = 1
     set -e DOTFILES_ARE_CONFIGURED
   end
