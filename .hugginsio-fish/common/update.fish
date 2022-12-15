@@ -5,14 +5,16 @@ function up -d "Update"
                        "dnf" \
                        "rpm-ostree" \
                        "brew" \
-                       "gcloud"
+                       "gcloud" \
+                       "snap"
   set -l UPD_EXEC_LIST "sudo apt update && sudo apt upgrade -y && sudo apt autoremove" \
                        "sudo dnf upgrade -y --refresh && sudo dnf autoremove" \
                        "rpm-ostree upgrade" \
                        "brew update && brew upgrade && brew cleanup" \
-                       "gcloud components update -q"
+                       "gcloud components update -q" \
+                       "sudo snap refresh"
 
-  echo "Available: $COMMANDS_LIST"
+  echo "Available: $COMMANDS_LIST dotfiles"
 
   for CMD in $COMMANDS_LIST
     if command -qs $CMD
