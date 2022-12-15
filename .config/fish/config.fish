@@ -4,6 +4,7 @@
 
 set -gx DOTFILES $HOME/.hugginsio-fish
 set -gx DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
+set -gx VISUAL vi
 
 function dotfiles_source -d "Sources a configuration file if it exists"
   for arg in $argv
