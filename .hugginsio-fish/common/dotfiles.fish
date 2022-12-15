@@ -32,7 +32,7 @@ function dotfiles -a CMD -d "Dotfiles management utility"
       echo $DOTFILES_SOURCE_ATTEMPTS
     case "reload"
       echo "Reloading..."
-      set -Ux DOTFILES_ARE_CONFIGURED false
+      set -gx DOTFILES_ARE_CONFIGURED false
       for ABR in (abbr -l)
         abbr -e $ABR
       end
