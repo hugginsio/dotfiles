@@ -2,8 +2,8 @@
 
 # fish
 
-set -Ux DOTFILES $HOME/.hugginsio-fish
-set -Ux DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
+set -gx DOTFILES $HOME/.hugginsio-fish
+set -gx DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
 
 function dotfiles_source -d "Sources a configuration file if it exists"
   for arg in $argv
@@ -14,7 +14,7 @@ function dotfiles_source -d "Sources a configuration file if it exists"
   end
 end
 
-if test "$DOTFILES_ARE_CONFIGURED" != "true"
+if not test "$DOTFILES_ARE_CONFIGURED" = true
   ## global prompt
 
   ### load common configuration files
@@ -47,12 +47,11 @@ if test "$DOTFILES_ARE_CONFIGURED" != "true"
 else
   ## per-prompt configuration
 
-  dotfiles_source $DOTFILES/common/prompt.fish
+  dotfiles_source $DOTFILES/common/prompt.fish $DOTFILES/common/dotfiles.fish
 end
 
-function on_exit --on-event fish_exit
-  # Ensure reload whenever shell is launched fresh
+function exit_handler --on-event fish_exit
   if test (pgrep fish -c) = 1
-    set -Ux DOTFILES_ARE_CONFIGURED false
+    set -e DOTFILES_ARE_CONFIGURED
   end
 end

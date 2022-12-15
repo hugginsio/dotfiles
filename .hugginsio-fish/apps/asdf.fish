@@ -2,10 +2,15 @@
 
 # configure asdf
 
-if not command -qs asdf
+if not test -f $HOME/.asdf/asdf.fish
   exit
 end
 
-## completions
+## source autoconfigure script
 
 source $HOME/.asdf/asdf.fish
+
+## completions
+
+mkdir -p $__fish_config_dir/completions
+ln -sf $HOME/.asdf/completions/asdf.fish $__fish_config_dir/completions

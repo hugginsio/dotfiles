@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
 
 complete --command dotfiles --exclusive --condition __fish_use_subcommand --arguments explain --description "Shows which env-specific dotfiles will be loaded"
+complete --command dotfiles --exclusive --condition __fish_use_subcommand --arguments reload --description "Attempt to reload shell configuration"
 complete --command dotfiles --exclusive --condition __fish_use_subcommand --arguments update --description "Pulls latest changes (incl. submodules)"
 
 function dotfiles -a CMD -d "Dotfiles management utility"
@@ -9,7 +10,6 @@ function dotfiles -a CMD -d "Dotfiles management utility"
   end
 
   echo dotfiles (dgit log -n1 --format="%h")
-  echo
 
   switch $CMD
     case ""
@@ -18,6 +18,7 @@ function dotfiles -a CMD -d "Dotfiles management utility"
       echo
       echo "COMMANDS"
       echo "explain       shows which env-specific dotfiles will be loaded"
+      echo "reload        attempt to reload shell configuration"
       echo "update        pulls latest changes (incl. submodules)"
       echo
       echo "GIT PASSTHROUGH"
@@ -29,6 +30,14 @@ function dotfiles -a CMD -d "Dotfiles management utility"
       echo
       echo Sourced configuration files:
       echo $DOTFILES_SOURCE_ATTEMPTS
+    case "reload"
+      echo "Reloading..."
+      set -Ux DOTFILES_ARE_CONFIGURED false
+      for ABR in (abbr -l)
+        abbr -e $ABR
+      end
+      source $__fish_config_dir/config.fish
+      echo "Reload complete."
     case "update"
       echo "Updating..."
       dgit pull origin main
