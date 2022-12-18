@@ -9,6 +9,9 @@ set shiftwidth=0
 set autoindent
 set smartindent
 
+" environment variables
+set packpath+=$DOTFILES/modules/vim
+
 " leader mappings
 nnoremap <leader>dd :Lexplore %:p:h<CR>
 nnoremap <Leader>da :Lexplore<CR>
@@ -67,3 +70,12 @@ nnoremap <silent> <leader>bv :vnew<CR>
 " open new split panes to right and below
 set splitright
 set splitbelow
+
+" packer
+lua require('plugins')
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
