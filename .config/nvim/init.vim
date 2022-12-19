@@ -72,7 +72,7 @@ set splitright
 set splitbelow
 
 " packer
-lua require('plugins')
+lua require("hugginsio")
 
 " Telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
