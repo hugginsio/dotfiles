@@ -19,14 +19,6 @@ nnoremap <silent> <leader>tt :terminal<CR>
 nnoremap <silent> <leader>tv :vnew<CR>:terminal<CR>
 nnoremap <silent> <leader>th :new<CR>:terminal<CR>
 
-" netrw config
-let g:netrw_keepdir = 0
-let g:netrw_winsize = 30
-let g:netrw_localcopydircmd = 'cp -r'
-let g:netrw_localcopydircmd = 'cp -r'
-let g:netrw_banner = 0 " show using I
-hi! link netrwMarkFile Search
-
 " https://neovim.io/doc/user/nvim_terminal_emulator.html
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h

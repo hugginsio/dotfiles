@@ -39,4 +39,8 @@ return require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin"
+  }
 end)
