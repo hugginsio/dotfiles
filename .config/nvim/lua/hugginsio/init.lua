@@ -1,1 +1,2 @@
-require("hugginsio.packer")
+require('hugginsio.packer')
+require('hugginsio.netrw')
