@@ -10,6 +10,7 @@ function dotfiles -a CMD -d "Dotfiles management utility"
   end
 
   echo dotfiles (dgit log -n1 --format="%h")
+  echo
 
   switch $CMD
     case ""
@@ -41,6 +42,7 @@ function dotfiles -a CMD -d "Dotfiles management utility"
     case "update"
       echo "Updating..."
       dgit pull origin main
+      dgit submodule init
       dgit submodule update --remote
       echo "Update complete."
     case "*"
