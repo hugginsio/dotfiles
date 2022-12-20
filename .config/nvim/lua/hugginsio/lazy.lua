@@ -15,5 +15,21 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("hugginsio.plugins", {
   defaults = { lazy = true },
+  ui = {
+    border = "rounded"
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "spellfile",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
   checker = { enabled = true }
 })

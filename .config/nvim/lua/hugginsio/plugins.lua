@@ -17,7 +17,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function()
+    build = function()
       local ts_update = require("nvim-treesitter.install").update({ with_sync = true})
       ts_update()
     end
@@ -42,5 +42,12 @@ return {
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
     }
+  },
+  {
+    "m4xshen/autoclose.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("autoclose").setup({})
+    end
   }
 }
