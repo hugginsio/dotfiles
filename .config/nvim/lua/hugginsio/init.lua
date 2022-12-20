@@ -1,2 +1,2 @@
-require('hugginsio.packer')
+require('hugginsio.lazy')
 require('hugginsio.netrw')
