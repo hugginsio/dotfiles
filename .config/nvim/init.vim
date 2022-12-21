@@ -8,6 +8,8 @@ set softtabstop=0
 set shiftwidth=0
 set autoindent
 set smartindent
+set scrolloff=7
+set laststatus=3
 
 " environment variables
 set packpath+=$DOTFILES/modules/vim

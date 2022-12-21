@@ -10,6 +10,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
     tag = "0.1.0",
     dependencies = {
       "nvim-lua/plenary.nvim"
@@ -48,6 +49,20 @@ return {
     event = "InsertEnter",
     config = function()
       require("autoclose").setup({})
+    end
+  },
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end
+  },
+  {
+    'nvim-orgmode/orgmode',
+    ft = "org",
+    config = function()
+      require('orgmode').setup{}
     end
   }
 }
