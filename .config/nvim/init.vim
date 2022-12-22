@@ -10,6 +10,7 @@ set autoindent
 set smartindent
 set scrolloff=7
 set laststatus=3
+set signcolumn=number
 
 " environment variables
 set packpath+=$DOTFILES/modules/vim

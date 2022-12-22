@@ -3,7 +3,6 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
     config = function()
       vim.cmd("colorscheme catppuccin-mocha")
     end
@@ -18,9 +17,15 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "BufReadPre",
     build = function()
       local ts_update = require("nvim-treesitter.install").update({ with_sync = true})
       ts_update()
+    end,
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "lua" }
+      })
     end
   },
   {
@@ -59,10 +64,18 @@ return {
     end
   },
   {
-    'nvim-orgmode/orgmode',
-    ft = "org",
+    "nvim-orgmode/orgmode",
+    event = "BufReadPre"
     config = function()
-      require('orgmode').setup{}
+      require("orgmode").setup()
+    end
+  },
+  {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("todo-comments").setup()
     end
   }
 }
