@@ -9,27 +9,26 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    event = "VeryLazy",
+    cmd = "Telescope",
     tag = "0.1.0",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    }
+    dependencies = "nvim-lua/plenary.nvim"
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufReadPre",
+    event = "BufReadPost",
     build = function()
       local ts_update = require("nvim-treesitter.install").update({ with_sync = true})
       ts_update()
     end,
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua" }
+        ensure_installed = { "lua", "org" }
       })
     end
   },
   {
     "VonHeikemen/lsp-zero.nvim",
+    event = "BufReadPre",
     dependencies = {
       -- LSP Support
       "neovim/nvim-lspconfig",
@@ -65,17 +64,56 @@ return {
   },
   {
     "nvim-orgmode/orgmode",
-    event = "BufReadPre"
+    event = "BufReadPre",
     config = function()
       require("orgmode").setup()
+      require("orgmode").setup_ts_grammar()
     end
   },
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    event = "BufReadPre",
+    dependencies = "nvim-lua/plenary.nvim",
+    cmds = { "TodoTrouble", "TodoTelescope" },
     config = function()
       require("todo-comments").setup()
+    end
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("which-key").setup()
+    end
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("gitsigns").setup()
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    dependencies = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup()
+    end
+  },
+  {
+    "mbbill/undotree",
+    cmd = { "UndotreeToggle" }
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = "kyazdani42/nvim-web-devicons",
+    event = "VeryLazy",
+    config = function()
+      require("lualine").setup({
+        options = {
+          globalstatus = true
+        }
+      })
     end
   }
 }

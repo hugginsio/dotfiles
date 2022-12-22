@@ -1,7 +1,7 @@
 " neomvim configuration
 set number relativenumber
 set ic
-let mapleader = ';'
+let mapleader = ' '
 set expandtab
 set tabstop=2
 set softtabstop=0
@@ -11,6 +11,7 @@ set smartindent
 set scrolloff=7
 set laststatus=3
 set signcolumn=number
+set noshowmode
 
 " environment variables
 set packpath+=$DOTFILES/modules/vim
