@@ -70,7 +70,7 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    cmds = { "TodoTrouble", "TodoTelescope" },
+    cmd = { "TodoTrouble", "TodoTelescope" },
     config = true
   },
   {
@@ -100,7 +100,9 @@ return {
     config = function()
       require("lualine").setup({
         options = {
-          globalstatus = true
+          globalstatus = true,
+          section_separators = "",
+          component_separators = ""
         }
       })
     end,
