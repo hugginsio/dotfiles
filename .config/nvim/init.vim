@@ -17,8 +17,8 @@ set noshowmode
 set packpath+=$DOTFILES/modules/vim
 
 " leader mappings
-nnoremap <leader>dd :Lexplore %:p:h<CR>
-nnoremap <Leader>da :Lexplore<CR>
+nnoremap <leader>dd :NvimTreeFindFile<CR>
+nnoremap <Leader>da :NvimTreeOpen<CR>
 nnoremap <silent> <leader>tt :terminal<CR>
 nnoremap <silent> <leader>tv :vnew<CR>:terminal<CR>
 nnoremap <silent> <leader>th :new<CR>:terminal<CR>

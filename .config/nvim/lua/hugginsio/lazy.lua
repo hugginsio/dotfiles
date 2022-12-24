@@ -23,6 +23,7 @@ require("lazy").setup("hugginsio.plugins", {
         "gzip",
         "matchit",
         "spellfile",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",

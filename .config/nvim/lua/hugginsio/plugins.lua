@@ -9,7 +9,6 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
     tag = "0.1.0",
     dependencies = "nvim-lua/plenary.nvim"
   },
@@ -58,9 +57,7 @@ return {
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({})
-    end
+    config = true
   },
   {
     "nvim-orgmode/orgmode",
@@ -74,28 +71,22 @@ return {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     cmds = { "TodoTrouble", "TodoTelescope" },
-    config = function()
-      require("todo-comments").setup()
-    end
+    config = true
   },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    config = function()
-      require("which-key").setup()
-    end
+    config = true
   },
   {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
-    config = function()
-      require("gitsigns").setup()
-    end
+    config = true
   },
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup()
     end
@@ -106,14 +97,38 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
-    event = "VeryLazy",
     config = function()
       require("lualine").setup({
         options = {
           globalstatus = true
         }
       })
-    end
+    end,
+    dependencies = "nvim-tree/nvim-web-devicons",
+    event = "VeryLazy",
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = true,
+    cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
+  {
+    "ellisonleao/glow.nvim",
+    config = true,
+    cmd = "Glow"
+  },
+  {
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require("neoclip").setup()
+      require("telescope").load_extension("neoclip")
+    end,
+    dependencies = {
+      "nvim-telescope/telescope.nvim"
+    },
+    event = "VeryLazy"
   }
 }
