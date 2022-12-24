@@ -6,7 +6,3 @@
 	path = .zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
   shallow = true
-[submodule ".hugginsio-fish/modules/vim/pack/packer/start/packer.nvim"]
-	path = .hugginsio-fish/modules/vim/pack/packer/start/packer.nvim
-	url = https://github.com/wbthomason/packer.nvim
-  shallow = true
