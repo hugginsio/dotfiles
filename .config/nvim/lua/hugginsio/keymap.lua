@@ -7,9 +7,9 @@ vim.keymap.set("n", " ", "<Nop>")
 -- misc. leader mappings
 vim.keymap.set("n", "<leader>dd", ":NvimTreeFindFile<CR>")
 vim.keymap.set("n", "<leader>da", ":NvimTreeOpen<CR>")
-vim.keymap.set("n", "<leader>tt", ":terminal<CR>")
-vim.keymap.set("n", "<leader>tv", ":vnew<CR>:terminal<CR>")
-vim.keymap.set("n", "<leader>th", ":new<CR>:terminal<CR>")
+vim.keymap.set("n", "<silent> <leader>tt", ":terminal<CR>")
+vim.keymap.set("n", "<silent> <leader>tv", ":vnew<CR>:terminal<CR>")
+vim.keymap.set("n", "<silent> <leader>th", ":new<CR>:terminal<CR>")
 
 -- https://neovim.io/doc/user/nvim_terminal_emulator.html
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
