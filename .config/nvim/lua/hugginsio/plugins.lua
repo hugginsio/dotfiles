@@ -112,7 +112,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     config = true,
-    cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
+    cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
     dependencies = {
       "nvim-tree/nvim-web-devicons"
     },
