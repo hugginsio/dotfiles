@@ -6,13 +6,15 @@ function up -d "Update"
                        "rpm-ostree" \
                        "brew" \
                        "gcloud" \
-                       "snap"
+                       "snap" \
+                       "nvim"
   set -l UPD_EXEC_LIST "sudo apt update && sudo apt upgrade -y && sudo apt autoremove" \
                        "sudo dnf upgrade -y --refresh && sudo dnf autoremove" \
                        "rpm-ostree upgrade" \
                        "brew update && brew upgrade && brew cleanup" \
                        "gcloud components update -q" \
-                       "sudo snap refresh"
+                       "sudo snap refresh" \
+                       "nvim --headless '+Lazy! update' +qa"
 
   echo "Available: $COMMANDS_LIST dotfiles"
 
