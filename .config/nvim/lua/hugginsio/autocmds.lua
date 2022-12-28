@@ -25,6 +25,16 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "startinsert"
 })
 
+-- Start git messages in insert mode
+vim.api.nvim_create_autocmd("FileType", {
+  group = "hugginsio",
+  pattern = {
+    "gitcommit",
+    "gitrebase"
+  },
+  command = "startinsert | 1"
+})
+
 -- Write unsaved buffers when focus lost
 vim.api.nvim_create_autocmd("FocusLost", {
   group = "hugginsio",
