@@ -12,6 +12,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    event = "VeryLazy",
     tag = "0.1.0",
   },
   {
@@ -59,6 +60,7 @@ return {
   {
     "kylechui/nvim-surround",
     config = true,
+    event = "BufReadPost",
   },
   {
     "nvim-orgmode/orgmode",
@@ -72,10 +74,12 @@ return {
     "folke/todo-comments.nvim",
     config = true,
     dependencies = "nvim-lua/plenary.nvim",
+    event = "VeryLazy",
   },
   {
     "folke/which-key.nvim",
     config = true,
+    event = "VeryLazy",
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -88,6 +92,7 @@ return {
       require("trouble").setup()
     end,
     dependencies = "nvim-tree/nvim-web-devicons",
+    event = "BufReadPost",
   },
   {
     "mbbill/undotree",
@@ -125,6 +130,7 @@ return {
       require("neoclip").setup()
       require("telescope").load_extension("neoclip")
     end,
+    cmd = "Telescope neoclip",
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
