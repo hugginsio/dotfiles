@@ -5,16 +5,17 @@ return {
     name = "catppuccin",
     config = function()
       vim.cmd("colorscheme catppuccin-mocha")
-    end
+    end,
+    lazy = false,
+    priority = 1000,
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     tag = "0.1.0",
-    dependencies = "nvim-lua/plenary.nvim"
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufReadPost",
     build = function()
       local ts_update = require("nvim-treesitter.install").update({ with_sync = true})
       ts_update()
@@ -23,11 +24,11 @@ return {
       require("nvim-treesitter.configs").setup({
         ensure_installed = { "lua", "org" }
       })
-    end
+    end,
+    event = "BufReadPost",
   },
   {
     "VonHeikemen/lsp-zero.nvim",
-    event = "BufReadPre",
     dependencies = {
       -- LSP Support
       "neovim/nvim-lspconfig",
@@ -45,51 +46,48 @@ return {
       -- Snippets
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
-    }
+    },
+    event = "BufReadPre",
   },
   {
     "m4xshen/autoclose.nvim",
-    event = "InsertEnter",
     config = function()
       require("autoclose").setup({})
-    end
+    end,
+    event = "InsertEnter",
   },
   {
     "kylechui/nvim-surround",
-    event = "VeryLazy",
-    config = true
+    config = true,
   },
   {
     "nvim-orgmode/orgmode",
-    event = "BufReadPre",
     config = function()
       require("orgmode").setup()
       require("orgmode").setup_ts_grammar()
-    end
+    end,
+    event = "BufReadPre",
   },
   {
     "folke/todo-comments.nvim",
+    config = true,
     dependencies = "nvim-lua/plenary.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    config = true
   },
   {
     "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = true
+    config = true,
   },
   {
     "lewis6991/gitsigns.nvim",
+    config = true,
     event = "BufReadPre",
-    config = true
   },
   {
     "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup()
-    end
+    end,
+    dependencies = "nvim-tree/nvim-web-devicons",
   },
   {
     "mbbill/undotree",
@@ -107,12 +105,11 @@ return {
       })
     end,
     dependencies = "nvim-tree/nvim-web-devicons",
-    event = "VeryLazy",
+    lazy = false,
   },
   {
     "nvim-tree/nvim-tree.lua",
     config = true,
-    cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
     dependencies = {
       "nvim-tree/nvim-web-devicons"
     },
@@ -131,6 +128,5 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
-    event = "VeryLazy"
   }
 }

@@ -14,6 +14,12 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("hugginsio.plugins", {
+  defaults = {
+    lazy = true
+  },
+  install = {
+    colorscheme = { "catppuccin-mocha" }
+  },
   ui = {
     border = "rounded"
   },
