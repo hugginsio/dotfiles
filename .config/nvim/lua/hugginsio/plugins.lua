@@ -134,5 +134,14 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
+  },
+  {
+    "goolord/alpha-nvim",
+    config = function()
+      require("alpha").setup(require("alpha.themes.startify").config)
+    end,
+    dependencies = {
+      "nvim-telescope/telescope.nvim"
+    },
   }
 }
