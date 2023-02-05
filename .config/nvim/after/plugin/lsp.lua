@@ -1,19 +1,20 @@
 -- lsp-zero
 
-local lsp = require('lsp-zero')
+local lsp = require("lsp-zero")
 
-lsp.preset('recommended')
+lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'sumneko_lua',
+  "sumneko_lua",
+  "gopls",
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure("sumneko_lua", {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' }
+        globals = { "vim" }
       }
     }
   }

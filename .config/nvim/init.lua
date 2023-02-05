@@ -12,7 +12,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.scrolloff = 7
 vim.opt.laststatus = 3
-vim.opt.signcolumn = "number"
+-- vim.opt.signcolumn = "number"
 vim.opt.showmode = false
 
 -- open new split panes to right and below

@@ -48,7 +48,6 @@ return {
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
     },
-    event = "BufReadPre",
   },
   {
     "m4xshen/autoclose.nvim",
@@ -68,7 +67,7 @@ return {
       require("orgmode").setup()
       require("orgmode").setup_ts_grammar()
     end,
-    event = "BufReadPre",
+    event = "VeryLazy",
   },
   {
     "folke/todo-comments.nvim",
@@ -118,6 +117,7 @@ return {
     dependencies = {
       "nvim-tree/nvim-web-devicons"
     },
+    event = "VeryLazy",
   },
   {
     "ellisonleao/glow.nvim",
@@ -130,10 +130,10 @@ return {
       require("neoclip").setup()
       require("telescope").load_extension("neoclip")
     end,
-    cmd = "Telescope neoclip",
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
+    event = "VeryLazy",
   },
   {
     "goolord/alpha-nvim",
@@ -143,5 +143,8 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
+  },
+  {
+    "jghauser/mkdir.nvim"
   }
 }
