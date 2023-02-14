@@ -50,13 +50,6 @@ return {
     },
   },
   {
-    "m4xshen/autoclose.nvim",
-    config = function()
-      require("autoclose").setup({})
-    end,
-    event = "InsertEnter",
-  },
-  {
     "kylechui/nvim-surround",
     config = true,
     event = "BufReadPost",
@@ -64,10 +57,15 @@ return {
   {
     "nvim-orgmode/orgmode",
     config = function()
-      require("orgmode").setup()
+      require("orgmode").setup({
+        org_agenda_files = "$HOME/OneDrive - J.B. Hunt Transport/Documents/org/**/*",
+        calendar_week_start_day = 0,
+        org_deadline_warning_days = 0,
+      })
       require("orgmode").setup_ts_grammar()
     end,
     event = "VeryLazy",
+    ft = "org",
   },
   {
     "folke/todo-comments.nvim",
