@@ -1,4 +1,7 @@
 [".asdf"]
-    type = "git-repo"
-    url = "https://github.com/asdf-vm/asdf.git"
-    refreshPeriod = "24h"
+  type = "git-repo"
+  url = "https://github.com/asdf-vm/asdf.git"
+  refreshPeriod = "24h"
+[".emacs.d"]
+  type = "git-repo"
+  url = "https://github.com/hlissner/doom-emacs.git"
