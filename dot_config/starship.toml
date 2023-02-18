@@ -1,0 +1,104 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[cmd_duration]
+min_time = 5_000
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+truncation_symbol = "…/"
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kubernetes]
+detect_files = [ "manifest.yml", "manifest.yaml", "Dockerfile" ]
+detect_folders = [ "kustomize" ]
+disabled = false
+
+[lua]
+symbol = " "
+
+[memory_usage]
+format = "via $symbol [${ram_pct}]($style) "
+symbol = " "
+
+[meson]
+symbol = "喝 "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+detect_extensions = []
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+
+[username]
+format = "[$user]($style) on "

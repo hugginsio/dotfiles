@@ -1,0 +1,10 @@
+# functions
+
+## user functions
+
+function gi() { curl -fL https://www.gitignore.io/api/${(j:,:)@} }
+function mcd () { mkdir -p "$1" && cd "$1"; }
+function mergelog() { git log --oneline master.."$1" --format="* %s" --reverse }
+function rmdsstore() { find "${@:-.}" -type f -name .DS_Store -delete }
+function rmnodemodules() { find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + }
+function dotfiles() { "$HOME/.hugginsio/util/dotfiles.sh $@" }
