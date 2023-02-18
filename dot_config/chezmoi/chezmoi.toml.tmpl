@@ -1,0 +1,7 @@
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "idLike" -}}
+{{-   $osid = printf "%s-like-%s" .chezmoi.osRelease.idLike .chezmoi.os -}}
+{{- end -}}
+
+[data]
+    osid = {{ $osid | quote }}
