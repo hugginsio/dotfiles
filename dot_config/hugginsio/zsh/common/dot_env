@@ -1,0 +1,26 @@
+# environment variables
+
+## terminal
+
+export TERM=xterm-256color
+export CLICOLOR=$TERM
+
+## path
+
+dotfiles_prepend_to_path() {
+  readonly PATHSTRING=${1:?"A string to prepend to the path must be specified."}
+  PATH="$PATHSTRING:$PATH"
+}
+
+dotfiles_append_to_path() {
+  readonly PATHSTRING=${1:?"A string to append to the path must be specified."}
+  PATH="$PATH:$PATHSTRING"
+}
+
+dotfiles_clean_path() {
+  typeset -U path
+}
+
+dotfiles_prepend_to_path "$HOME/bin"
+dotfiles_append_to_path "/usr/local/go/bin"
+dotfiles_clean_path
