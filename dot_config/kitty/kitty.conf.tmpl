@@ -1,6 +1,6 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
-#: Fonts {{{
+#: Fonts
 
 font_family      monospace
 bold_font        auto
@@ -9,15 +9,13 @@ bold_italic_font auto
 
 font_family JetBrainsMono Nerd Font
 
-font_size 12.0
+font_size 13.0
 
 disable_ligatures never
 
 modify_font cell_height 110%
 
-#: }}}
-
-#: Theme {{{
+#: Theme
 
 # name:     Catppuccin Mocha
 # upstream: https://github.com/catppuccin/kitty/blob/main/mocha.conf
@@ -93,23 +91,17 @@ color14 #94E2D5
 color7  #BAC2DE
 color15 #A6ADC8
 
-#: }}}
-
-#: Mouse {{{
+#: Mouse
 
 mouse_hide_wait -1
 
-#: }}}
-
-#: Window layout {{{
+#: Window layout
 
 enabled_layouts grid, fat, vertical, stack
 
 confirm_os_window_close 1
 
-#: }}}
-
-#: Tab bar {{{
+#: Tab bar
 
 tab_bar_edge top
 
@@ -119,69 +111,72 @@ tab_activity_symbol *
 
 tab_bar_background none
 
-#: }}}
-
-#: Advanced {{{
+#: Advanced
 
 # https://sw.kovidgoyal.net/kitty/conf/#kitty-conf - hardcode macOS shell for now
+
+{{ if eq .osid "darwin" -}}
+
 shell /opt/homebrew/bin/fish -l -i
 
-#: }}}
+{{ else if eq .osid "debian-like-linux" -}}
 
-#: OS specific tweaks {{{
+shell /usr/bin/fish
+
+{{ else -}}
+
+shell .
+
+{{ end -}}
+
+#: OS specific tweaks
 
 macos_quit_when_last_window_closed yes
 
-#: }}}
-
-#: Keyboard shortcuts {{{
+#: Keyboard shortcuts
 
 # Mod key
 
 kitty_mod ctrl+shift
 
-#: Scrolling {{{
+#: Scrolling
 
-#: Scroll line up
+# Scroll line up
 
 map kitty_mod+up    scroll_line_up
 map kitty_mod+k     scroll_line_up
 
-#: Scroll line down
+# Scroll line down
 
 map kitty_mod+down    scroll_line_down
 map kitty_mod+j       scroll_line_down
 
-#: Scroll page up
+# Scroll page up
 
 map kitty_mod+page_up scroll_page_up
 map kitty_mod+alt+k   scroll_page_up
 
-#: Scroll page down
+# Scroll page down
 
 map kitty_mod+page_down scroll_page_down
 map kitt_mod+alt+j      scroll_page_down
 
-#: Browse output of the last shell command in pager
+# Browse output of the last shell command in pager
 
 map kitty_mod+r show_last_command_output
 
-#: }}}
-
-#: Window management {{{
+#: Window management
 
 map kitty_mod+l next_window
 map kitty_mod+h previous_window
 
-#: }}}
+#: Tab management
 
-#: Tab management {{{
-
-#: Set tab title
+# Set tab title
 
 map kitty_mod+alt+t set_tab_title
 
-#: Goto specific tab (0/-1 is previous tab)
+# Goto specific tab (0/-1 is previous tab)
 
 map kitty_mod+1 goto_tab 1
 map kitty_mod+2 goto_tab 2
@@ -194,18 +189,12 @@ map kitty_mod+8 goto_tab 8
 map kitty_mod+9 goto_tab 9
 map kitty_mod+0 goto_tab -1
 
-#: }}}
+#: Layout management
 
-#: Layout management {{{
-
-#: Next layout
+# Next layout
 
 map kitty_mod+s next_layout
 
 # "zoom layout" - toggle in/out of stack
 
 map kitty_mod+z toggle_layout stack
-
-#: }}}
-
-#: }}}
