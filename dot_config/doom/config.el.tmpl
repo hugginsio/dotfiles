@@ -20,6 +20,15 @@
 
 ;; org-mode
 (setq org-directory "~/Workspaces/Org")
+(defun hugginsio/org-mode-headers-hook ()
+  "Stop the org-level headers from increasing in height relative to the other text."
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5))
+  (set-face-attribute face nil :weight 'bold :height 1.0)))
+(add-hook 'org-mode-hook #'hugginsio/org-mode-headers-hook)
 
 ;; vterm
 (setq vterm-shell {{ .fishPath | quote }})
