@@ -1,5 +1,4 @@
 #!/bin/sh
-# vim:ft=bash
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -11,16 +10,12 @@ echo "run_once_bootstrap_common"
 
 echo "Detected: macOS"
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
-brew "git"
-EOF
-
 {{ else if eq .osid "debian-like-linux" -}}
 
 echo "Detected: Debian-like Linux"
 
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
-sudo apt-get -y install --no-install-recommends git curl ripgrep fd-find
+sudo apt-get -y install --no-install-recommends git curl
 
 {{ else -}}
 
