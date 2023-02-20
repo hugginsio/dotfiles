@@ -1,23 +1,25 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'normal))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 17 :weight 'normal))
 
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; Catppuccin (from packages.el)
+(setq catppuccin-flavor 'mocha)
+(setq doom-theme 'catppuccin)
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
+;; Maximize window on startup
+(add-hook 'window-setup-hook #'toggle-frame-maximized)
+
+;; Customize doom-dashboard
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+
+;; Enable relative line numbers
 (setq display-line-numbers-type 'relative)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Documents/org/")
-
+;; org-mode
+(setq org-directory "~/Workspaces/Org")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
