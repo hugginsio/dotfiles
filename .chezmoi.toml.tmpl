@@ -3,5 +3,13 @@
 {{-   $osid = printf "%s-like-%s" .chezmoi.osRelease.idLike .chezmoi.os -}}
 {{- end -}}
 
+{{- $fishPath := "" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $fishPath = printf "/opt/homebrew/bin/fish" -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{-   $fishPath = printf "/usr/bin/fish" -}}
+{{- end -}}
+
 [data]
     osid = {{ $osid | quote }}
+    fishPath = {{ $fishPath | quote }}

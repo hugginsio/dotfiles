@@ -117,11 +117,11 @@ tab_bar_background none
 
 {{ if eq .osid "darwin" -}}
 
-shell /opt/homebrew/bin/fish -l -i
+shell {{ .fishPath }} -l -i
 
 {{ else if eq .osid "debian-like-linux" -}}
 
-shell /usr/bin/fish
+shell {{ .fishPath }}
 
 {{ else -}}
 
