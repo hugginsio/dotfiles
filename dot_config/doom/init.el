@@ -1,4 +1,4 @@
-;;; init.el -*- lexical-binding: t; -*-
+;; $DOOMDIR/init.el -*- lexical-binding: t; mode: Lisp; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
@@ -18,7 +18,6 @@
 
        :completion
        company             ; the ultimate code completion backend
-       ;;ivy               ; a search engine for love and life
        vertico             ; the search engine of the future
 
        :ui
@@ -29,7 +28,6 @@
        ;;indent-guides     ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
        modeline            ; snazzy, Atom-inspired modeline, plus API
-       ;;nav-flash         ; blink cursor line after big motions
        ophints             ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
@@ -46,8 +44,7 @@
        (format +onsave)    ; automated prettiness
        multiple-cursors    ; editing in many places at once
        ;;objed             ; text object editing for the innocent
-       ;;rotate-text       ; cycle region at point between text candidates
-       ;;snippets          ; my elves. They type so I don't have to
+       snippets            ; my elves. They type so I don't have to
        word-wrap           ; soft wrapping with language-aware indent
 
        :emacs
@@ -62,29 +59,26 @@
        :checkers
        syntax              ; tasing you for every semicolon you forget
        (spell +flyspell)   ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+       grammar             ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        docker
        editorconfig        ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
        lsp                 ; M-x vscode
        magit               ; a git porcelain for Emacs
        pdf                 ; pdf enhancements
-       ;;rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
-       ;;tree-sitter       ; syntax and parsing, sitting in a tree...
+       tree-sitter         ; syntax and parsing, sitting in a tree...
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
        tty                 ; improve the terminal Emacs experience
 
        :lang
-       ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;csharp            ; unity, .NET, and mono shenanigans
        data                ; config/data formats
        emacs-lisp          ; drown in parentheses
@@ -93,25 +87,21 @@
        json                ; At least it ain't XML
        (java +lsp)         ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
-       ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
-       ;;lua               ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
        ;;nix               ; I hereby declare "nix geht mehr!"
        org                 ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
        ;;python            ; beautiful is better than ugly
        rest                ; Emacs as a REST client
        ;;rst               ; ReST in peace
-       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        sh                  ; she sells {ba,z,fi}sh shells on the C xor
        web                 ; the tubes
        yaml                ; JSON, but readable
 
        :app
-       ;;calendar
+       calendar
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;(rss +org)        ; emacs as an RSS reader
 
