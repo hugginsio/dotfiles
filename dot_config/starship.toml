@@ -57,7 +57,7 @@ symbol = " "
 [kubernetes]
 detect_files = [ "manifest.yml", "manifest.yaml", "Dockerfile" ]
 detect_folders = [ "kustomize" ]
-disabled = false
+disabled = true
 
 [lua]
 symbol = " "
