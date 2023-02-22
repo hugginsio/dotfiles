@@ -16,35 +16,9 @@ return {
     tag = "0.1.0",
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    build = function()
-      local ts_update = require("nvim-treesitter.install").update({ with_sync = true})
-      ts_update()
-    end,
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "json", "lua", "org", "markdown"}
-      })
-    end,
-    event = "BufReadPost",
-  },
-  {
     "kylechui/nvim-surround",
     config = true,
     event = "BufReadPost",
-  },
-  {
-    "nvim-orgmode/orgmode",
-    config = function()
-      require("orgmode").setup({
-        org_agenda_files = "$HOME/OneDrive - J.B. Hunt Transport/Documents/org/**/*",
-        calendar_week_start_day = 0,
-        org_deadline_warning_days = 0,
-      })
-      require("orgmode").setup_ts_grammar()
-    end,
-    event = "VeryLazy",
-    ft = "org",
   },
   {
     "folke/todo-comments.nvim",
