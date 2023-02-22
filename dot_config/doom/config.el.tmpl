@@ -13,10 +13,6 @@
 ;; Enable hl-mode in certain modes only
 (setq global-hl-line-modes '(org-agenda-mode))
 
-;; Set frame to full height and width on startup
-(add-to-list 'default-frame-alist '(fullscreen . fullheight))
-(add-to-list 'default-frame-alist '(fullscreen . fullwidth))
-
 ;; Customize doom-dashboard
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
@@ -24,7 +20,7 @@
 ;; Enable relative line numbers
 (setq display-line-numbers-type 'relative)
 
-;; org-mode (TODO: throws an error if the directory does not exist)
+;; org-mode (TODO: create seperate function that generates the list of agenda files)
 (setq hugginsio/org-base-dir "~/Workspaces/Org/"
       hugginsio/current-year (format-time-string "%Y" (current-time))
       hugginsio/current-org-dir (concat hugginsio/org-base-dir hugginsio/current-year "/"))
