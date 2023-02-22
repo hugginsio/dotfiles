@@ -1,2 +1,4 @@
+#-*- mode: Gitignore -*-
+.editorconfig
 docs/
 install.sh
