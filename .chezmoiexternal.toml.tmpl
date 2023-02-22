@@ -1,11 +1,12 @@
 # -*- mode: conf-toml -*-
 
-{{ if eq .chassis "laptop" -}}
 [".asdf"]
 	type = "git-repo"
 	url = "https://github.com/asdf-vm/asdf.git"
 	clone.args = ["--depth", "1"]
 	refreshPeriod = "24h"
+
+{{ if not .ephemeral -}}
 [".emacs.d"]
 	type = "git-repo"
 	url = "https://github.com/hlissner/doom-emacs.git"
