@@ -1,5 +1,3 @@
-# vim:fileencoding=utf-8:foldmethod=marker
-
 #: Fonts
 
 font_family      monospace
@@ -13,7 +11,7 @@ font_size 13.0
 
 disable_ligatures never
 
-modify_font cell_height 110%
+modify_font cell_height 115%
 
 #: Theme
 
@@ -119,7 +117,7 @@ tab_bar_background none
 
 shell {{ .fishPath }} -l -i
 
-{{ else if eq .osid "debian-like-linux" -}}
+{{ else if eq .osid "linux-debian" -}}
 
 shell {{ .fishPath }}
 

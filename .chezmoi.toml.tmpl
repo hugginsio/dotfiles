@@ -1,15 +1,30 @@
+# -*- mode: conf-toml -*-
 {{- $osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "idLike" -}}
-{{-   $osid = printf "%s-like-%s" .chezmoi.osRelease.idLike .chezmoi.os -}}
+{{-	$osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
 {{- end -}}
 
 {{- $fishPath := "" -}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   $fishPath = printf "/opt/homebrew/bin/fish" -}}
+{{-	$fishPath = printf "/opt/homebrew/bin/fish" -}}
 {{ else if eq .chezmoi.os "linux" -}}
-{{-   $fishPath = printf "/usr/bin/fish" -}}
+{{-	$fishPath = printf "/usr/bin/fish" -}}
 {{- end -}}
 
+{{- $chassis := "desktop" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-	if contains "MacBook" (output "sysctl" "-n" "hw.model") }}
+{{-		$chassis = "laptop" }}
+{{-	else }}
+{{-		$chassis = "desktop" }}
+{{-	end }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-	$chassis = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{- else if eq .chezmoi.os "windows" }}
+{{-	$chassis = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+{{- end }}
+
 [data]
-    osid = {{ $osid | quote }}
-    fishPath = {{ $fishPath | quote }}
+	osid = {{ $osid | quote }}
+	fishPath = {{ $fishPath | quote }}
+	chassis = {{ $chassis | quote }}
