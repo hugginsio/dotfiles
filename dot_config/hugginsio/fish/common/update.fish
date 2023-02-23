@@ -1,22 +1,24 @@
-#!/usr/bin/env fish
+#!/usr/bin/env fish # -*- mode: sh-mode -*-
 
-function up -d "Update"
+function up -d "Update available package managers and programs."
   set -l COMMANDS_LIST "apt-get" \
                        "dnf" \
                        "rpm-ostree" \
                        "brew" \
                        "gcloud" \
                        "snap" \
-                       "nvim"
-  set -l UPD_EXEC_LIST "sudo apt update && sudo apt upgrade -y && sudo apt autoremove" \
+                       "nvim" \
+                       "doom"
+  set -l UPD_EXEC_LIST "sudo apt-get -yqq update && sudo apt-get -yqq upgrade && sudo apt-get -yqq autoremove" \
                        "sudo dnf upgrade -y --refresh && sudo dnf autoremove" \
                        "rpm-ostree upgrade" \
                        "brew update && brew upgrade && brew cleanup" \
                        "gcloud components update -q" \
                        "sudo snap refresh" \
-                       "nvim --headless '+Lazy! update' +qa"
+                       "nvim --headless '+Lazy! update' +qa" \
+                       "doom sync"
 
-  echo "Available: $COMMANDS_LIST dotfiles"
+  echo "Available: $COMMANDS_LIST"
 
   for CMD in $COMMANDS_LIST
     if command -qs $CMD
@@ -25,7 +27,4 @@ function up -d "Update"
       eval $UPD_EXEC_LIST[$UPD_I]
     end
   end
-
-  echo "Requesting updates for dotfiles"
-  eval $HOME/.hugginsio/util/dotfiles.sh update
 end
