@@ -10,15 +10,23 @@
 (setq catppuccin-flavor 'mocha
       doom-theme 'catppuccin)
 
-;; Enable hl-mode in certain modes only
-(setq global-hl-line-modes '(org-agenda-mode))
-
 ;; Customize doom-dashboard
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
+;; Customize frame title
+(setq-default frame-title-format '("%b (" mode-name ")"))
+
+;; Enable hl-mode in certain modes only
+(setq global-hl-line-modes '(org-agenda-mode))
+
 ;; Enable relative line numbers
 (setq display-line-numbers-type 'relative)
+
+;; Force spaces
+(setq-default indent-tabs-mode
+              tab-width 4)
+(setq indent-line-function 'insert-tab)
 
 ;; org-mode (TODO: create seperate function that generates the list of agenda files)
 (setq hugginsio/org-base-dir "~/Workspaces/Org/"
@@ -32,41 +40,41 @@
       org-agenda-files (directory-files-recursively hugginsio/org-base-dir "\\.org$")
       org-agenda-custom-commands
       '(("f" "Agenda for current fortnight"
-	 ((agenda "" ((org-agenda-span 14 org-agenda-start-day "-3d" org-agenda-start-on-weekday nil))))
-	 ))
+         ((agenda "" ((org-agenda-span 14 org-agenda-start-day "-3d" org-agenda-start-on-weekday nil))))
+         ))
       )
 
 (defun hugginsio/org-mode-headers-hook ()
   "Stop the org-level headers from increasing in height relative to the other text."
   (dolist (face '(org-level-1
-		  org-level-2
-		  org-level-3
-		  org-level-4
-		  org-level-5))
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5))
     (set-face-attribute face nil :weight 'bold :height 1.0)))
 (add-hook 'org-mode-hook #'hugginsio/org-mode-headers-hook)
 
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
-	       '("org-plain-latex"
-		 "\\documentclass{article}
-	   [NO-DEFAULT-PACKAGES]
-	   [PACKAGES]
-	   [EXTRA]"
-		 ("\\section{%s}" . "\\section*{%s}")
-		 ("\\subsection{%s}" . "\\subsection*{%s}")
-		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+               '("org-plain-latex"
+                 "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 ;; vterm
 (setq vterm-shell "{{ .fishPath }} -i -l")
 
 ;; Projectile
 (setq projectile-project-search-path '("~/Workspaces/Org"
-				       ("~/Workspaces/Develop" . 1)
-				       "~/.local/share/chezmoi"
-				       ))
+                                       ("~/Workspaces/Develop" . 1)
+                                       "~/.local/share/chezmoi"
+                                       ))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
