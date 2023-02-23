@@ -1,14 +1,14 @@
 # -*- mode: conf-toml -*-
 
 [".asdf"]
-	type = "git-repo"
-	url = "https://github.com/asdf-vm/asdf.git"
-	clone.args = ["--depth", "1"]
-	refreshPeriod = "24h"
+    type = "git-repo"
+    url = "https://github.com/asdf-vm/asdf.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "24h"
 
 {{ if not .ephemeral -}}
 [".emacs.d"]
-	type = "git-repo"
-	url = "https://github.com/hlissner/doom-emacs.git"
-	clone.args = ["--depth", "1"]
+    type = "git-repo"
+    url = "https://github.com/hlissner/doom-emacs.git"
+    clone.args = ["--depth", "1"]
 {{ end -}}

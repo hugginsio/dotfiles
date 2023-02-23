@@ -11,7 +11,7 @@
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/radian-software/straight.el#the-recipe-format
 (package! catppuccin
-	:recipe (:host github :repo "catppuccin/emacs"))
+  :recipe (:host github :repo "catppuccin/emacs"))
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify

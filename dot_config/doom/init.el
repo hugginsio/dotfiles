@@ -25,12 +25,11 @@
 	doom-dashboard      ; a nifty splash screen for Emacs
 	(emoji +unicode)    ; 🙂
 	hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-	;;indent-guides     ; highlighted indent columns
+	indent-guides       ; highlighted indent columns
 	ligatures           ; ligatures and symbols to make your code pretty again
 	modeline            ; snazzy, Atom-inspired modeline, plus API
 	ophints             ; highlight the region an operation acts on
 	(popup +defaults)   ; tame sudden yet inevitable temporary windows
-	;;tabs              ; a tab bar for Emacs
 	treemacs            ; a project drawer, like neotree but cooler
 	(vc-gutter +pretty) ; vcs diff in the fringe
 	vi-tilde-fringe     ; fringe tildes to mark beyond EOB
@@ -61,7 +60,7 @@
 	(spell +flyspell)   ; tasing you for misspelling mispelling
 
 	:tools
-	;;ansible
+	ansible
 	;;debugger          ; FIXME stepping through code, to help you add bugs
 	docker
 	editorconfig        ; let someone else argue about tabs vs spaces
@@ -70,7 +69,7 @@
 	lsp                 ; M-x vscode
 	magit               ; a git porcelain for Emacs
 	pdf                 ; pdf enhancements
-	;;terraform         ; infrastructure as code
+	terraform           ; infrastructure as code
 	tree-sitter         ; syntax and parsing, sitting in a tree...
 
 	:os
@@ -86,24 +85,24 @@
 	json                ; At least it ain't XML
 	(java +lsp)         ; the poster child for carpal tunnel syndrome
 	javascript          ; all(hope(abandon(ye(who(enter(here))))))
-	;;kotlin            ; a better, slicker Java(Script)
-	;;latex             ; writing papers in Emacs has never been so fun
+	kotlin              ; a better, slicker Java(Script)
+	latex               ; writing papers in Emacs has never been so fun
+    lua                 ; one-based indices? one-based indices
 	markdown            ; writing docs for people to ignore
 	;;nix               ; I hereby declare "nix geht mehr!"
 	org                 ; organize your plain life in plain text
 	;;python            ; beautiful is better than ugly
 	rest                ; Emacs as a REST client
 	;;rst               ; ReST in peace
-	;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+	(rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
 	sh                  ; she sells {ba,z,fi}sh shells on the C xor
 	web                 ; the tubes
 	yaml                ; JSON, but readable
 
 	:app
 	calendar
-	;;everywhere        ; *leave* Emacs!? You must be joking
 	;;(rss +org)        ; emacs as an RSS reader
 
 	:config
-	;;literate
+	;; literate         ; TODO
 	(default +bindings +smartparens))
