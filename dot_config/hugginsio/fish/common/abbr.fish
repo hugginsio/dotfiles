@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
 
 # common abbreviations
+# for app-specific abbreviations, see =../apps/*.fish
 
 abbr -a .. 'cd ../'
 abbr -a ... 'cd ../../'
