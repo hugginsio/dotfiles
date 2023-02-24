@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env fish # -*- mode: sh -*-
 
 # configure emacs
 
@@ -10,3 +10,6 @@ end
 
 set -gx DOOMDIR "$HOME/.config/doom"
 fish_add_path "$HOME/.emacs.d/bin"
+
+## abbr
+abbr -a em 'emacs -nw'
