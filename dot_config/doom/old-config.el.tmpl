@@ -2,21 +2,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-;; Font
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'normal))
-(setq-default line-spacing 0.15)
-
-;; Catppuccin (from packages.el)
-(setq catppuccin-flavor 'mocha
-      doom-theme 'catppuccin)
-
-;; Customize doom-dashboard
-(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
-(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
-
-;; Customize frame title
-(setq-default frame-title-format '("%b (" mode-name ")"))
-
 ;; Enable hl-mode in certain modes only
 (setq global-hl-line-modes '(org-agenda-mode))
 

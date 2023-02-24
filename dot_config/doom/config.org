@@ -1,0 +1,35 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Kyle Huggins
+
+* Appearance & Behavior
+** Appearance
+Configure the color scheme. Catppuccin is pulled in as a package in [[file:packages.el]]
+#+begin_src emacs-lisp :tangle yes
+(setq catppuccin-flavor 'mocha
+      doom-theme 'catppuccin)
+#+end_src
+
+Remove the banner and footer from =doom-dashboard=.
+#+begin_src emacs-lisp :tangle yes
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+#+end_src
+** Menus and Toolbars
+Customize the frame title format: e.g. =config.org (Org)=
+#+begin_src emacs-lisp :tangle yes
+(setq-default frame-title-format '("%b (" mode-name ")"))
+#+end_src
+** System Settings
+* Keymap
+* Editor
+** Font
+Configure the =doom-font= family and other font properties.
+#+begin_src emacs-lisp :tangle yes
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'normal))
+(setq-default line-spacing 0.15)
+#+end_src
+* Packages
+* Version Control
+* Languages & Frameworks
+** Org Mode
+* Tools
