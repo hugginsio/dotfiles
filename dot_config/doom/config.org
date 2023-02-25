@@ -95,6 +95,45 @@ WIP: figuring out LaTeX
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 #+end_src
 
+**** org-present
+The function called when starting a presentation.
+#+begin_src emacs-lisp :tangle yes
+(defun hugginsio/org-present-start ()
+  (setq line-number-mode nil
+        display-line-numbers nil)
+  (org-present-read-only)
+  (setq header-line-format " ")
+  (org-display-inline-images)
+)
+#+end_src
+
+The function called when ending a presentation.
+#+begin_src emacs-lisp :tangle yes
+(defun hugginsio/org-present-quit ()
+  (setq line-number-mode t
+        display-line-numbers 'relative)
+  (org-present-read-write)
+  (setq header-line-format nil)
+  (org-remove-inline-images)
+)
+#+end_src
+
+The function called when navigating slides during the presentation.
+#+begin_src emacs-lisp :tangle yes
+(defun hugginsio/org-present-prepare-slide (buffer-name heading)
+  (org-overview)
+  (org-show-entry)
+  (org-show-children)
+)
+#+end_src
+
+Link the above functions to the =org-present= hooks.
+#+begin_src emacs-lisp :tangle yes
+(add-hook 'org-present-mode-hook 'hugginsio/org-present-start)
+(add-hook 'org-present-mode-quit-hook 'hugginsio/org-present-quit)
+(add-hook 'org-present-after-navigate-functions 'hugginsio/org-present-prepare-slide)
+#+end_src
+
 ** hl-line-mode
 Only enable =hl-line-mode= in certain modes.
 #+begin_src emacs-lisp :tangle yes

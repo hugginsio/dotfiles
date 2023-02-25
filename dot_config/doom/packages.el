@@ -10,8 +10,14 @@
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/radian-software/straight.el#the-recipe-format
+
+;; catppuccin theme
 (package! catppuccin
   :recipe (:host github :repo "catppuccin/emacs"))
+
+;; org-present minor mode
+(package! org-present
+  :recipe (:host github :repo "rlister/org-present"))
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
