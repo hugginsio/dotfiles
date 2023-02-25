@@ -1,5 +1,6 @@
 #+TITLE: Emacs Configuration
 #+AUTHOR: Kyle Huggins
+#+DESCRIPTION: $DOOMDIR/config.org
 
 * Appearance & Behavior
 ** Appearance
@@ -14,22 +15,105 @@ Remove the banner and footer from =doom-dashboard=.
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 #+end_src
+
 ** Menus and Toolbars
 Customize the frame title format: e.g. =config.org (Org)=
 #+begin_src emacs-lisp :tangle yes
 (setq-default frame-title-format '("%b (" mode-name ")"))
 #+end_src
+
 ** System Settings
 * Keymap
 * Editor
+Enable relative line numbers.
+#+begin_src emacs-lisp :tangle yes
+(setq display-line-numbers-type 'relative)
+#+end_src
+
+Force the use of spaces.
+#+begin_src emacs-lisp :tangle yes
+(setq-default indent-tabs-mode nil
+              tab-width 4)
+(setq indent-line-function 'insert-tab)
+#+end_src
+
 ** Font
 Configure the =doom-font= family and other font properties.
 #+begin_src emacs-lisp :tangle yes
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'normal))
 (setq-default line-spacing 0.15)
 #+end_src
-* Packages
+
 * Version Control
-* Languages & Frameworks
-** Org Mode
+* Languages, Frameworks, and Packages
+** org-mode
+Configure the Org Mode agenda and add the fortnight view to the agenda dispatcher.
+#+begin_src emacs-lisp :tangle yes
+;; TODO: create seperate function for setting org-agenda-files
+(setq hugginsio/org-base-dir "~/Workspaces/Org/"
+      hugginsio/current-year (format-time-string "%Y" (current-time))
+      hugginsio/current-org-dir (concat hugginsio/org-base-dir hugginsio/current-year "/"))
+(make-directory hugginsio/current-org-dir :parents)
+(setq org-directory hugginsio/current-org-dir
+      org-default-notes-file (concat hugginsio/current-org-dir "notes.org")
+      org-agenda-start-day "-3d"
+      org-agenda-start-on-weekday nil
+      org-agenda-files (directory-files-recursively hugginsio/org-base-dir "\\.org$")
+      org-agenda-custom-commands
+      '(("f" "Agenda for current fortnight"
+         ((agenda "" ((org-agenda-span 14 org-agenda-start-day "-3d" org-agenda-start-on-weekday nil))))
+         ))
+      )
+#+end_src
+
+Set all =org-mode= headers to a consistent size and weight.
+#+begin_src emacs-lisp :tangle yes
+(defun hugginsio/org-mode-headers-hook ()
+  "Stop the org-level headers from increasing in height relative to the other text."
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5))
+    (set-face-attribute face nil :weight 'bold :height 1.0)))
+(add-hook 'org-mode-hook #'hugginsio/org-mode-headers-hook)
+#+end_src
+
+WIP: figuring out LaTeX
+#+begin_src emacs-lisp :tangle yes
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-plain-latex"
+                 "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
+
+** hl-line-mode
+Only enable =hl-line-mode= in certain modes.
+#+begin_src emacs-lisp :tangle yes
+(setq global-hl-line-modes '(org-agenda-mode))
+#+end_src
+
+** vterm-mode
+Set =vterm='s shell to =fish=.
+#+begin_src emacs-lisp :tangle yes
+(setq vterm-shell "fish -i -l")
+#+end_src
+
+** projectile
+Configure the Projectile search paths.
+#+begin_src emacs-lisp :tangle yes
+(setq projectile-project-search-path '("~/Workspaces/Org"
+                                       ("~/Workspaces/Develop" . 1)
+                                       "~/.local/share/chezmoi"
+                                       ))
+#+end_src
+
 * Tools
