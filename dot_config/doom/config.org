@@ -5,20 +5,20 @@
 * Appearance & Behavior
 ** Appearance
 Configure the color scheme. Catppuccin is pulled in as a package in [[file:packages.el]]
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq catppuccin-flavor 'mocha
       doom-theme 'catppuccin)
 #+END_SRC
 
 Remove the banner and footer from =doom-dashboard=.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 #+END_SRC
 
 ** Menus and Toolbars
 Customize the frame title format: e.g. =config.org (Org)=
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq-default frame-title-format '("%b (" mode-name ")"))
 #+END_SRC
 
@@ -26,12 +26,12 @@ Customize the frame title format: e.g. =config.org (Org)=
 * Keymap
 * Editor
 Enable relative line numbers.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq display-line-numbers-type 'relative)
 #+END_SRC
 
 Force the use of spaces.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq-default indent-tabs-mode nil
               tab-width 4)
 (setq indent-line-function 'insert-tab)
@@ -39,7 +39,7 @@ Force the use of spaces.
 
 ** Font
 Configure the =doom-font= family and other font properties.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'normal))
 (setq-default line-spacing 0.15)
 #+END_SRC
@@ -48,7 +48,7 @@ Configure the =doom-font= family and other font properties.
 * Languages, Frameworks, and Packages
 ** org-mode
 Configure the Org Mode agenda and add the fortnight view to the agenda dispatcher.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 ;; TODO: create seperate function for setting org-agenda-files
 (setq hugginsio/org-base-dir "~/Workspaces/Org/"
       hugginsio/current-year (format-time-string "%Y" (current-time))
@@ -67,7 +67,7 @@ Configure the Org Mode agenda and add the fortnight view to the agenda dispatche
 #+END_SRC
 
 Set all =org-mode= headers to a consistent size and weight.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (defun hugginsio/org-mode-headers-hook ()
   "Stop the org-level headers from increasing in height relative to the other text."
   (dolist (face '(org-level-1
@@ -80,7 +80,7 @@ Set all =org-mode= headers to a consistent size and weight.
 #+END_SRC
 
 WIP: figuring out LaTeX
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
                '("org-plain-latex"
@@ -102,7 +102,7 @@ Insert timestamp whenever a TODO is completed.
 
 **** org-present
 The function called when starting a presentation.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (defun hugginsio/org-present-start ()
   (setq line-number-mode nil
         display-line-numbers nil)
@@ -113,7 +113,7 @@ The function called when starting a presentation.
 #+END_SRC
 
 The function called when ending a presentation.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (defun hugginsio/org-present-quit ()
   (setq line-number-mode t
         display-line-numbers 'relative)
@@ -124,7 +124,7 @@ The function called when ending a presentation.
 #+END_SRC
 
 The function called when navigating slides during the presentation.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (defun hugginsio/org-present-prepare-slide (buffer-name heading)
   (org-overview)
   (org-show-entry)
@@ -133,7 +133,7 @@ The function called when navigating slides during the presentation.
 #+END_SRC
 
 Link the above functions to the =org-present= hooks.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (add-hook 'org-present-mode-hook 'hugginsio/org-present-start)
 (add-hook 'org-present-mode-quit-hook 'hugginsio/org-present-quit)
 (add-hook 'org-present-after-navigate-functions 'hugginsio/org-present-prepare-slide)
@@ -141,19 +141,19 @@ Link the above functions to the =org-present= hooks.
 
 ** hl-line-mode
 Only enable =hl-line-mode= in certain modes.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq global-hl-line-modes '(org-agenda-mode))
 #+END_SRC
 
 ** vterm-mode
 Set =vterm='s shell to =fish=.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq vterm-shell "fish -i -l")
 #+END_SRC
 
 ** projectile
 Configure the Projectile search paths.
-#+begin_src emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq projectile-project-search-path '("~/Workspaces/Org"
                                        ("~/Workspaces/Develop" . 1)
                                        "~/.local/share/chezmoi"
