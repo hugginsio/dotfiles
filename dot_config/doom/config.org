@@ -66,6 +66,11 @@ Configure the Org Mode agenda and add the fortnight view to the agenda dispatche
       )
 #+END_SRC
 
+Disable warnings for approached deadlines in the agenda. This helps keep the view a little less cluttered.
+#+BEGIN_SRC emacs-lisp :tangle yes
+(setq org-deadline-warning-days 0)
+#+END_SRC
+
 Set all =org-mode= headers to a consistent size and weight.
 #+BEGIN_SRC emacs-lisp :tangle yes
 (defun hugginsio/org-mode-headers-hook ()
