@@ -1,8 +1,10 @@
 #!/usr/bin/env fish
 
 # env
-## configure path
+## environment variables
+set -gx XDG_CONFIG_HOME '~/.config'
 
+## configure path
 fish_add_path "$HOME/bin"
 fish_add_path "$HOME/.local/bin"
 
