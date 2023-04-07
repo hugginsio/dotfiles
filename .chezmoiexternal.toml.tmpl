@@ -6,6 +6,11 @@
     clone.args = ["--depth", "1"]
     refreshPeriod = "24h"
 
+[".config/k9s/skin.yml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
+    refreshPeriod = "168h"
+
 {{ if not .ephemeral -}}
 [".emacs.d"]
     type = "git-repo"
