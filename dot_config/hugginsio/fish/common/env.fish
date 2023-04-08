@@ -2,7 +2,7 @@
 
 # env
 ## environment variables
-set -gx XDG_CONFIG_HOME '~/.config'
+set -gx XDG_CONFIG_HOME '$HOME/.config'
 
 ## configure path
 fish_add_path "$HOME/bin"
