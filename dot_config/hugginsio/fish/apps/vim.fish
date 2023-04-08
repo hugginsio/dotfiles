@@ -13,7 +13,3 @@ set -gx VISUAL vim
 ## abbreviations
 
 abbr -a vi 'vim'
-
-## environment
-
-set -gx VIMRUNTIME 'source ~/.config/vim'
