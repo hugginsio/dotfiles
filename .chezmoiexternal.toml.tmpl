@@ -4,7 +4,7 @@
     type = "git-repo"
     url = "https://github.com/asdf-vm/asdf.git"
     clone.args = ["--depth", "1"]
-    refreshPeriod = "24h"
+    refreshPeriod = "168h"
 
 [".config/k9s/skin.yml"]
     type = "file"
@@ -14,6 +14,18 @@
 [".vim/colors/catppuccin_mocha.vim"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/vim/main/colors/catppuccin_mocha.vim"
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/sensible"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-sensible.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/surround"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-surround.git"
+    clone.args = ["--depth", "1"]
     refreshPeriod = "168h"
 
 {{ if not .ephemeral -}}
