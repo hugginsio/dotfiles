@@ -1,9 +1,15 @@
 " Builds on tpope/sensible.vim
 " Borrows from:
 " https://github.com/amix/vimrc
+" https://github.com/michaeljmcd/dotfiles
 
 " Line numbers
 set rnu
+
+" Change internal shell for fish
+if &shell =~# 'fish$'
+    set shell=sh
+endif
 
 " Theme
 set termguicolors
@@ -22,7 +28,7 @@ set so=7
 set cmdheight=1
 
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,*.dll,*.pdb,*.nupkg,*.exe,*.jpg,*.png,*.bin,tags,**/target/**,**/node_modules/**
 if has("win16") || has("win32")
     set wildignore+=.git\*,.hg\*,.svn\*
 else
@@ -30,7 +36,7 @@ else
 endif
 
 " A buffer becomes hidden when it is abandoned
-set hid
+set hidden
 
 " Define wrapping keys
 set whichwrap+=<,>,h,l
@@ -145,3 +151,13 @@ let vim_markdown_folding_disabled = 1
 
 " YAML particulars
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+set signcolumn=yes
+
+" backup to ~/.tmp
+set backup
+set backupdir=~/.tmp
+set backupskip=~/.tmp
+set directory=~/.tmp
+set writebackup
