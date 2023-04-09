@@ -155,9 +155,13 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
 set signcolumn=yes
 
-" backup to ~/.tmp
+" Backup to ~/.vim/backup
+if !isdirectory($HOME . "/.vim/backup")
+    call mkdir($HOME . "/.vim/backup", "p", 0700)
+endif
+
 set backup
-set backupdir=~/.tmp
-set backupskip=~/.tmp
-set directory=~/.tmp
+set backupdir=~/.vim/backup
+set backupskip=~/.vim/backup
+set directory=~/.vim/backup
 set writebackup
