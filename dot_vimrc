@@ -131,7 +131,11 @@ set guioptions-=L
 
 " Enable persistent undo
 try
-    set undodir=~/.vim_runtime/temp_dirs/undodir
+    if !isdirectory($HOME . "/.vim/undo")
+        call mkdir($HOME . "/.vim/undo", "p", 0700)
+    endif
+
+    set undodir=~/.vim/undo
     set undofile
 catch
 endtry
