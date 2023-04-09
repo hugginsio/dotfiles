@@ -4,7 +4,7 @@
 " https://github.com/michaeljmcd/dotfiles
 
 " Line numbers
-set rnu
+set nu rnu
 
 " Change internal shell for fish
 if &shell =~# 'fish$'
@@ -67,9 +67,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-" Add a bit extra margin to the left
-set foldcolumn=1
 
 " Set regular expression engine automatically
 set regexpengine=0
@@ -148,7 +145,7 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 " Shortcut for timestamp
-iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iab xdate <C-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 
 " Disable folding in Markdown
 let vim_markdown_folding_disabled = 1
