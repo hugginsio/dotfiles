@@ -18,9 +18,6 @@ colorscheme catppuccin_mocha
 " Set to auto read when a file is changed from the outside
 au FocusGained,BufEnter * checktime
 
-" :W sudo saves the file
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
-
 " Set 7 lines to the cursor
 set so=7
 
