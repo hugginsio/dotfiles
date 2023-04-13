@@ -1,48 +1,42 @@
-# -*- mode: conf-toml -*-
+# vi: ft=toml
 
 [".asdf"]
-    type = "git-repo"
-    url = "https://github.com/asdf-vm/asdf.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
+  type = "git-repo"
+  url = "https://github.com/asdf-vm/asdf.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
 
 [".config/k9s/skin.yml"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
-    refreshPeriod = "168h"
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
+  refreshPeriod = "168h"
 
 [".vim/colors/catppuccin_mocha.vim"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/vim/main/colors/catppuccin_mocha.vim"
-    refreshPeriod = "168h"
-
-[".vim/pack/hugginsio/start/sensible"]
-    type = "git-repo"
-    url = "https://github.com/tpope/vim-sensible.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/vim/main/colors/catppuccin_mocha.vim"
+  refreshPeriod = "168h"
 
 [".vim/pack/hugginsio/start/eunuch"]
-    type = "git-repo"
-    url = "https://github.com/tpope/vim-eunuch.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-eunuch.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
 
 [".vim/pack/hugginsio/start/surround"]
-    type = "git-repo"
-    url = "https://github.com/tpope/vim-surround.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
+  type = "git-repo"
+  url = "https://github.com/tpope/vim-surround.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
 
 [".vim/pack/hugginsio/start/vim-visual-multi"]
-    type = "git-repo"
-    url = "https://github.com/mg979/vim-visual-multi.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
+  type = "git-repo"
+  url = "https://github.com/mg979/vim-visual-multi.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
 
 {{ if not .ephemeral -}}
 [".emacs.d"]
-    type = "git-repo"
-    url = "https://github.com/hlissner/doom-emacs.git"
-    clone.args = ["--depth", "1"]
+  type = "git-repo"
+  url = "https://github.com/hlissner/doom-emacs.git"
+  clone.args = ["--depth", "1"]
 {{ end -}}

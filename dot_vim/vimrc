@@ -1,30 +1,49 @@
-" Builds on tpope/sensible.vim
-" Borrows from:
+" Acknowledgements:
+" https://github.com/tpope/vim-sensible
 " https://github.com/amix/vimrc
 " https://github.com/michaeljmcd/dotfiles
 
-" Line numbers
+" Set relative and normal  numbers.
 set nu rnu
 
-" Change internal shell for fish
-if &shell =~# 'fish$'
-    set shell=sh
+" If the running Vim lacks support for the Fish shell, use Bash instead.
+if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
+  set shell=/usr/bin/env\ bash
 endif
 
 " Theme
 set termguicolors
 colorscheme catppuccin_mocha
 
-" Set to auto read when a file is changed from the outside
-au FocusGained,BufEnter * checktime
+if $TERM ==# "xterm"
+  set background=dark
+endif
 
-" Set 7 lines to the cursor
-set scrolloff=7
+" Disable vi compatibility if it is enabled.
+if &compatible
+  set nocompatible
+endif
 
-" Height of the command bar
-set cmdheight=1
+if has('reltime')
+  set incsearch
+end
 
-" Ignore compiled files
+" Use CTRL-L to clear the highlighting of 'hlsearch' (off by default) and call :diffupdate.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
+" Replace the check for a tags file in the parent directory of the current file with a check in every ancestor directory.
+if has('path_extra') && (',' . &g:tags . ',') =~# ',\./tags,'
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^Eterm'
+  set t_Co=16
+endif
+
+" Ignore common files and directories.
 set wildignore=*.o,*~,*.pyc,*.dll,*.pdb,*.nupkg,*.exe,*.jpg,*.png,*.bin,tags,**/target/**,**/node_modules/**
 if has("win16") || has("win32")
     set wildignore+=.git\*,.hg\*,.svn\*
@@ -32,66 +51,14 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
-" A buffer becomes hidden when it is abandoned
-set hidden
-
-" Define wrapping keys
-set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-" Set regular expression engine automatically
-set regexpengine=0
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-" Use spaces instead of tabs
-set expandtab
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-" Visual mode pressing * or # searches for the current selection (Michael Naumann)
+" Visual mode pressing * or # searches for the current selection (from Michael Naumann).
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-" Remap VIM 0 to first non-blank character
+" Remap VIM 0 to first non-blank character.
 map 0 ^
 
-" Move a line of text using ALT+[jk] ( or Command+[jk] on mac)
+" Move a line of text using ALT+[jk] (or Command+[jk] on mac).
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -104,7 +71,7 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for some filetypes
+" Delete trailing white space on save, useful for some filetypes.
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -117,13 +84,13 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.sh,*.ts,*.js,*.go,*.md :call CleanExtraSpaces()
 endif
 
-" Disable scrollbars
+" Disable scrollbars.
 set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 
-" Enable persistent undo
+" Enable persistent undo.
 try
     if !isdirectory($HOME . "/.vim/undo")
         call mkdir($HOME . "/.vim/undo", "p", 0700)
@@ -134,26 +101,53 @@ try
 catch
 endtry
 
-" Bash like keys for the command line
+" Bash like keys for the command line.
 cnoremap <C-A>		<Home>
 cnoremap <C-E>		<End>
 cnoremap <C-K>		<C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-" Shortcut for timestamp
+" Shortcut for timestamp.
 iab xdate <C-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 
-" Disable folding in Markdown
-let vim_markdown_folding_disabled = 1
-
-" YAML particulars
+" YAML particulars.
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
-set signcolumn=yes
+" Disable a legacy behavior that can break plugin maps.
+if has('langmap') && exists('+langremap') && &langremap
+  set nolangremap
+endif
 
-" Backup to ~/.vim/backup
+if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
+" From `:help :DiffOrig`.
+if exists(":DiffOrig") != 2
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+        \ | diffthis | wincmd p | diffthis
+endif
+
+" Correctly highlight $() and other modern affordances in filetype=sh.
+if !exists('g:is_posix') && !exists('g:is_bash') && !exists('g:is_kornshell') && !exists('g:is_dash')
+  let g:is_posix = 1
+endif
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
+" Enable the :Man command shipped inside Vim's man filetype plugin.
+if exists(':Man') != 2 && !exists('g:loaded_man') && &filetype !=? 'man' && !has('nvim')
+  runtime ftplugin/man.vim
+endif
+
+" Backup to ~/.vim/backup.
 if !isdirectory($HOME . "/.vim/backup")
     call mkdir($HOME . "/.vim/backup", "p", 0700)
 endif
@@ -163,3 +157,65 @@ set backupdir=~/.vim/backup
 set backupskip=~/.vim/backup
 set directory=~/.vim/backup
 set writebackup
+
+au FocusGained,BufEnter * checktime
+let vim_markdown_folding_disabled = 1
+set ai
+set autoindent
+set backspace=indent,eol,start
+set belloff=all
+set cmdheight=1
+set commentstring=""
+set complete=.,w,b,u,t,kspell
+set display=lastline
+set encoding=utf-8
+set encoding=utf8
+set expandtab
+set ffs=unix,dos,mac
+set fillchars=""
+set formatoptions=tcqj
+set hidden
+set history=100
+set hlsearch
+set ignorecase
+set joinspaces
+set langnoremap
+set laststatus=2
+set lazyredraw
+set listchars="tab:> ,trail:-,nbsp:+"
+set magic
+set mouse=nvi
+set mousemodel=popup_setpos
+set noerrorbells
+set nofsync
+set nostartofline
+set novisualbell
+set nrformats=bin,hex
+set regexpengine=0
+set ruler
+set scrolloff=3
+set sessionoptions=unix,slash
+set shiftwidth=2
+set shortmess=filnxtToOF
+set showcmd
+set showmatch
+set si
+set sidescroll=1
+set signcolumn=yes
+set smartcase
+set smarttab
+set softtabstop=2
+set switchbuf=uselast
+set t_vb=
+set tabpagemax=50
+set tabstop=2
+set tm=500
+set ttimeout
+set ttimeoutlen=100
+set ttyfast
+set viewoptions=folds,cursor,curdir,unix,slash
+set viminfo=!,'100,<50,s10,h
+set whichwrap+=<,>,h,l
+set wildmenu
+set wildoptions="pum,tagfile"
+set wrap
