@@ -8,6 +8,16 @@ return {
         priority = 1000,
     },
     {
+        "itchyny/lightline.vim",
+        dir = "~/.vim/pack/hugginsio/start/lightline",
+        config = function()
+            vim.cmd([[
+                let g:lightline = {'colorscheme': 'catppuccin'}
+            ]])
+        end,
+        lazy = false,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         event = "VeryLazy",

@@ -191,6 +191,7 @@ set mouse=nvi
 set mousemodel=popup_setpos
 set noerrorbells
 set nofsync
+set noshowmode
 set nostartofline
 set novisualbell
 set nrformats=bin,hex
