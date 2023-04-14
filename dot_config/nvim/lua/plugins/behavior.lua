@@ -1,3 +1,7 @@
 return {
-    { "tpope/vim-eunuch" },
+    {
+        "tpope/vim-eunuch",
+        dir = "~/.vim/pack/hugginsio/start/eunuch",
+        event = "VeryLazy",
+    },
 }
