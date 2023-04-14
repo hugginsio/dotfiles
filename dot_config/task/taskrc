@@ -5,7 +5,7 @@
 data.location=$HOME/Workspaces/tasks
 
 # Theme
-include dark-16.theme
+include themes/catppuccin.theme
 
 # Changelog tracking
 news.version=2.6.0

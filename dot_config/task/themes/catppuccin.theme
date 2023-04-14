@@ -1,0 +1,50 @@
+# Theme colors for catppuccin (@davidbgonz/dotfiles)
+
+# General decoration
+color.label=white
+color.label.sort=magenta
+color.alternate=
+color.header=white
+color.footnote=white
+color.warning=bold yellow
+color.error=bold red
+color.debug=bold blue
+
+# Task state
+color.completed=black on green
+color.deleted=black on red
+color.active=black on blue
+color.recurring=blue
+color.scheduled=black on cyan
+color.until=yellow
+color.blocked=white on black
+color.blocking=black on magenta
+
+# Project
+color.project.none=
+
+# Priority
+color.uda.priority.H=bold white
+color.uda.priority.M=white
+color.uda.priority.L=
+
+# Tags
+color.tag.next=bold yellow
+color.tag.none=
+color.tagged=
+
+# Due
+color.due=white
+color.due.today=bold black on magenta
+color.overdue=bold black on red
+
+# UDA
+#color.uda.X=
+
+# Report: burndown
+color.burndown.done=on green
+color.burndown.pending=on magenta
+color.burndown.started=on blue
+
+# Report: history
+color.history.add=black on blue
