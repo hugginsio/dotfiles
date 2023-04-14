@@ -208,6 +208,8 @@ set signcolumn=yes
 set smartcase
 set smarttab
 set softtabstop=2
+set splitbelow
+set splitright
 set switchbuf=uselast
 set t_vb=
 set tabpagemax=50

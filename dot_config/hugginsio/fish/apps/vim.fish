@@ -2,7 +2,7 @@
 
 # configure vim
 
-if not command -qs vim
+if not command -qs vim; or command -qs nvim
   exit
 end
 

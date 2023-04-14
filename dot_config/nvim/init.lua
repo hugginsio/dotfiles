@@ -19,4 +19,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({{import = "plugins"}})
+-- Import plugins from lua/plugins/**
+require("lazy").setup({
+    install = {
+        colorscheme = { "catppuccin-mocha" },
+    },
+    spec = {
+        {
+            import = "plugins"
+        },
+    }
+})
