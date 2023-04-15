@@ -2,18 +2,23 @@ return {
     {
         "tpope/vim-surround",
         dir = "~/.vim/pack/hugginsio/start/surround",
-        event = "VeryLazy",
+        event = "BufReadPost",
     },
     {
         "mg979/vim-visual-multi",
         dir = "~/.vim/pack/hugginsio/start/visual-multi",
-        event = "VeryLazy",
+        event = "BufReadPost",
     },
     {
         "folke/todo-comments.nvim",
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        event = { "BufReadPost", "BufNewFile" },
         config = true,
-        dependencies = "nvim-lua/plenary.nvim",
-        event = "VeryLazy",
+        keys = {
+            { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Search todos" },
+            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+        },
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -30,13 +35,13 @@ return {
                 map("n", "]h", gs.next_hunk, "Next hunk")
                 map("n", "[h", gs.prev_hunk, "Previous hunk")
                 -- +git
-                map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage hunk at cursor")
-                map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset hunk at cursor")
-                map("n", "<leader>ghS", gs.stage_buffer, "Stage buffer")
-                map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo stage hunk")
-                map("n", "<leader>ghR", gs.reset_buffer, "Revert buffer")
+                map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage hunk at cursor")
+                map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset hunk at cursor")
+                map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")
+                map("n", "<leader>gu", gs.undo_stage_hunk, "Undo stage hunk")
+                map("n", "<leader>gR", gs.reset_buffer, "Revert buffer")
                 map("n", "<leader>gB", function() gs.blame_line({ full = true }) end, "Blame")
-                map("n", "<leader>ghd", gs.diffthis, "Diff buffer")
+                map("n", "<leader>gd", gs.diffthis, "Diff buffer")
                 -- +toggle
                 map("n", "<leader>tg", gs.toggle_signs, "Toggle git signs")
             end,
@@ -79,5 +84,48 @@ return {
             }
             wk.register(keymaps)
         end,
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            char = "│",
+            filetype_exclude = {
+                "help",
+                "Trouble",
+                "lazy"
+            },
+            show_trailing_blankline_indent = false,
+            show_current_context = false,
+        },
+    },
+    {
+        "RRethy/vim-illuminate",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = { delay = 200 },
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+
+            local function map(key, dir, buffer)
+                vim.keymap.set("n", key, function()
+                    require("illuminate")["goto_" .. dir .. "_reference"](false)
+                end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+            end
+
+            map("]]", "next")
+            map("[[", "prev")
+
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    local buffer = vim.api.nvim_get_current_buf()
+                    map("]]", "next", buffer)
+                    map("[[", "prev", buffer)
+                end,
+            })
+        end,
+        keys = {
+            { "]]", desc = "Next reference" },
+            { "[[", desc = "Prev reference" },
+        },
     },
 }
