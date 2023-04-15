@@ -137,11 +137,6 @@ if !exists('g:is_posix') && !exists('g:is_bash') && !exists('g:is_kornshell') &&
   let g:is_posix = 1
 endif
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
 " Enable the :Man command shipped inside Vim's man filetype plugin.
 if exists(':Man') != 2 && !exists('g:loaded_man') && &filetype !=? 'man' && !has('nvim')
   runtime ftplugin/man.vim
@@ -162,6 +157,7 @@ au FocusGained,BufEnter * checktime
 autocmd FileType netrw setl bufhidden=wipe
 let g:netrw_fastbrowse=0
 let g:netrw_liststyle=3
+let mapleader=" "
 let vim_markdown_folding_disabled = 1
 set ai
 set autoindent
@@ -217,7 +213,7 @@ set tabpagemax=50
 set tabstop=2
 set tm=500
 set ttimeout
-set ttimeoutlen=100
+set ttimeoutlen=300
 set ttyfast
 set viewoptions=folds,cursor,curdir,unix,slash
 set viminfo=!,'100,<50,s10,h
