@@ -17,8 +17,30 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        config = true,
-        event = "BufReadPre",
+        event = { "BufReadPre", "BufNewFile" },
+        opts = {
+            on_attach = function(buffer)
+                local gs = package.loaded.gitsigns
+
+                local function map(mode, l, r, desc)
+                    vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+                end
+
+                -- root
+                map("n", "]h", gs.next_hunk, "Next hunk")
+                map("n", "[h", gs.prev_hunk, "Previous hunk")
+                -- +git
+                map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage hunk at cursor")
+                map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset hunk at cursor")
+                map("n", "<leader>ghS", gs.stage_buffer, "Stage buffer")
+                map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo stage hunk")
+                map("n", "<leader>ghR", gs.reset_buffer, "Revert buffer")
+                map("n", "<leader>gB", function() gs.blame_line({ full = true }) end, "Blame")
+                map("n", "<leader>ghd", gs.diffthis, "Diff buffer")
+                -- +toggle
+                map("n", "<leader>tg", gs.toggle_signs, "Toggle git signs")
+            end,
+        },
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -48,10 +70,12 @@ return {
             local keymaps = {
                 mode = { "n", "v" },
                 ["<leader>f"] = { name = "+file/find" },
+                ["<leader>g"] = { name = "+git" },
                 ["<leader>s"] = { name = "+search" },
                 ["["] = { name = "+prev" },
                 ["]"] = { name = "+next" },
                 ["g"] = { name = "+goto" },
+                ["<leader>t"] = { name = "+toggle" },
             }
             wk.register(keymaps)
         end,
