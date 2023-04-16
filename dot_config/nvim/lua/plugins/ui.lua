@@ -18,4 +18,32 @@ return {
         end,
         lazy = false,
     },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            plugins = { spelling = true },
+        },
+        config = function()
+            local wk = require("which-key") wk.setup({})
+
+            local keymaps = {
+                mode = { "n", "v" },
+                ["<leader><Tab>"] = { name = "+tabs" },
+                ["<leader>b"] = { name = "+buffers" },
+                ["<leader>c"] = { name = "+code" },
+                ["<leader>f"] = { name = "+file/find" },
+                ["<leader>g"] = { name = "+git" },
+                ["<leader>h"] = { name = "+help" },
+                ["<leader>s"] = { name = "+search" },
+                ["<leader>t"] = { name = "+toggle" },
+                ["<leader>w"] = { name = "+windows" },
+                ["["] = { name = "+prev" },
+                ["]"] = { name = "+next" },
+                ["g"] = { name = "+goto" },
+            }
+
+            wk.register(keymaps)
+        end,
+    },
 }

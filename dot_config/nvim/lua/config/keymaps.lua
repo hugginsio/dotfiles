@@ -1,6 +1,8 @@
 -- Majority of keymaps taken from LazyVim:
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
+local Util = require("config.utils")
+
 local function map(mode, lhs, rhs, opts)
     opts = opts or {}
     opts.silent = opts.silent ~= false
@@ -71,3 +73,6 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Delete tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+
+-- lazygit
+map("n", "<leader>gg", function() Util.float_term({ "lazygit" }, { cwd = Util.get_root() }) end, { desc = "LazyGit" })
