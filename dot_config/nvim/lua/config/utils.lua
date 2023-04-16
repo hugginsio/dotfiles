@@ -37,7 +37,6 @@ function M.get_root()
     if not root then
         path = path and vim.fs.dirname(path) or vim.loop.cwd()
         ---@type string?
-        root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
         root = root and vim.fs.dirname(root) or vim.loop.cwd()
     end
     ---@cast root string

@@ -37,7 +37,6 @@ return {
                 ["<leader>h"] = { name = "+help" },
                 ["<leader>s"] = { name = "+search" },
                 ["<leader>t"] = { name = "+toggle" },
-                ["<leader>w"] = { name = "+windows" },
                 ["["] = { name = "+prev" },
                 ["]"] = { name = "+next" },
                 ["g"] = { name = "+goto" },
