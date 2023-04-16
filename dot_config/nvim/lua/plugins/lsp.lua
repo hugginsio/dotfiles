@@ -40,6 +40,11 @@ return {
                 build = function()
                     pcall(vim.cmd, "MasonUpdate")
                 end,
+                -- TODO: figure out keymap situation
+                -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/guides/under-the-hood.md
+                config = function ()
+                    require("mason").setup({ ui = { border = "single" } })
+                end,
             },
         },
         config = function()
@@ -61,11 +66,11 @@ return {
         end,
         keys = {
             { "<leader>cA", "<cmd> lua vim.lsp.buf.code_action()<cr>", desc = "Execute code action (region)" },
-            { "<leader>cA", "<cmd> lua vim.lsp.buf.range_code_action()<cr>", desc = "Execute code action (region)" },
+            { "<leader>cA", "<cmd> lua vim.lsp.buf.range_code_action()<cr>", desc = "Execute code action (region)", mode = "x" },
             { "<leader>cD", "<cmd> lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
             { "<leader>cR", "<cmd> lua vim.lsp.buf.references()<cr>", desc = "Find references" },
             { "<leader>cd", "<cmd> lua vim.lsp.buf.definition()<cr>", desc = "Jump to definition" },
-            { "<leader>cf", "<cmd> lua vim.lsp.buf.format({async = true})<cr>", desc = "Format buffer/region" },
+            { "<leader>cf", "<cmd> lua vim.lsp.buf.format({async = true})<cr>", desc = "Format buffer/region", mode = { "n", "x" } },
             { "<leader>ci", "<cmd> lua vim.lsp.buf.implementation()<cr>", desc = "Find implementations" },
             { "<leader>cr", "<cmd> lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
             { "<leader>cs", "<cmd> lua vim.lsp.buf.code_action()<cr>", desc = "Show signature help" },

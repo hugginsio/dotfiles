@@ -14,6 +14,7 @@ require("lazy").setup({
         version = false,
     },
     install = { colorscheme = { "catppuccin" } },
+    ui = { border = "single" },
     checker = { enabled = true },
     performance = {
         rtp = {
