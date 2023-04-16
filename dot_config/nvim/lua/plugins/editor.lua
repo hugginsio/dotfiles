@@ -74,13 +74,14 @@ return {
             wk.setup(opts)
             local keymaps = {
                 mode = { "n", "v" },
+                ["<leader>c"] = { name = "+code" },
                 ["<leader>f"] = { name = "+file/find" },
                 ["<leader>g"] = { name = "+git" },
                 ["<leader>s"] = { name = "+search" },
+                ["<leader>t"] = { name = "+toggle" },
                 ["["] = { name = "+prev" },
                 ["]"] = { name = "+next" },
                 ["g"] = { name = "+goto" },
-                ["<leader>t"] = { name = "+toggle" },
             }
             wk.register(keymaps)
         end,

@@ -44,9 +44,6 @@ return {
         },
         config = function()
             local lsp = require("lsp-zero")
-            lsp.on_attach(function(_, bufnr)
-                lsp.default_keymaps({buffer = bufnr})
-            end)
 
             -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
             lsp.ensure_installed({
@@ -61,6 +58,22 @@ return {
 
             require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
             lsp.setup()
-        end
+        end,
+        keys = {
+            { "<leader>cA", "<cmd> lua vim.lsp.buf.code_action()<cr>", desc = "Execute code action (region)" },
+            { "<leader>cA", "<cmd> lua vim.lsp.buf.range_code_action()<cr>", desc = "Execute code action (region)" },
+            { "<leader>cD", "<cmd> lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
+            { "<leader>cR", "<cmd> lua vim.lsp.buf.references()<cr>", desc = "Find references" },
+            { "<leader>cd", "<cmd> lua vim.lsp.buf.definition()<cr>", desc = "Jump to definition" },
+            { "<leader>cf", "<cmd> lua vim.lsp.buf.format({async = true})<cr>", desc = "Format buffer/region" },
+            { "<leader>ci", "<cmd> lua vim.lsp.buf.implementation()<cr>", desc = "Find implementations" },
+            { "<leader>cr", "<cmd> lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+            { "<leader>cs", "<cmd> lua vim.lsp.buf.code_action()<cr>", desc = "Show signature help" },
+            { "<leader>ct", "<cmd> lua vim.lsp.buf.type_definition()<cr>", desc = "Find type definition" },
+            { "<leader>cx", "<cmd> lua vim.diagnostic.open_float()<cr>", desc = "List diagnostics" },
+            { "K", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Display hover information" },
+            { "[d", "<cmd> lua vim.diagnostic.goto_prev()<cr>", desc = "Previous diagnostic" },
+            { "]d", "<cmd> lua vim.diagnostic.goto_next()<cr>", desc = "Next diagnostic" },
+        },
     },
 }
