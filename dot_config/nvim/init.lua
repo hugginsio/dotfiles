@@ -7,3 +7,6 @@ vim.cmd([[
 
 -- folke/lazy.nvim
 require("config.lazy")
+
+-- misc.
+require("config.keymaps")

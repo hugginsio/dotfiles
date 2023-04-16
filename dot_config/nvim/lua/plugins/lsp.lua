@@ -55,6 +55,7 @@ return {
                 "docker_compose_language_service",
                 "dockerls",
                 "gopls",
+                "marksman",
                 "jsonls",
                 "lua_ls",
                 "sqlls",
@@ -65,6 +66,10 @@ return {
             lsp.setup()
         end,
         keys = {
+            -- +[, +]
+            { "[d", "<cmd> lua vim.diagnostic.goto_prev()<cr>", desc = "Previous diagnostic" },
+            { "]d", "<cmd> lua vim.diagnostic.goto_next()<cr>", desc = "Next diagnostic" },
+            -- +code
             { "<leader>cA", "<cmd> lua vim.lsp.buf.code_action()<cr>", desc = "Execute code action (region)" },
             { "<leader>cA", "<cmd> lua vim.lsp.buf.range_code_action()<cr>", desc = "Execute code action (region)", mode = "x" },
             { "<leader>cD", "<cmd> lua vim.lsp.buf.declaration()<cr>", desc = "Jump to declaration" },
@@ -76,9 +81,6 @@ return {
             { "<leader>cs", "<cmd> lua vim.lsp.buf.code_action()<cr>", desc = "Show signature help" },
             { "<leader>ct", "<cmd> lua vim.lsp.buf.type_definition()<cr>", desc = "Find type definition" },
             { "<leader>cx", "<cmd> lua vim.diagnostic.open_float()<cr>", desc = "List diagnostics" },
-            { "K", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Display hover information" },
-            { "[d", "<cmd> lua vim.diagnostic.goto_prev()<cr>", desc = "Previous diagnostic" },
-            { "]d", "<cmd> lua vim.diagnostic.goto_next()<cr>", desc = "Next diagnostic" },
         },
     },
 }

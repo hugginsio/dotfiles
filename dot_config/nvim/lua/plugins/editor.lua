@@ -1,3 +1,5 @@
+local Util = require("config.utils")
+
 return {
     {
         "tpope/vim-surround",
@@ -15,9 +17,9 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         config = true,
         keys = {
-            { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Search todos" },
-            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+            { "<leader>st", "<cmd>TodoTelescope<cr>",                            desc = "Search todos" },
+            { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            { "]t",         function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
         },
     },
     {
@@ -52,15 +54,61 @@ return {
         cmd = "Telescope",
         keys = {
             -- root
-            { "<M-x>", "<cmd>Telescope commands<cr>", desc = "Commands" },
-            { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-            { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-            -- +file/find
-            { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+            { "<M-x>",           "<cmd>Telescope commands<cr>",                      desc = "Commands" },
+            { "<leader>,",       "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
+            { "<leader>:",       "<cmd>Telescope command_history<cr>",               desc = "Command History" },
+            { "<leader><space>", Util.telescope("files"),                            desc = "Find in workspace directory" },
+            -- +code
+            { "<leader>cx",      "<cmd>Telescope diagnostics<cr>",                   desc = "List diagnostics" },
+            {
+                "<leader>cs",
+                Util.telescope("lsp_document_symbols", {
+                    symbols = {
+                        "Class",
+                        "Function",
+                        "Method",
+                        "Constructor",
+                        "Interface",
+                        "Module",
+                        "Struct",
+                        "Trait",
+                        "Field",
+                        "Property",
+                    },
+                }),
+                desc = "Goto symbol in buffer",
+            },
+            {
+                "<leader>cS",
+                Util.telescope("lsp_workspace_symbols", {
+                    symbols = {
+                        "Class",
+                        "Function",
+                        "Method",
+                        "Constructor",
+                        "Interface",
+                        "Module",
+                        "Struct",
+                        "Trait",
+                        "Field",
+                        "Property",
+                    },
+                }),
+                desc = "Goto symbol in workspace",
+            },
+            -- +file
+            { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                  desc = "List recent files" },
+            { "<leader>ff", Util.telescope("files"),                        desc = "Find in workspace directory" },
+            { "<leader>fF", Util.telescope("files", { cwd = false }),       desc = "Find in current directory" },
             -- +search
+            { "<leader>sG", Util.telescope("live_grep", { cwd = false }),   desc = "Search in current directory" },
+            { "<leader>sM", "<cmd>Telescope man_pages<cr>",                 desc = "Search man pages" },
             { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search buffer" },
-            { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Search keymaps" },
-            { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to mark" },
+            { "<leader>sg", Util.telescope("live_grep"),                    desc = "Search in workspace directory" },
+            { "<leader>sh", "<cmd>Telescope help_tags<cr>",                 desc = "Search help tags" },
+            { "<leader>sk", "<cmd>Telescope keymaps<cr>",                   desc = "Search keymaps" },
+            { "<leader>sm", "<cmd>Telescope marks<cr>",                     desc = "Jump to mark" },
+            { "<leader>so", "<cmd>Telescope vim_options<cr>",               desc = "Search Vim options" },
         },
     },
     {
@@ -74,11 +122,15 @@ return {
             wk.setup(opts)
             local keymaps = {
                 mode = { "n", "v" },
+                ["<leader><Tab>"] = { name = "+tabs" },
+                ["<leader>b"] = { name = "+buffers" },
                 ["<leader>c"] = { name = "+code" },
                 ["<leader>f"] = { name = "+file/find" },
                 ["<leader>g"] = { name = "+git" },
+                ["<leader>h"] = { name = "+help" },
                 ["<leader>s"] = { name = "+search" },
                 ["<leader>t"] = { name = "+toggle" },
+                ["<leader>w"] = { name = "+windows" },
                 ["["] = { name = "+prev" },
                 ["]"] = { name = "+next" },
                 ["g"] = { name = "+goto" },
