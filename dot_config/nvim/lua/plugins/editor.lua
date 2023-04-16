@@ -118,8 +118,7 @@ return {
             char = "│",
             filetype_exclude = {
                 "help",
-                "Trouble",
-                "lazy"
+                "lazy",
             },
             show_trailing_blankline_indent = false,
             show_current_context = false,
@@ -128,30 +127,25 @@ return {
     {
         "RRethy/vim-illuminate",
         event = { "BufReadPost", "BufNewFile" },
-        opts = { delay = 200 },
-        config = function(_, opts)
+        opts = {
+            delay = 200,
+            filetype_denylist = {
+                "help",
+                "lazy",
+                "vimwiki",
+            },
+        },
+        config = function(opts)
             require("illuminate").configure(opts)
 
             local function map(key, dir, buffer)
                 vim.keymap.set("n", key, function()
                     require("illuminate")["goto_" .. dir .. "_reference"](false)
-                end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+                end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " reference", buffer = buffer })
             end
 
-            map("]]", "next")
-            map("[[", "prev")
-
-            vim.api.nvim_create_autocmd("FileType", {
-                callback = function()
-                    local buffer = vim.api.nvim_get_current_buf()
-                    map("]]", "next", buffer)
-                    map("[[", "prev", buffer)
-                end,
-            })
+            map("]r", "next")
+            map("[r", "prev")
         end,
-        keys = {
-            { "]]", desc = "Next reference" },
-            { "[[", desc = "Prev reference" },
-        },
     },
 }

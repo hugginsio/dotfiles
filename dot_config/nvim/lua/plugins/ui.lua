@@ -35,10 +35,15 @@ return {
                 ["<leader>f"] = { name = "+file/find" },
                 ["<leader>g"] = { name = "+git" },
                 ["<leader>h"] = { name = "+help" },
+                ["<leader>m"] = { name = "+localleader" },
+                ["<leader>q"] = { name = "+quit" },
                 ["<leader>s"] = { name = "+search" },
                 ["<leader>t"] = { name = "+toggle" },
+                ["<leader>w"] = { name = "+wiki" },
+                ["<leader>w<space>"] = { name = "+wikimake" },
                 ["["] = { name = "+prev" },
                 ["]"] = { name = "+next" },
+                ["c"] = { name = "+change" },
                 ["g"] = { name = "+goto" },
             }
 
