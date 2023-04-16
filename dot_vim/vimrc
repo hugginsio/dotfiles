@@ -3,6 +3,13 @@
 " https://github.com/amix/vimrc
 " https://github.com/michaeljmcd/dotfiles
 
+" Leader
+let mapleader=" "
+nnoremap <SPACE> <Nop>
+
+" Localleader
+let maplocalleader="<leader>m"
+
 " Set relative and normal  numbers.
 set nu rnu
 
@@ -13,7 +20,6 @@ endif
 
 " Theme
 set termguicolors
-colorscheme catppuccin_mocha
 
 if $TERM ==# "xterm"
   set background=dark
@@ -58,12 +64,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " Remap VIM 0 to first non-blank character.
 map 0 ^
 
-" Move a line of text using ALT+[jk] (or Command+[jk] on mac).
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
   nmap <D-k> <M-k>
@@ -81,7 +81,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.sh,*.ts,*.js,*.go,*.md :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.sh,*.ts,*.js,*.go,*.md,*.lua :call CleanExtraSpaces()
 endif
 
 " Disable scrollbars.
@@ -154,19 +154,17 @@ set directory=~/.vim/backup
 set writebackup
 
 " Open Netrw
-nnoremap <leader>tp :Lexplore<CR>
-
-" Leader
-let mapleader=" "
-nnoremap <SPACE> <Nop>
+nnoremap <silent> <leader>tl :Lexplore<CR>
 
 au FocusGained,BufEnter * checktime
 autocmd FileType netrw setl bufhidden=wipe
 let g:netrw_banner=0
-let g:netrw_fastbrowse=0
-let g:netrw_keepdir=0
 let g:netrw_browse_split = 4
-let g:netrw_liststyle=3
+let g:netrw_fastbrowse=0
+let g:netrw_hide=1
+let g:netrw_keepdir=0
+let g:netrw_list_hide='^\./$'
+let g:netrw_liststyle=0
 let g:netrw_localcopydircmd='cp -r'
 let g:netrw_winsize=20
 let vim_markdown_folding_disabled = 1
