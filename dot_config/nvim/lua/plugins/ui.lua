@@ -36,6 +36,7 @@ return {
                 ["<leader>g"] = { name = "+git" },
                 ["<leader>h"] = { name = "+help" },
                 ["<leader>m"] = { name = "+localleader" },
+                ["<leader>o"] = { name = "+open" },
                 ["<leader>q"] = { name = "+quit" },
                 ["<leader>s"] = { name = "+search" },
                 ["<leader>t"] = { name = "+toggle" },
