@@ -39,6 +39,9 @@ disabled = true
 [git_branch]
 symbol = " "
 
+[git_status]
+deleted = "✖"
+
 [golang]
 symbol = " "
 
