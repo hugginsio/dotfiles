@@ -25,4 +25,15 @@ return {
         "fladson/vim-kitty",
         event = "BufReadPre",
     },
+    {
+        "SidOfc/mkdx",
+        ft = {
+            "markdn",
+            "markdown",
+            "md",
+            "mdown",
+            "wiki",
+        },
+        enabled = false,
+    },
 }

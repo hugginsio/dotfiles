@@ -22,4 +22,20 @@ return {
             { "<leader>oC", "<cmd>CalendarT<CR>", desc = "Open calendar (full screen)" },
         },
     },
+    {
+        "lervag/wiki.vim",
+        event = "VimEnter",
+        ft = "wiki",
+        init = function()
+            vim.cmd([[
+            let g:wiki_root = "~/Workspaces/Vimwiki/"
+            ]])
+        end,
+        keys = {
+            { "<leader>ww", "<cmd>WikiIndex<CR>", desc = "<Plug>(wiki-index)" },
+            { "<leader>wn", "<cmd>WikiOpen<CR>", desc = "<Plug>(wiki-open)" },
+            { "<leader>w<leader>w", "<cmd>WikiJournal<CR>", desc = "<Plug>(wiki-journal)" },
+            { "<leader>x", "<cmd>WikiReload<CR>", desc = "<Plug>(wiki-reload)" },
+        },
+    },
 }
