@@ -27,13 +27,7 @@ return {
     },
     {
         "SidOfc/mkdx",
-        ft = {
-            "markdn",
-            "markdown",
-            "md",
-            "mdown",
-            "wiki",
-        },
+        ft = { "markdn", "markdown", "md", "mdown" },
         enabled = false,
     },
 }

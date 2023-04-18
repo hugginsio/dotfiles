@@ -24,8 +24,8 @@ return {
     },
     {
         "lervag/wiki.vim",
-        event = "VimEnter",
-        ft = "wiki",
+        event = "VeryLazy",
+        ft = { "markdn", "markdown", "md", "mdown" },
         init = function()
             vim.cmd([[
             let g:wiki_root = "~/Workspaces/Vimwiki/"

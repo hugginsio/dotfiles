@@ -13,6 +13,18 @@ local function map(mode, lhs, rhs, opts)
     end
 end
 
+local function unmap(mode, lhs, opts)
+    opts = opts or {}
+    opts.silent = opts.silent ~= false
+    vim.keymap.del(mode, lhs, opts)
+end
+
 -- lazy
-map("n", "<leader>l", "")
+unmap("n", "<leader>l")
 map("n", "<leader>ol", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+
+-- window
+unmap("n", "<leader>ww")
+unmap("n", "<leader>wd")
+unmap("n", "<leader>w-")
+unmap("n", "<leader>w|")
