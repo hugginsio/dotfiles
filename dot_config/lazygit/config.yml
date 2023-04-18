@@ -1,3 +1,13 @@
 gui:
-  showFileTree: false
-  showCommandLog: false
+    mouseEvents: false
+    showBottomLine: false
+    showCommandLog: false
+    showFileTree: false
+    showIcons: false
+    showRandomTip: false
+    theme:
+        selectedLineBgColor:
+            - black
+            - bold
+        selectedRangeBgColor:
+            - blue

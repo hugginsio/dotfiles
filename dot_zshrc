@@ -32,3 +32,5 @@ unset EXTRA_DOTFILE
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit promptinit && compinit
+
+# vim: ft=zsh

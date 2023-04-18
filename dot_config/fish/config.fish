@@ -1,4 +1,4 @@
-#!/usr/bin/env fish # -*- mode: sh-mode -*-
+#!/usr/bin/env fish
 
 # fish
 set -gx DOTFILES $HOME/.config/hugginsio/fish
@@ -6,16 +6,16 @@ set -gx DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
 set -gx VISUAL vi
 
 function dotfiles_source -d "Sources a configuration file if it exists"
-  for arg in $argv
-    if test -r $arg && test -f $arg
-      set -a DOTFILES_SOURCE_ATTEMPTS $arg
-      source $arg
+    for arg in $argv
+        if test -r $arg && test -f $arg
+            set -a DOTFILES_SOURCE_ATTEMPTS $arg
+            source $arg
+        end
     end
-  end
 end
 
 function fish_greeting
-  clear
+    clear
 end
 
 ## global prompt
