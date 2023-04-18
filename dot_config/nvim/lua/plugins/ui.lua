@@ -1,54 +1,93 @@
 return {
     {
-        "catppuccin/nvim",
-        config = function()
-            vim.cmd("colorscheme catppuccin-mocha")
-        end,
-        lazy = false,
-        name = "catppuccin",
-        priority = 1000,
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = {
+            filesystem = {
+                bind_to_cwd = false,
+                follow_current_file = true,
+            },
+            window = {
+                width = 30,
+                mappings = {
+                    ["<space>"] = "none",
+                },
+            },
+            popup_border_style = "single",
+            default_component_configs = {
+                indent = {
+                    with_expanders = true,
+                },
+                git_status = {
+                    symbols = {
+                        modified = "!",
+                        deleted = "✖",
+                        renamed = "»",
+                        untracked = "?",
+                        conflict = "=",
+                    },
+                },
+            },
+        },
     },
     {
-        "itchyny/lightline.vim",
-        dir = "~/.vim/pack/hugginsio/start/lightline",
-        config = function()
-            vim.cmd([[
-                let g:lightline = {'colorscheme': 'catppuccin'}
-            ]])
+        "nvim-lualine/lualine.nvim",
+        opts = function()
+            local icons = require("lazyvim.config").icons
+
+            local function fg(name)
+                return function()
+                    ---@type {foreground?:number}?
+                    local hl = vim.api.nvim_get_hl_by_name(name, true)
+                    return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+                end
+            end
+
+            return {
+                options = {
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                    theme = "auto",
+                    globalstatus = true,
+                    disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+                },
+                -- https://github.com/nvim-lualine/lualine.nvim/blob/master/README.md#available-components
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch" },
+                    lualine_c = {
+                        {
+                            "diagnostics",
+                            symbols = {
+                                error = icons.diagnostics.Error,
+                                warn = icons.diagnostics.Warn,
+                                info = icons.diagnostics.Info,
+                                hint = icons.diagnostics.Hint,
+                            },
+                            padding = { left = 1, right = 0 },
+                        },
+                        { "filename", path = 1, symbols = { modified = "[+]", readonly = "[RO]", unnamed = "" } },
+                    },
+                    lualine_x = {
+                        {
+                            require("lazy.status").updates,
+                            cond = require("lazy.status").has_updates,
+                            color = fg("Special"),
+                        },
+                    },
+                    lualine_y = {
+                        { "filetype", icons_enabled = false, separator = "" },
+                        { "progress", separator = " ", padding = { left = 1, right = 0 } },
+                        { "location", padding = { left = 0, right = 1 } },
+                    },
+                },
+                extensions = { "neo-tree", "lazy" },
+            }
         end,
-        lazy = false,
     },
     {
         "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {
-            plugins = { spelling = true },
-        },
-        config = function()
-            local wk = require("which-key") wk.setup({})
-
-            local keymaps = {
-                mode = { "n", "v" },
-                ["<leader><Tab>"] = { name = "+tabs" },
-                ["<leader>b"] = { name = "+buffers" },
-                ["<leader>c"] = { name = "+code" },
-                ["<leader>f"] = { name = "+file/find" },
-                ["<leader>g"] = { name = "+git" },
-                ["<leader>h"] = { name = "+help" },
-                ["<leader>m"] = { name = "+localleader" },
-                ["<leader>o"] = { name = "+open" },
-                ["<leader>q"] = { name = "+quit" },
-                ["<leader>s"] = { name = "+search" },
-                ["<leader>t"] = { name = "+toggle" },
-                ["<leader>w"] = { name = "+wiki" },
-                ["<leader>w<space>"] = { name = "+wikimake" },
-                ["["] = { name = "+prev" },
-                ["]"] = { name = "+next" },
-                ["c"] = { name = "+change" },
-                ["g"] = { name = "+goto" },
-            }
-
-            wk.register(keymaps)
+        opts = function(_, opts)
+            opts.defaults["<leader>o"] = { name = "+open" }
         end,
     },
 }

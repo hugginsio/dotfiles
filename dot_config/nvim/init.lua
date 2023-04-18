@@ -5,8 +5,5 @@ vim.cmd([[
     source ~/.vim/vimrc
 ]])
 
--- folke/lazy.nvim
+-- bootstrap lazy.nvim, LazyVim and plugins
 require("config.lazy")
-
--- misc.
-require("config.keymaps")

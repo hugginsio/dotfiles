@@ -7,9 +7,6 @@
 let mapleader=" "
 nnoremap <SPACE> <Nop>
 
-" Localleader
-let maplocalleader="<leader>m"
-
 " Set relative and normal  numbers.
 set nu rnu
 
@@ -154,7 +151,9 @@ set directory=~/.vim/backup
 set writebackup
 
 " Open Netrw
-nnoremap <silent> <leader>tl :Lexplore<CR>
+if has("nvim")
+    nnoremap <silent> <leader>e :Lexplore<CR>
+endif
 
 au FocusGained,BufEnter * checktime
 autocmd FileType netrw setl bufhidden=wipe
