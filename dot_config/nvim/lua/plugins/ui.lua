@@ -1,5 +1,14 @@
 return {
     {
+        "catppuccin/nvim",
+        config = function()
+            vim.cmd("colorscheme catppuccin-mocha")
+        end,
+        lazy = false,
+        name = "catppuccin",
+        priority = 100,
+    },
+    {
         "nvim-neo-tree/neo-tree.nvim",
         opts = {
             filesystem = {
@@ -90,5 +99,15 @@ return {
             opts.defaults["<leader>o"] = { name = "+open" }
             opts.defaults["<leader>w"] = { name = "+wiki" }
         end,
+    },
+    {
+        "ellisonleao/glow.nvim",
+        cmd = "Glow",
+        opts = {
+            border = "single",
+        },
+        keys = {
+            { "<leader>og", "<cmd>Glow<CR>", desc = "Preview markdown with Glow" },
+        },
     },
 }
