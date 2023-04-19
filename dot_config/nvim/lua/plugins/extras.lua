@@ -13,7 +13,7 @@ return {
         init = function()
             vim.cmd([[
                 let g:calendar_no_mappings=0
-                let g:calendar_diary="~/Workspaces/Vimwiki/diary"
+                let g:calendar_diary="~/Workspaces/Vault/daily"
                 ]])
         end,
         cmd = { "Calendar", "CalendarH", "CalendarT", "CalendarVR", "CalendarSearch" },
@@ -23,19 +23,62 @@ return {
         },
     },
     {
-        "lervag/wiki.vim",
-        event = "VeryLazy",
-        ft = { "markdn", "markdown", "md", "mdown" },
-        init = function()
-            vim.cmd([[
-            let g:wiki_root = "~/Workspaces/Vimwiki/"
-            ]])
-        end,
-        keys = {
-            { "<leader>ww", "<cmd>WikiIndex<CR>", desc = "<Plug>(wiki-index)" },
-            { "<leader>wn", "<cmd>WikiOpen<CR>", desc = "<Plug>(wiki-open)" },
-            { "<leader>w<leader>w", "<cmd>WikiJournal<CR>", desc = "<Plug>(wiki-journal)" },
-            { "<leader>x", "<cmd>WikiReload<CR>", desc = "<Plug>(wiki-reload)" },
+        "epwalsh/obsidian.nvim",
+        config = true,
+        cmd = {
+            "ObsidianBacklinks",
+            "ObsidianFollowLink",
+            "ObsidianLink",
+            "ObsidianLinkNew",
+            "ObsidianNew",
+            "ObsidianOpen",
+            "ObsidianQuickSwitch",
+            "ObsidianSearch",
+            "ObsidianTemplate",
+            "ObsidianToday",
+            "ObsidianYesterday",
         },
+        keys = {
+            { "<leader>oN", ":ObsidianTemplate<Space>", desc = "Create new note from template" },
+            { "<leader>oO", "<cmd>ObsidianSearch<CR>", desc = "Open note (grep)" },
+            { "<leader>on", ":ObsidianNew<Space>", desc = "Create new note" },
+            { "<leader>oo", "<cmd>ObsidianQuickSwitch<CR>", desc = "Open note (title)" },
+            { "<leader>ot", "<cmd>ObsidianToday<CR>", desc = "Open today's daily note" },
+            { "<leader>sv", "<cmd>ObsidianSearch<CR>", desc = "Obsidian Vault" },
+        },
+        opts = {
+            completion = {
+                nvim_cmp = true,
+            },
+            daily_notes = {
+                folder = "daily",
+            },
+            dir = "~/Workspaces/Vault/",
+            templates = {
+                subdir = "templates",
+                date_format = "%Y-%m-%d",
+                time_format = "%H:%M",
+            },
+            note_id_func = function(title)
+                -- Note IDs are title (or timestamp) + four random letters.
+                local suffix = ""
+                local id = ""
+
+                for i = 1, 4 do
+                    id = id .. string.char(math.random(65 + i, 95 - i)):lower()
+                end
+
+                if title ~= nil then
+                    -- If title is given, transform it into valid file name.
+                    suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+                else
+                    -- If title is nil, use the current time
+                    suffix = tostring(os.time())
+                end
+
+                return suffix .. "-" .. id
+            end,
+        },
+        version = "*",
     },
 }
