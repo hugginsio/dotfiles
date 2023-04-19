@@ -13,7 +13,7 @@ return {
         init = function()
             vim.cmd([[
                 let g:calendar_no_mappings=0
-                let g:calendar_diary="~/Workspaces/Vault/daily"
+                let g:calendar_diary="~/Workspaces/Vault/Daily"
                 ]])
         end,
         cmd = { "Calendar", "CalendarH", "CalendarT", "CalendarVR", "CalendarSearch" },
@@ -51,7 +51,7 @@ return {
                 nvim_cmp = true,
             },
             daily_notes = {
-                folder = "daily",
+                folder = "Daily",
             },
             dir = "~/Workspaces/Vault/",
             templates = {
@@ -78,6 +78,7 @@ return {
 
                 return suffix .. "-" .. id
             end,
+            notes_subdir = "Notes",
         },
     },
 }
