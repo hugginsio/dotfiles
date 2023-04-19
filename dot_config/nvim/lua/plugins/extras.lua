@@ -39,7 +39,7 @@ return {
             "ObsidianYesterday",
         },
         keys = {
-            { "<leader>oN", ":ObsidianTemplate<Space>", desc = "Create new note from template" },
+            { "<leader>oN", "<cmd>ObsidianTemplate<CR>", desc = "Create new note from template" },
             { "<leader>oO", "<cmd>ObsidianSearch<CR>", desc = "Open note (grep)" },
             { "<leader>on", ":ObsidianNew<Space>", desc = "Create new note" },
             { "<leader>oo", "<cmd>ObsidianQuickSwitch<CR>", desc = "Open note (title)" },
@@ -79,6 +79,5 @@ return {
                 return suffix .. "-" .. id
             end,
         },
-        version = "*",
     },
 }
