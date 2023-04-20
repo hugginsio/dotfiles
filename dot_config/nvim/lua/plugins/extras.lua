@@ -12,23 +12,14 @@ return {
         "mattn/calendar-vim",
         init = function()
             vim.cmd([[
-                let g:calendar_no_mappings=0
-                let g:calendar_diary="~/Workspaces/Vault/Daily"
+                    let g:calendar_no_mappings=0
+                    let g:calendar_diary="~/Workspaces/Vault/Daily"
                 ]])
         end,
         cmd = { "Calendar", "CalendarH", "CalendarT", "CalendarVR", "CalendarSearch" },
         keys = {
-            { "<leader>oc", "<cmd>CalendarH<CR>", desc = "Open calendar" },
-            { "<leader>oC", "<cmd>CalendarT<CR>", desc = "Open calendar (full screen)" },
+            { "<leader>wc", "<cmd>CalendarH<CR>", desc = "Open calendar" },
+            { "<leader>wC", "<cmd>CalendarT<CR>", desc = "Open calendar (full screen)" },
         },
-    },
-    {
-        "lervag/wiki.vim",
-        init = function()
-            vim.cmd([[
-                let g:wiki_root = '~/Workspaces/Vault'
-            ]])
-        end,
-        lazy = false,
     },
 }

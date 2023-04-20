@@ -96,7 +96,6 @@ return {
     {
         "folke/which-key.nvim",
         opts = function(_, opts)
-            opts.defaults["<leader>o"] = { name = "+obsidian" }
             opts.defaults["<leader>w"] = { name = "+wiki" }
         end,
     },
@@ -107,7 +106,7 @@ return {
             border = "single",
         },
         keys = {
-            { "<leader>og", "<cmd>Glow<CR>", desc = "Preview markdown with Glow" },
+            { "<leader>fg", "<cmd>Glow<CR>", desc = "Preview markdown with Glow" },
         },
     },
 }
