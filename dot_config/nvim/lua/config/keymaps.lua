@@ -19,15 +19,6 @@ local function unmap(mode, lhs, opts)
     vim.keymap.del(mode, lhs, opts)
 end
 
--- obsidian
-map("n", "gf", function()
-    if require("obsidian").util.cursor_on_markdown_link() then
-        return "<cmd>ObsidianFollowLink<CR>"
-    else
-        return "gf"
-    end
-end, { desc = "Go to file under cursor", noremap = false, expr = true })
-
 -- window
 unmap("n", "<leader>ww")
 unmap("n", "<leader>wd")

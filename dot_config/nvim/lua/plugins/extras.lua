@@ -18,8 +18,8 @@ return {
         end,
         cmd = { "Calendar", "CalendarH", "CalendarT", "CalendarVR", "CalendarSearch" },
         keys = {
-            { "<leader>wc", "<cmd>CalendarH<CR>", desc = "Open calendar" },
-            { "<leader>wC", "<cmd>CalendarT<CR>", desc = "Open calendar (full screen)" },
+            { "<leader>oc", "<cmd>CalendarH<CR>", desc = "Open calendar" },
+            { "<leader>oC", "<cmd>CalendarT<CR>", desc = "Open calendar (full screen)" },
         },
     },
 }
