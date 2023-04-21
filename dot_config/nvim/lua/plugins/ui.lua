@@ -100,6 +100,12 @@ return {
         end,
     },
     {
+        "lukas-reineke/indent-blankline.nvim",
+        opts = {
+            filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "glowpreview" },
+        },
+    },
+    {
         "ellisonleao/glow.nvim",
         cmd = "Glow",
         opts = {
