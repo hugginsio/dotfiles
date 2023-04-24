@@ -22,4 +22,11 @@ return {
             { "<leader>oC", "<cmd>CalendarT<CR>", desc = "Open calendar (full screen)" },
         },
     },
+    {
+        "hugginsio/twig.nvim",
+        event = "VeryLazy",
+        opts = {
+            project_pattern = "-(.*)",
+        },
+    },
 }
