@@ -1,5 +1,5 @@
 [notebook]
-dir = "~/Workspaces/zk"
+dir = "~/Workspaces/zk/"
 
 [note]
 default-title = "Untitled"
@@ -15,8 +15,12 @@ id-case = "lower"
 id-charset = "alphanum"
 id-length = 4
 
+[group.journal]
+paths = ["journal"]
+
 [group.journal.note]
 filename = "{{format-date now}}"
+template = "daily.md"
 
 [format.markdown]
 colon-tags = true
@@ -25,19 +29,21 @@ multiword-tags = false
 
 [tool]
 editor = "nvim"
-pager = "less -FIRX"
 fzf-preview = "bat -p --color always {-1}"
+pager = "less -FIRX"
 
 [filter]
+journal = "--sort created journal"
 recents = "--sort created- --created-after 'last two weeks'"
 
 # COMMAND ALIASES
 [alias]
+daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
 edlast = "zk edit --limit 1 --sort modified- $@"
-recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"
 lucky = "zk list --quiet --format full --sort random --limit 1"
+recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"
 
 [lsp]
 [lsp.diagnostics]
-wiki-title = "none"
 dead-link = "error"
+wiki-title = "none"
