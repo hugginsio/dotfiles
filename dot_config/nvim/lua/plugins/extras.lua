@@ -29,4 +29,25 @@ return {
             project_pattern = "-(.*)",
         },
     },
+    {
+        "mickael-menu/zk-nvim",
+        config = function(opts)
+            require("zk").setup(opts)
+        end,
+        event = "VeryLazy",
+        ft = { "markdn", "markdown", "md", "mdown" },
+        opts = {
+            picker = "telescope",
+            lsp = {
+                config = {
+                    cmd = { "zk", "lsp" },
+                    name = "zk",
+                },
+                auto_attach = {
+                    enabled = true,
+                    filetypes = { "markdn", "markdown", "md", "mdown" },
+                },
+            },
+        },
+    },
 }

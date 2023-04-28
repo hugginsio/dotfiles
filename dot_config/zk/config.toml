@@ -7,7 +7,7 @@ extension = "md"
 filename = "{{id}}-{{slug title}}"
 language = "en"
 
-# Relative to .zk/templates/
+# Relative to zk/templates/
 template = "default.md"
 
 # Configure random ID generation.
@@ -39,5 +39,5 @@ lucky = "zk list --quiet --format full --sort random --limit 1"
 
 [lsp]
 [lsp.diagnostics]
-wiki-title = "hint"
+wiki-title = "none"
 dead-link = "error"
