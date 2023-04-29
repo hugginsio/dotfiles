@@ -40,7 +40,7 @@ return {
         ft = { "markdn", "markdown", "md", "mdown" },
         keys = {
             { "<leader>zb", "<cmd>ZkBacklinks<CR>", desc = "Open backlinks picker" },
-            { "<leader>zj", "<cmd>ZkNew { group = 'journal'}<CR>", desc = "Open journal" },
+            { "<leader>zj", "<cmd>ZkNew { dir = 'journal', group = 'journal'}<CR>", desc = "Open journal" },
             { "<leader>zl", "<cmd>ZkLinks<CR>", desc = "Open outbound links picker" },
             { "<leader>zo", "<cmd>Telescope zk notes<CR>", desc = "Open notes picker" },
             { "<leader>zt", "<cmd>Telescope zk tags<CR>", desc = "Open notes picker, filtered by tags" },
