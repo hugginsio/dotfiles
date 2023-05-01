@@ -23,7 +23,7 @@ filename = "{{format-date now}}"
 template = "journal.md"
 
 [format.markdown]
-colon-tags = true
+colon-tags = false
 hashtags = false
 multiword-tags = false
 
