@@ -202,7 +202,6 @@ set regexpengine=0
 set ruler
 set scrolloff=3
 set sessionoptions=unix,slash
-set shiftwidth=2
 set shortmess=filnxtToOF
 set showcmd
 set showmatch
@@ -211,13 +210,11 @@ set sidescroll=1
 set signcolumn=yes
 set smartcase
 set smarttab
-set softtabstop=2
 set splitbelow
 set splitright
 set switchbuf=uselast
 set t_vb=
 set tabpagemax=50
-set tabstop=2
 set tm=500
 set ttimeout
 set ttimeoutlen=300
