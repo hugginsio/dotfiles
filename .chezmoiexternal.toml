@@ -16,10 +16,3 @@
   url = "https://github.com/tpope/vim-eunuch.git"
   clone.args = ["--depth", "1"]
   refreshPeriod = "168h"
-
-{{ if not .ephemeral -}}
-[".emacs.d"]
-  type = "git-repo"
-  url = "https://github.com/hlissner/doom-emacs.git"
-  clone.args = ["--depth", "1"]
-{{ end -}}
