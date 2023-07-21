@@ -1,32 +1,45 @@
 # vi: ft=toml
 {{/* feature flags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $headless := false -}}{{/*  true if this machine does not have a screen and keyboard */}}
+{{- $personal := false -}}{{/*  true if this machine is for personal use */}}
+{{- $work := false -}}{{/*      true if this machine is for work use */}}
 
 {{/* combo OS ID, e.g. linux-debian */}}
 {{- $osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "idLike" -}}
-{{-	$osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
+{{-     $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
 {{- end -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, or Coder workspaces */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "vscode" "root" "ubuntu" "coder") -}}
-{{-   $ephemeral = true -}}
-{{-   $headless = true -}}
+{{-     $ephemeral = true -}}
+{{-     $headless = true -}}
 {{- end -}}
 
 {{/* work around unreliable hostname on darwin */}}
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   $hostname := output "scutil" "--get" "ComputerName" | trim -}}
+{{-     $hostname := output "scutil" "--get" "ComputerName" | trim -}}
 {{- end -}}
 
 {{/* modify the location of fish on darwin */}}
 {{- $fishPath := "" -}}
 {{- if eq .chezmoi.os "darwin" -}}
-{{-	$fishPath = printf "/opt/homebrew/bin/fish" -}}
-{{ else if eq .chezmoi.os "linux" -}}
-{{-	$fishPath = printf "/usr/bin/fish" -}}
+{{-     $fishPath = printf "/opt/homebrew/bin/fish" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-     $fishPath = printf "/usr/bin/fish" -}}
+{{- end -}}
+
+{{/* determine if personal, work, or neither */}}
+{{- if not $ephemeral -}}
+{{-     if eq .chezmoi.username "hugginsio" -}}
+{{-         $personal = true -}}
+{{-         $work = false -}}
+{{-     else if eq .chezmoi.username "kylehuggins" -}}
+{{-         $personal = false -}}
+{{-         $work = true -}}
+{{-     end -}}
 {{- end -}}
 
 [data]
@@ -34,3 +47,5 @@
     fishPath = {{ $fishPath | quote }}
     headless = {{ $headless }}
     osid = {{ $osid | quote }}
+    personal = {{ $personal }}
+    work = {{ $work }}
