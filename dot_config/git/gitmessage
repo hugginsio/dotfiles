@@ -1,0 +1,23 @@
+
+# <type><!>(<optional scope>): <description>     ^
+#   │    │          │                │
+#   │    │          │                └─ Short summary of the code changes
+#   │    │          └─ Noun describing a section of the codebase
+#   │    └─ Breaking changes must be indicated by a `!` immediately before the `:`
+#   └─ fix|feat|build|chore|ci|docs|style|refactor|perf|test
+#
+# The commit subject line should not exceed 50 characters.
+# The body of the gitmessage should explain what and why (but not how):
+
+
+
+# Use GitHub Flavored Markdown for formatting and links
+# (links should not be line-wrapped)
+#
+# Include footers where necessary:
+# BREAKING CHANGE: <description>
+# Co-authored-by: First Last <first.last@example.com>
+# Reviewed-by: First Last
+#
+# The entirety of the gitmessage should wrap at 72 characters.         ^
+#
