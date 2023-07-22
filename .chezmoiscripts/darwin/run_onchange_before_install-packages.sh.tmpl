@@ -4,17 +4,9 @@
 # -u: exit on unset variables
 set -eu
 
-echo "Installing Homebrew..."
-
-mkdir -p ~/.local/bin
-
-if [[ $(command -v brew) == "" ]]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+echo "Installing essentials..."
 
 brew update && brew upgrade && brew cleanup
-
-echo "Installing essentials..."
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "jesseduffield/lazygit"
 tap "homebrew/cask-fonts"
