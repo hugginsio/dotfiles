@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/bin/sh # vi: ft=bash
 
 # -e: exit on error
 # -u: exit on unset variables
 set -eu
 
-echo "Detected: macOS"
-echo "Installing essentials..."
+echo "Installing Homebrew..."
 
 mkdir -p ~/.local/bin
 
@@ -14,18 +13,33 @@ if [[ $(command -v brew) == "" ]]; then
 fi
 
 brew update && brew upgrade && brew cleanup
+
+echo "Installing essentials..."
 brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "jesseduffield/lazygit"
+
 brew "bat"
+brew "colima"
 brew "coreutils"
 brew "curl"
 brew "fish"
+brew "fzf"
 brew "gawk"
 brew "gh"
 brew "git"
+brew "go"
 brew "gpg"
+brew "lazygit"
 brew "neovim"
 brew "ripgrep"
 brew "starship"
 cask "appcleaner"
+cask "microsoft-edge"
 cask "raycast"
+
+{{- if .work -}}
+cask "task"
+cask "taskwarrior-tui"
+{{- end }}
+
 EOF

@@ -42,10 +42,23 @@
 {{-     end -}}
 {{- end -}}
 
+{{- $name := "" -}}
+{{- $email := "" -}}
+{{- if or $personal $work -}}
+{{-     $name = "Kyle Huggins" -}}
+{{- end -}}
+{{- if $personal -}}
+{{-     $email = "kylehuggins2.0@gmail.com" -}}
+{{- else if $work -}}
+{{-     $email = "kyle.huggins@jbhunt.com" -}}
+{{- end -}}
+
 [data]
+    email = {{ $email | quote }}
     ephemeral = {{ $ephemeral }}
     fishPath = {{ $fishPath | quote }}
     headless = {{ $headless }}
+    name = {{ $name | quote }}
     osid = {{ $osid | quote }}
     personal = {{ $personal }}
     work = {{ $work }}
