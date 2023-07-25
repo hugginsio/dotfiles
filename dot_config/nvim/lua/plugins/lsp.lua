@@ -26,6 +26,10 @@ return {
         event = "BufReadPre",
     },
     {
+        "luizribeiro/vim-cooklang",
+        ft = "cook",
+    },
+    {
         "SidOfc/mkdx",
         ft = { "markdn", "markdown", "md", "mdown" },
     },
