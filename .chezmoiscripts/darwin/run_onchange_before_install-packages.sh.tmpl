@@ -1,0 +1,52 @@
+#!/bin/sh # vi: ft=bash
+
+# -e: exit on error
+# -u: exit on unset variables
+set -eu
+
+echo "Installing essentials..."
+
+brew update && brew upgrade && brew cleanup
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "go-task/homebrew-tap"
+tap "homebrew/cask-fonts"
+tap "jesseduffield/lazygit"
+
+brew "bat"
+brew "colima"
+brew "coreutils"
+brew "curl"
+brew "ed"
+brew "findutils"
+brew "fish"
+brew "fzf"
+brew "gawk"
+brew "gh"
+brew "git"
+brew "glow"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "go"
+brew "gpg"
+brew "grep"
+brew "jq"
+brew "lazygit"
+brew "make"
+brew "minikube"
+brew "neovim"
+brew "ripgrep"
+brew "ripgrep"
+brew "slides"
+brew "starship"
+brew "tree"
+brew "yq"
+brew "go-task/tap/go-task"
+cask "appcleaner"
+cask "font-jetbrains-mono-nerd-font"
+cask "microsoft-edge"
+cask "microsoft-teams"
+cask "raycast"
+cask "stats"
+cask "syntax-highlight"
+
+EOF

@@ -20,4 +20,6 @@ abbr -a myip 'curl icanhazip.com'
 abbr -a nuke 'rm -rf'
 abbr -a p 'ps -f'
 abbr -a please sudo
+abbr -a rmdsstore 'find . -type f -name ".DS_Store" -delete'
+abbr -a rmnodemodules 'find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
 abbr -a ~ 'cd ~/'

@@ -1,0 +1,23 @@
+; vi: ft=gitconfig
+
+[user]
+    name = {{ .name | quote }}
+    email = {{ .email | quote }}
+
+[alias]
+    a = add
+    b = branch
+    c = clone
+    co = checkout
+    cob = checkout -b
+    d = diff
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    ol = log --pretty=oneline
+    s = status -sb
+    su = submodule update
+
+[commit]
+    template = ~/.config/git/gitmessage
+
+[init]
+    defaultBranch = "main"
