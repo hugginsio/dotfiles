@@ -28,9 +28,6 @@ dotfiles_source $DOTFILES/host/(hostname -s | string sub -l 4 | string lower).fi
 ### load os-specific configuration
 dotfiles_source $DOTFILES/os/(uname -s | string lower).fish
 
-### load application configuration files
-dotfiles_source $DOTFILES/apps/*.fish
-
 ### load extra configuration
 dotfiles_source $DOTFILES/extra.fish
 
