@@ -18,9 +18,3 @@ local function unmap(mode, lhs, opts)
     opts.silent = opts.silent ~= false
     vim.keymap.del(mode, lhs, opts)
 end
-
--- window
-unmap("n", "<leader>ww")
-unmap("n", "<leader>wd")
-unmap("n", "<leader>w-")
-unmap("n", "<leader>w|")
