@@ -53,7 +53,7 @@ if command -qs nvim
     abbr -a vimdiff nvim -d
 end
 
-if command -qs vim; or not command -qs nvim
+if not command -qs nvim; and command -qs vim
     ## environment
     set -gx VISUAL vim
 
