@@ -4,6 +4,8 @@ return {
         opts = {
             -- https://github.com/mason-org/mason-registry/tree/main/packages
             ensure_installed = {
+                "gofumpt",
+                "goimports",
                 "gopls",
                 "json-lsp",
                 "jsonlint",
@@ -31,6 +33,7 @@ return {
     },
     {
         "SidOfc/mkdx",
+        enabled = false,
         ft = { "markdn", "markdown", "md", "mdown" },
     },
 }
