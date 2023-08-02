@@ -42,16 +42,21 @@ brew "yq"
 brew "go-task/tap/go-task"
 cask "appcleaner"
 cask "font-jetbrains-mono-nerd-font"
+cask "microsoft-teams"
+cask "raycast"
+cask "stats"
+cask "syntax-highlight"
+
+{{ if .personal and not .ephemeral -}}
+
+cask "google-drive"
+
+{{ end -}}
 
 {{ if .work -}}
 
 cask "microsoft-edge"
 
 {{ end -}}
-
-cask "microsoft-teams"
-cask "raycast"
-cask "stats"
-cask "syntax-highlight"
 
 EOF
