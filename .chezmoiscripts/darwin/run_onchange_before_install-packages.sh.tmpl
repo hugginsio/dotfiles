@@ -47,7 +47,7 @@ cask "raycast"
 cask "stats"
 cask "syntax-highlight"
 
-{{ if .personal and not .ephemeral -}}
+{{ if (and .personal .ephemeral) -}}
 
 cask "google-drive"
 
