@@ -13,7 +13,6 @@ tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit"
 
 brew "bat"
-brew "colima"
 brew "coreutils"
 brew "curl"
 brew "ed"
@@ -43,7 +42,13 @@ brew "yq"
 brew "go-task/tap/go-task"
 cask "appcleaner"
 cask "font-jetbrains-mono-nerd-font"
+
+{{ if .work -}}
+
 cask "microsoft-edge"
+
+{{ end -}}
+
 cask "microsoft-teams"
 cask "raycast"
 cask "stats"

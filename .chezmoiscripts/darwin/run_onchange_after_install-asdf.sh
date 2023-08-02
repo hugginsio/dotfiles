@@ -1,4 +1,4 @@
-#!/bin/sh # vi: ft=bash
+#!/bin/sh
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -15,6 +15,4 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
 asdf install nodejs latest
 asdf global nodejs latest
 
-asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git || true
-asdf install deno latest
-asdf global deno latest
+# vi: ft=bash

@@ -1,4 +1,4 @@
-#!/bin/sh # vi: ft=bash
+#!/bin/sh
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -55,7 +55,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 64
+defaults write com.apple.dock tilesize -int 36
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "genie"
@@ -66,9 +66,6 @@ defaults write com.apple.dock minimize-to-application -bool true
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
 
-# Wipe all (default) app icons from the Dock
-defaults write com.apple.dock persistent-apps -array
-
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
@@ -77,17 +74,17 @@ defaults write com.apple.dock show-recents -bool false
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
+
 # Open and save files as UTF-8 in TextEdit
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 echo "Restarting applications..."
-for app in "Address Book" \
-    "Calendar" \
-    "cfprefsd" \
+for app in "cfprefsd" \
     "Dock" \
     "Finder" \
-    "Mail" \
     "SystemUIServer"; do
 killall "${app}" &> /dev/null
 done
+
+# vi: ft=bash
