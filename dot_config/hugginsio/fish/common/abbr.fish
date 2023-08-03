@@ -5,6 +5,7 @@
 
 abbr -a .. 'cd ../'
 abbr -a ... 'cd ../../'
+abbr -a G git
 abbr -a c clear
 abbr -a cdd 'cd "$HOME/.local/share/chezmoi/"'
 abbr -a cdg 'cd "$HOME/Workspaces/Develop/"'
