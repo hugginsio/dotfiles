@@ -4,7 +4,7 @@
 add_newline = true
 
 [aws]
-symbol = "  "
+symbol = "󰸏  "
 
 [buf]
 symbol = " "
@@ -22,7 +22,7 @@ symbol = " "
 symbol = " "
 
 [directory]
-read_only = " "
+read_only = " "
 truncation_symbol = "…/"
 
 [docker_context]
@@ -68,13 +68,13 @@ symbol = " "
 
 [memory_usage]
 format = "via $symbol [${ram_pct}]($style) "
-symbol = " "
+symbol = "󰍛 "
 
 [meson]
-symbol = "喝 "
+symbol = "⬢ "
 
 [nim]
-symbol = " "
+symbol = " "
 
 [nix_shell]
 symbol = " "
@@ -84,13 +84,13 @@ symbol = " "
 detect_extensions = []
 
 [package]
-symbol = " "
+symbol = " "
 
 [python]
 symbol = " "
 
 [rlang]
-symbol = "ﳒ "
+symbol = " "
 
 [ruby]
 symbol = " "
