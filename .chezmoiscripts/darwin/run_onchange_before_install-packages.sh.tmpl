@@ -26,11 +26,13 @@ brew "glow"
 brew "gnu-sed"
 brew "gnu-tar"
 brew "go"
+brew "go-task/tap/go-task"
 brew "gpg"
 brew "grep"
 brew "jq"
 brew "lazygit"
 brew "make"
+brew "mas"
 brew "minikube"
 brew "neovim"
 brew "ripgrep"
@@ -39,17 +41,25 @@ brew "slides"
 brew "starship"
 brew "tree"
 brew "yq"
-brew "go-task/tap/go-task"
 cask "appcleaner"
 cask "font-jetbrains-mono-nerd-font"
 cask "microsoft-teams"
+cask "pocket-casts"
 cask "raycast"
 cask "stats"
 cask "syntax-highlight"
 
-{{ if (and .personal .ephemeral) -}}
+mas "AdGuard for Safari", id: 1440147259
+mas "Bitwarden", id: 1352778147
 
+{{ if (and .personal (not .ephemeral)) -}}
+
+brew "gh"
 cask "google-drive"
+cask "signal"
+
+mas "Tailscale", id: 1475387142
+mas "WireGuard", id: 1451685025
 
 {{ end -}}
 
