@@ -2,6 +2,9 @@
 
 # configure asdf
 if test -f $HOME/.asdf/asdf.fish
+    ## set ASDF_DIR preemptively
+    set -gx ASDF_DIR $HOME/.asdf/
+
     ## source autoconfigure
     source $HOME/.asdf/asdf.fish
 
@@ -71,4 +74,10 @@ end
 if command -qs zk
     ## environment
     set -gx ZK_NOTEBOOK_DIR "$HOME/Workspaces/zk/"
+end
+
+# configure gh
+if command -qs gh
+    ## completions
+    gh completion -s fish | source
 end

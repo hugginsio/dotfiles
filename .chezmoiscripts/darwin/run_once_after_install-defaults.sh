@@ -79,6 +79,12 @@ defaults write com.apple.TextEdit RichText -int 0
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
+# Disable wallpaper tinting in windows
+defaults write NSGlobalDomain AppleReduceDesktopTinting 1
+
+# Set correct date format
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "1" "y-MM-dd"
+
 echo "Restarting applications..."
 for app in "cfprefsd" \
     "Dock" \
