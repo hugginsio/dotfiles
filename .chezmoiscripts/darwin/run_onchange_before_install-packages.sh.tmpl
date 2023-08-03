@@ -8,6 +8,7 @@ echo "Installing essentials..."
 
 brew update && brew upgrade && brew cleanup
 brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "derailed/k9s"
 tap "go-task/homebrew-tap"
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit"
@@ -30,6 +31,7 @@ brew "go-task/tap/go-task"
 brew "gpg"
 brew "grep"
 brew "jq"
+brew "k9s"
 brew "lazygit"
 brew "make"
 brew "mas"
@@ -43,6 +45,7 @@ brew "tree"
 brew "yq"
 cask "appcleaner"
 cask "font-jetbrains-mono-nerd-font"
+cask "logi-options-plus"
 cask "microsoft-teams"
 cask "pocket-casts"
 cask "raycast"
@@ -50,14 +53,18 @@ cask "stats"
 cask "syntax-highlight"
 
 mas "AdGuard for Safari", id: 1440147259
+mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 
-{{ if (and .personal (not .ephemeral)) -}}
+{{ if .personal -}}
 
 brew "gh"
 cask "google-drive"
 cask "signal"
 
+mas "Fantastical", id: 975937182
+mas "Keka", id: 470158793
+mas "Slack", id: 803453959
 mas "Tailscale", id: 1475387142
 mas "WireGuard", id: 1451685025
 
