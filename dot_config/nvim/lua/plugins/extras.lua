@@ -45,6 +45,16 @@ return {
         },
     },
     {
-        "tpope/vim-fugitive",
+        "AckslD/nvim-neoclip.lua",
+        config = function()
+            require("neoclip").setup()
+            require("telescope").load_extension("neoclip")
+        end,
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        keys = {
+            { "<leader>p", "<cmd>lua require('telescope').extensions.neoclip.default()<CR>", desc = "Open clipboard" },
+        },
     },
 }
