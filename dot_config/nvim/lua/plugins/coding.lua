@@ -6,7 +6,7 @@ return {
         "stevearc/overseer.nvim",
         opts = {},
         keys = {
-            { "<leader>cr", "<cmd>OverseerRun<CR>", desc = "Run task" },
+            { "<leader>cR", "<cmd>OverseerRun<CR>", desc = "Run task" },
             { "<leader>ct", "<cmd>OverseerToggle bottom<CR>", desc = "Toggle task history" },
         },
     },
