@@ -1,0 +1,43 @@
+#!/usr/bin/env fish
+
+function fish_greeting
+    clear
+end
+
+function dotfiles_source -d "Sources a configuration file if it exists"
+    for arg in $argv
+        if test -r $arg && test -f $arg
+            set -a DOTFILES_SOURCE_ATTEMPTS $arg
+            source $arg
+        end
+    end
+end
+
+# PERF: attempt to set universals only once
+if not test "$DOTFILES_ARE_CONFIGURED" = true
+    set -U DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
+
+    # HACK: prevent realpath failure
+    set -Ux ASDF_DIR "$HOME/.asdf"
+
+    # source prompt theme TODO: convert to file for version control
+    dotfiles_source "$__fish_config_dir/prompt.fish"
+
+    # source os-specific dotfile
+    dotfiles_source "$__fish_config_dir/{{ .chezmoi.os }}.fish"
+
+    # configure paths (https://fishshell.com/docs/current/cmds/fish_add_path.html)
+    set -Ux XDG_CONFIG_HOME "$HOME/.config"
+    fish_add_path "$HOME/bin"
+    fish_add_path "$HOME/.local/bin"
+
+    # set configured flag
+    set -U DOTFILES_ARE_CONFIGURED true
+end
+
+# PERF: source non-universal or guarenteed availability dotfiles
+dotfiles_source "$__fish_config_dir/abbr.fish"
+dotfiles_source "$__fish_config_dir/apps.fish"
+dotfiles_source "$__fish_config_dir/functions.fish"
+
+# vim:ft=fish
