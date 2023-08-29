@@ -15,9 +15,6 @@ sudo apt-get -yqq install --no-install-recommends git curl fzf vim bat
 mkdir -p ~/.local/bin
 ln -sf /usr/bin/batcat ~/.local/bin/bat
 
-echo "Installing Starship..."
-sh -c "$(curl -fsLS https://starship.rs/install.sh)" -- --yes --base-url="https://github.com/starship/starship/releases"
-
 {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
 
 echo "Detected: Ubuntu"
