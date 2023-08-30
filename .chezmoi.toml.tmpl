@@ -23,14 +23,6 @@
 {{-     $hostname := output "scutil" "--get" "ComputerName" | trim -}}
 {{- end -}}
 
-{{/* modify the location of fish on darwin */}}
-{{- $fishPath := "" -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-     $fishPath = printf "/opt/homebrew/bin/fish" -}}
-{{- else if eq .chezmoi.os "linux" -}}
-{{-     $fishPath = printf "/usr/bin/fish" -}}
-{{- end -}}
-
 {{/* determine if personal, work, or neither */}}
 {{- if not $ephemeral -}}
 {{-     if eq .chezmoi.username "hugginsio" -}}
@@ -56,7 +48,6 @@
 [data]
     email = {{ $email | quote }}
     ephemeral = {{ $ephemeral }}
-    fishPath = {{ $fishPath | quote }}
     headless = {{ $headless }}
     name = {{ $name | quote }}
     osid = {{ $osid | quote }}
