@@ -52,23 +52,17 @@ end
 
 function up -d "Update available package managers and programs."
     set -l COMMANDS_LIST apt-get \
-        dnf \
-        rpm-ostree \
         brew \
         gcloud \
         snap \
         nvim \
-        mas \
-        fisher
+        mas
     set -l UPD_EXEC_LIST "sudo apt-get -yqq update && sudo apt-get -yqq upgrade && sudo apt-get -yqq autoremove" \
-        "sudo dnf upgrade -y --refresh && sudo dnf autoremove" \
-        "rpm-ostree upgrade" \
         "brew update && brew upgrade && brew cleanup" \
         "gcloud components update -q" \
         "sudo snap refresh" \
         "nvim --headless '+Lazy! update' +qa" \
-        "mas upgrade" \
-        "fisher update"
+        "mas upgrade"
 
     echo "Available: $COMMANDS_LIST"
 
