@@ -21,3 +21,15 @@
   type = "file"
   url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
   refreshPeriod = "168h"
+
+[".config/fish/plugins/tide"]
+  type = "git-repo"
+  url = "https://github.com/IlanCosman/tide.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
+
+[".config/fish/plugins/asdf"]
+  type = "git-repo"
+  url = "https://github.com/rstacruz/fish-asdf.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
