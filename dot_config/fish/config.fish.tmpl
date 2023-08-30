@@ -16,6 +16,7 @@ end
 # PERF: attempt to set universals only once
 if not test "$DOTFILES_ARE_CONFIGURED" = true
     set -U DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
+    set -Ux j_path $HOME/Workspaces/Develop/
 
     # NOTE: send confirmation and suppress failing exit code
     echo y | fish_config theme save "Catppuccin Mocha" || true
