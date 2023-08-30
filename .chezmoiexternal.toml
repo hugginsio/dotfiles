@@ -39,3 +39,9 @@
   url = "https://github.com/mattgreen/jump.fish.git"
   clone.args = ["--depth", "1"]
   refreshPeriod = "168h"
+
+[".config/fish/plugins/autopair"]
+  type = "git-repo"
+  url = "https://github.com/jorgebucaran/autopair.fish.git"
+  clone.args = ["--depth", "1"]
+  refreshPeriod = "168h"
