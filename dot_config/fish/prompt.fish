@@ -65,7 +65,7 @@ set -U tide_git_color_staged bryellow
 set -U tide_git_color_stash brgreen
 set -U tide_git_color_untracked brblue
 set -U tide_git_color_upstream brgreen
-set -U tide_git_icon 
+set -U tide_git_icon ' '
 
 set -U tide_go_bg_color normal
 set -U tide_go_color brcyan
