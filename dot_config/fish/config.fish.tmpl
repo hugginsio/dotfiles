@@ -17,6 +17,10 @@ end
 if not test "$DOTFILES_ARE_CONFIGURED" = true
     set -U DOTFILES_SOURCE_ATTEMPTS $__fish_config_dir/config.fish
 
+    # NOTE: send confirmation and suppress failing exit code
+    echo y | fish_config theme save "Catppuccin Mocha" || true
+
+
     # HACK: prevent realpath failure
     set -Ux ASDF_DIR "$HOME/.asdf"
 
