@@ -1,6 +1,6 @@
 #!/bin/sh # vi: ft=bash
 
-# hash: {{ include "dot_default-npm-packages" | sha256sum }}
+# hash: {{ include "dot_default-npm-packages.tmpl" | sha256sum }}
 # https://github.com/asdf-vm/asdf-nodejs/blob/master/bin/install
 
 install_default_npm_packages() {
