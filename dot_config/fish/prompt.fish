@@ -15,27 +15,27 @@ set -U tide_prompt_pad_items false
 set -U tide_pwd_markers .git .gitignore .github .azuredevops .tool-versions .terraform Cargo.toml go.mod package.json Taskfile.yaml
 
 set -U tide_right_prompt_frame_enabled false
-set -U tide_right_prompt_items aws chruby go java kubectl rustc terraform virtual_env shlvl cmd_duration
+set -U tide_right_prompt_items aws chruby go java node rustc terraform virtual_env kubectl shlvl cmd_duration
 
 # Item configuration
 set -U tide_aws_bg_color normal
 set -U tide_aws_color yellow
-set -U tide_aws_icon 
+set -U tide_aws_icon ' '
 
 set -U tide_character_color brgreen
 set -U tide_character_color_failure brred
-set -U tide_character_icon ❯
-set -U tide_character_vi_icon_default ❮
-set -U tide_character_vi_icon_replace ▶
+set -U tide_character_icon '❯'
+set -U tide_character_vi_icon_default '❮'
+set -U tide_character_vi_icon_replace '▶'
 set -U tide_character_vi_icon_visual V
 
 set -U tide_chruby_bg_color normal
 set -U tide_chruby_color red
-set -U tide_chruby_icon 
+set -U tide_chruby_icon ' '
 
 set -U tide_cmd_duration_bg_color normal
 set -U tide_cmd_duration_color brblack
-set -U tide_cmd_duration_icon
+set -U tide_cmd_duration_icon ''
 set -U tide_cmd_duration_threshold 5000
 
 set -U tide_context_bg_color normal
@@ -48,11 +48,11 @@ set -U tide_direnv_bg_color normal
 set -U tide_direnv_bg_color_denied normal
 set -U tide_direnv_color bryellow
 set -U tide_direnv_color_denied brred
-set -U tide_direnv_icon ▼
+set -U tide_direnv_icon ' ▼'
 
 set -U tide_gcloud_bg_color normal
 set -U tide_gcloud_color blue
-set -U tide_gcloud_icon 󰊭
+set -U tide_gcloud_icon ' 󰊭'
 
 set -U tide_git_bg_color normal
 set -U tide_git_bg_color_unstable normal
@@ -69,57 +69,57 @@ set -U tide_git_icon ' '
 
 set -U tide_go_bg_color normal
 set -U tide_go_color brcyan
-set -U tide_go_icon 
+set -U tide_go_icon ' '
 
 set -U tide_java_bg_color normal
 set -U tide_java_color yellow
-set -U tide_java_icon 
+set -U tide_java_icon ' '
 
 set -U tide_jobs_bg_color normal
 set -U tide_jobs_color blue
-set -U tide_jobs_icon 󰫢
+set -U tide_jobs_icon '󰫢'
 
 set -U tide_kubectl_bg_color normal
 set -U tide_kubectl_color blue
-set -U tide_kubectl_icon 󱃾
+set -U tide_kubectl_icon ' 󱃾'
 
 set -U tide_node_bg_color normal
 set -U tide_node_color green
-set -U tide_node_icon 
+set -U tide_node_icon ' '
 
 set -U tide_private_mode_bg_color normal
 set -U tide_private_mode_color brwhite
-set -U tide_private_mode_icon 󰗹
+set -U tide_private_mode_icon '󰗹'
 
 set -U tide_pwd_bg_color normal
 set -U tide_pwd_color_anchors brcyan
 set -U tide_pwd_color_dirs cyan
 set -U tide_pwd_color_truncated_dirs magenta
 set -U tide_pwd_icon
-set -U tide_pwd_icon_unwritable 
+set -U tide_pwd_icon_unwritable ''
 
 set -U tide_rustc_bg_color normal
 set -U tide_rustc_color red
-set -U tide_rustc_icon 
+set -U tide_rustc_icon ' '
 
 set -U tide_shlvl_bg_color normal
 set -U tide_shlvl_color yellow
-set -U tide_shlvl_icon 
+set -U tide_shlvl_icon ' '
 set -U tide_shlvl_threshold 1
 
 set -U tide_status_bg_color normal
 set -U tide_status_bg_color_failure normal
 set -U tide_status_color green
 set -U tide_status_color_failure red
-set -U tide_status_icon ✔
-set -U tide_status_icon_failure ✘
+set -U tide_status_icon ' ✔'
+set -U tide_status_icon_failure ' ✘'
 
 set -U tide_terraform_bg_color normal
 set -U tide_terraform_color magenta
-set -U tide_terraform_icon 󱁢
+set -U tide_terraform_icon ' 󱁢'
 
 set -U tide_virtual_env_bg_color normal
 set -U tide_virtual_env_color cyan
-set -U tide_virtual_env_icon 󰌠
+set -U tide_virtual_env_icon ' 󰌠'
 
 # vim:ft=fish
