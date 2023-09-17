@@ -15,7 +15,7 @@ set -U tide_prompt_pad_items false
 set -U tide_pwd_markers .git .gitignore .github .azuredevops .tool-versions .terraform Cargo.toml go.mod package.json Taskfile.yaml
 
 set -U tide_right_prompt_frame_enabled false
-set -U tide_right_prompt_items aws chruby go java node rustc terraform virtual_env kubectl shlvl cmd_duration
+set -U tide_right_prompt_items aws go java node rustc terraform virtual_env kubectl shlvl cmd_duration
 
 # Item configuration
 set -U tide_aws_bg_color normal
@@ -28,10 +28,6 @@ set -U tide_character_icon '❯'
 set -U tide_character_vi_icon_default '❮'
 set -U tide_character_vi_icon_replace '▶'
 set -U tide_character_vi_icon_visual V
-
-set -U tide_chruby_bg_color normal
-set -U tide_chruby_color red
-set -U tide_chruby_icon ' '
 
 set -U tide_cmd_duration_bg_color normal
 set -U tide_cmd_duration_color brblack
