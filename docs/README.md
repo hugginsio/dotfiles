@@ -12,5 +12,3 @@ The software referenced in this repository that I use each day.
 -   [Lazygit](https://github.com/jesseduffield/lazygit): a fast, painless TUI for Git.
 -   [LazyVim](https://www.lazyvim.org/): a well-built starter kit for Neovim.
 -   [Neovim](https://neovim.io/): a Vim-based text editor.
--   [Starship](https://starship.rs/): a fast and customizable cross-platform prompt.
--   [Taskwarrior](https://taskwarrior.org/): task management from the command line.
