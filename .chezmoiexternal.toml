@@ -1,47 +1,47 @@
 # vi: ft=toml
 
 [".asdf"]
-  type = "git-repo"
-  url = "https://github.com/asdf-vm/asdf.git"
-  clone.args = ["--depth", "1"]
-  refreshPeriod = "168h"
+    type = "git-repo"
+    url = "https://github.com/asdf-vm/asdf.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
 
 [".config/k9s/skin.yml"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
-  refreshPeriod = "168h"
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
+    refreshPeriod = "168h"
 
 [".vim/pack/hugginsio/start/eunuch"]
-  type = "git-repo"
-  url = "https://github.com/tpope/vim-eunuch.git"
-  clone.args = ["--depth", "1"]
-  refreshPeriod = "168h"
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-eunuch.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
 
 [".config/fish/themes/Catppuccin Mocha.theme"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
-  refreshPeriod = "168h"
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
+    refreshPeriod = "168h"
 
+# https://github.com/IlanCosman/tide/tags
 [".config/fish/plugins/tide"]
-  type = "git-repo"
-  url = "https://github.com/IlanCosman/tide.git"
-  clone.args = ["--depth", "1"]
-  refreshPeriod = "168h"
+    type = "archive"
+    url = "https://github.com/IlanCosman/tide/archive/refs/tags/v6.0.1.tar.gz"
+    stripComponents = 1
 
 [".config/fish/plugins/asdf"]
-  type = "git-repo"
-  url = "https://github.com/rstacruz/fish-asdf.git"
-  clone.args = ["--depth", "1"]
-  refreshPeriod = "168h"
+    type = "git-repo"
+    url = "https://github.com/rstacruz/fish-asdf.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
 
 [".config/fish/plugins/jump"]
-  type = "git-repo"
-  url = "https://github.com/mattgreen/jump.fish.git"
-  clone.args = ["--depth", "1"]
-  refreshPeriod = "168h"
+    type = "git-repo"
+    url = "https://github.com/mattgreen/jump.fish.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
 
 [".config/fish/plugins/autopair"]
-  type = "git-repo"
-  url = "https://github.com/jorgebucaran/autopair.fish.git"
-  clone.args = ["--depth", "1"]
-  refreshPeriod = "168h"
+    type = "git-repo"
+    url = "https://github.com/jorgebucaran/autopair.fish.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"

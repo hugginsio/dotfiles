@@ -15,7 +15,7 @@ set -U tide_prompt_pad_items false
 set -U tide_pwd_markers .git .gitignore .github .azuredevops .tool-versions .terraform Cargo.toml go.mod package.json Taskfile.yaml
 
 set -U tide_right_prompt_frame_enabled false
-set -U tide_right_prompt_items aws go java node rustc terraform virtual_env kubectl shlvl cmd_duration
+set -U tide_right_prompt_items aws cmd_duration go java kubectl node python ruby rustc shlvl terraform
 
 # Item configuration
 set -U tide_aws_bg_color normal
@@ -94,6 +94,14 @@ set -U tide_pwd_color_truncated_dirs magenta
 set -U tide_pwd_icon
 set -U tide_pwd_icon_unwritable ''
 
+set -U tide_python_bg_color normal
+set -U tide_python_color cyan
+set -U tide_python_icon ' 󰌠'
+
+set -U tide_ruby_bg_color normal
+set -U tide_ruby_color red
+set -U tide_ruby_icon ' '
+
 set -U tide_rustc_bg_color normal
 set -U tide_rustc_color red
 set -U tide_rustc_icon ' '
@@ -113,9 +121,5 @@ set -U tide_status_icon_failure ' ✘'
 set -U tide_terraform_bg_color normal
 set -U tide_terraform_color magenta
 set -U tide_terraform_icon ' 󱁢'
-
-set -U tide_virtual_env_bg_color normal
-set -U tide_virtual_env_color cyan
-set -U tide_virtual_env_icon ' 󰌠'
 
 # vim:ft=fish
