@@ -19,4 +19,4 @@ local function unmap(mode, lhs, opts)
     vim.keymap.del(mode, lhs, opts)
 end
 
-map("n", "<leader>r", "<cmd>:Telescope oldfiles<cr>", { desc = "Recent Files" })
+map("n", "<leader>r", "<cmd>:Telescope oldfiles<CR>", { desc = "Recent Files" })

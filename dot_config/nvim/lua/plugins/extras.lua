@@ -45,6 +45,7 @@ return {
         },
     },
     {
+        -- TODO: this does not work and needs troubleshooting
         "AckslD/nvim-neoclip.lua",
         config = function()
             require("neoclip").setup()
@@ -55,6 +56,16 @@ return {
         },
         keys = {
             { "<leader>p", "<cmd>lua require('telescope').extensions.neoclip.default()<CR>", desc = "Open clipboard" },
+        },
+    },
+    {
+        "xiyaowong/link-visitor.nvim",
+        config = {
+            skip_confirmation = true,
+        },
+        event = "VeryLazy",
+        keys = {
+            { "gx", "<cmd>VisitLinkNearCursor<CR>", desc = "Open link under the cursor" },
         },
     },
 }
