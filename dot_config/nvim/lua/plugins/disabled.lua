@@ -5,5 +5,5 @@ return {
     { "SmiteshP/nvim-navic", enabled = false },
     { "dstein64/vim-startuptime", enabled = false },
     { "folke/noice.nvim", enabled = false },
-    { "goolord/alpha-nvim", enabled = false },
+    { "dashboard-nvim", enabled = false },
 }
