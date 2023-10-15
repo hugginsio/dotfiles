@@ -39,7 +39,6 @@ brew "k9s"
 brew "lazygit"
 brew "make"
 brew "mas"
-brew "minikube"
 brew "neovim"
 brew "qemu"
 brew "ripgrep"
@@ -49,11 +48,14 @@ brew "terminal-notifier"
 brew "tree"
 brew "yq"
 cask "appcleaner"
+cask "balenaetcher"
 cask "font-jetbrains-mono-nerd-font"
+cask "kitty"
 cask "logi-options-plus"
 cask "logseq"
 cask "microsoft-teams"
 cask "pocket-casts"
+cask "qmk-toolbox"
 cask "raycast"
 cask "stats"
 cask "syntax-highlight"
@@ -65,6 +67,7 @@ mas "Bitwarden", id: 1352778147
 {{ if .personal -}}
 
 brew "gh"
+brew "minikube"
 cask "calibre"
 cask "google-drive"
 cask "protonvpn"
@@ -81,7 +84,8 @@ mas "WireGuard", id: 1451685025
 
 {{ if .work -}}
 
-cask "microsoft-edge"
+brew "colima"
+cask "arc"
 
 {{ end -}}
 
