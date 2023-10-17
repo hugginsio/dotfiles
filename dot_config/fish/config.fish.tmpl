@@ -33,6 +33,7 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
 
     # configure paths (https://fishshell.com/docs/current/cmds/fish_add_path.html)
     set -Ux XDG_CONFIG_HOME "$HOME/.config"
+    fish_add_path "$HOME/go/bin"
     fish_add_path "$HOME/bin"
     fish_add_path "$HOME/.local/bin"
 
