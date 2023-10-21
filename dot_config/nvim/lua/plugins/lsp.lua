@@ -28,7 +28,8 @@ return {
         event = "BufReadPre",
     },
     {
-        "luizribeiro/vim-cooklang",
+        "hugginsio/vim-cooklang",
+        branch = "hugginsio/1",
         ft = "cook",
     },
     {
