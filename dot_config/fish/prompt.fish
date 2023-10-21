@@ -15,7 +15,7 @@ set -U tide_prompt_pad_items false
 set -U tide_pwd_markers .git .gitignore .github .azuredevops .tool-versions .terraform Cargo.toml go.mod package.json Taskfile.yaml
 
 set -U tide_right_prompt_frame_enabled false
-set -U tide_right_prompt_items aws cmd_duration go java kubectl node python ruby rustc shlvl terraform
+set -U tide_right_prompt_items aws cmd_duration go java node python ruby rustc shlvl terraform kubectl
 
 # Item configuration
 set -U tide_aws_bg_color normal
