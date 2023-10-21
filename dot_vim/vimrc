@@ -165,8 +165,9 @@ if has("nvim")
     nnoremap <silent> <leader>e :Lexplore<CR>
 endif
 
+au FileType netrw setl bufhidden=wipe
 au FocusGained,BufEnter * checktime
-autocmd FileType netrw setl bufhidden=wipe
+au VimEnter COMMIT_EDITMSG exec 'norm gg' | startinsert!
 set ai
 set autoindent
 set backspace=indent,eol,start
