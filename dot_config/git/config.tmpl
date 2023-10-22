@@ -43,5 +43,12 @@
     prefix = "huggins/"
 
 [git-view-work-item]
-    url = "https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{ "{{ .Identifier }}" }}"
     regex = "[0-9]+"
+
+{{- if .personal }}
+    {{- /* GitHub repository issues */}}
+    url = "{{ "{{ .Url }}" }}/issues/{{ "{{ .Identifier }}" }}"
+{{- else if .work }}
+    {{- /* Azure DevOps work items */}}
+    url = "https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{ "{{ .Identifier }}" }}"
+{{ end -}}
