@@ -39,8 +39,13 @@
 [init]
     defaultBranch = "main"
 
-[githubflow "branch"]
-    prefix = "huggins/"
+[git-extras "feature"]
+{{- if .personal }}
+    prefix = "hugginsio"
+{{- else if .work }}
+    prefix = "huggins"
+{{ end }}
+    separator = "/"
 
 [git-view-work-item]
     regex = "[0-9]+"
