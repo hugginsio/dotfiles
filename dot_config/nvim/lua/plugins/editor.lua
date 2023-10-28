@@ -32,10 +32,10 @@ return {
                 git_status = {
                     symbols = {
                         modified = "!",
-                        deleted = "✖",
-                        renamed = "»",
+                        deleted = "x",
+                        renamed = "r",
                         untracked = "?",
-                        conflict = "=",
+                        conflict = "~",
                     },
                 },
             },
