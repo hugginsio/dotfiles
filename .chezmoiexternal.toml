@@ -25,7 +25,7 @@
 # https://github.com/IlanCosman/tide/tags
 [".config/fish/plugins/tide"]
     type = "archive"
-    url = "https://api.huggins.io/github/latest/tag/IlanCosman/tide"
+    url = "https://github.com/IlanCosman/tide/archive/refs/tags/{{ (gitHubLatestRelease "IlanCosman/tide").TagName }}.tar.gz"
     stripComponents = 1
 
 [".config/fish/plugins/asdf"]
