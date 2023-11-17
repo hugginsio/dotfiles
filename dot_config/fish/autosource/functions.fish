@@ -56,13 +56,15 @@ function up -d "Update available package managers and programs."
         gcloud \
         snap \
         nvim \
-        mas
+        mas \
+        chezmoi
     set -l UPD_EXEC_LIST "sudo apt-get -yqq update && sudo apt-get -yqq upgrade && sudo apt-get -yqq autoremove" \
         "brew update && brew upgrade && brew cleanup" \
         "gcloud components update -q" \
         "sudo snap refresh" \
         "nvim --headless '+Lazy! update' +qa" \
-        "mas upgrade"
+        "mas upgrade" \
+        "chezmoi upgrade"
 
     echo "Available: $COMMANDS_LIST"
 

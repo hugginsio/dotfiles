@@ -22,7 +22,6 @@
     url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
     refreshPeriod = "168h"
 
-# https://github.com/IlanCosman/tide/tags
 [".config/fish/plugins/tide"]
     type = "archive"
     url = "https://github.com/IlanCosman/tide/archive/refs/tags/{{ (gitHubLatestRelease "IlanCosman/tide").TagName }}.tar.gz"

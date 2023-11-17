@@ -1,4 +1,5 @@
 #!/bin/sh
+# vi: ft=bash
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -12,7 +13,4 @@ fi
 echo "Configuring asdf-vm $(asdf --version)..."
 
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
-asdf install nodejs latest
-asdf global nodejs latest
-
-# vi: ft=bash
+asdf plugin add python https://github.com/asdf-community/asdf-python.git || true
