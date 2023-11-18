@@ -53,3 +53,7 @@
     osid = {{ $osid | quote }}
     personal = {{ $personal }}
     work = {{ $work }}
+
+[hooks.apply.post]
+    command = "echo"
+    args = ["Don't forget to `dotfiles reload`!"]
