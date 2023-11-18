@@ -55,5 +55,5 @@
     work = {{ $work }}
 
 [hooks.apply.post]
-    command = "echo"
-    args = ["Don't forget to `dotfiles reload`!"]
+    command = "fish"
+    args = ["--command", "dotfiles reload"]
