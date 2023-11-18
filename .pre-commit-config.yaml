@@ -7,6 +7,6 @@ repos:
     hooks:
       - id: check-merge-conflict
       - id: check-toml
-        files: '.\.toml$'
       - id: check-yaml
-        files: '.\.ya*ml$'
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
