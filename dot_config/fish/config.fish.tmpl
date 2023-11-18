@@ -25,6 +25,9 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
     # HACK: prevent realpath failure
     set -Ux ASDF_DIR "$HOME/.asdf"
 
+    # move asdf-vm's python packages file
+    set -Ux ASDF_PYTHON_DEFAULT_PACKAGES_FILE "$HOME/.config/.default-python-packages"
+
     # source prompt theme TODO: convert to file for version control
     dotfiles_source "$__fish_config_dir/prompt.fish"
 
