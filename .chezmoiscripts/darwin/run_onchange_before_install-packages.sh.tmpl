@@ -8,6 +8,7 @@ echo "Installing essentials..."
 
 brew update && brew upgrade && brew cleanup
 brew bundle --no-lock --file=/dev/stdin <<EOF
+
 tap "derailed/k9s"
 tap "go-task/homebrew-tap"
 tap "homebrew/cask-fonts"
@@ -45,11 +46,11 @@ brew "neovim"
 brew "plantuml"
 brew "qemu"
 brew "ripgrep"
-brew "ripgrep"
 brew "slides"
 brew "terminal-notifier"
 brew "tree"
 brew "yq"
+brew "zk"
 cask "appcleaner"
 cask "balenaetcher"
 cask "bruno"
