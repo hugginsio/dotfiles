@@ -1,4 +1,5 @@
 #!/bin/sh
+# vi: ft=bash
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -34,5 +35,3 @@ sudo apt-get -yqq autoremove
 echo "Detected: unsupported configuration \"{{ .osid -}}\""
 
 {{ end -}}
-
-# vi: ft=bash

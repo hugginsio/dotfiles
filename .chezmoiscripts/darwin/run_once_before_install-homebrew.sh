@@ -1,4 +1,5 @@
-#!/bin/sh # vi: ft=bash
+#!/bin/sh
+# vi: ft=bash
 
 # -e: exit on error
 # -u: exit on unset variables

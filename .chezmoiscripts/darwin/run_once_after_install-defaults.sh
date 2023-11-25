@@ -1,4 +1,5 @@
 #!/bin/sh
+# vi: ft=bash
 
 # -e: exit on error
 # -u: exit on unset variables
@@ -92,5 +93,3 @@ for app in "cfprefsd" \
     "SystemUIServer"; do
 killall "${app}" &> /dev/null
 done
-
-# vi: ft=bash
