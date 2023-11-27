@@ -68,4 +68,15 @@ return {
             { "gx", "<cmd>VisitLinkNearCursor<CR>", desc = "Open link under the cursor" },
         },
     },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+        keys = {
+            { "<leader>fG", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle markdown preview in browser" },
+        },
+    },
 }
