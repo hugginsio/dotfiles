@@ -22,6 +22,12 @@ paths = ["journal"]
 filename = "{{format-date now}}"
 template = "journal.md"
 
+[group.work-item]
+paths = ["work-item"]
+
+[group.work-item.note]
+template = "work-item.md"
+
 [format.markdown]
 colon-tags = false
 hashtags = false
@@ -37,12 +43,13 @@ journal = "--sort created journal"
 recents = "--sort created- --created-after 'last two weeks'"
 
 [alias]
-ed = "zk edit --interactive $@"
-edlast = "zk edit --limit 1 --sort modified- $@"
+ed = 'zk edit --interactive "$@"'
+edlast = 'zk edit --limit 1 --sort modified- "$@"'
 journal = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
-ls = "zk list -foneline $@"
-lucky = "zk list --quiet --format full --sort random --limit 1"
-recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"
+ls = 'zk list -foneline "$@"'
+lucky = 'zk list --quiet --format full --sort random --limit 1'
+new-work-item = 'zk new --no-input "$ZK_NOTEBOOK_DIR/work-item" "$@"'
+recent = 'zk edit --sort created- --created-after "last two weeks" --interactive'
 
 [lsp]
 [lsp.diagnostics]
