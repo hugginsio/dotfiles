@@ -3,7 +3,8 @@
 
 return {
     { "SmiteshP/nvim-navic", enabled = false },
-    { "dstein64/vim-startuptime", enabled = false },
-    { "folke/noice.nvim", enabled = false },
     { "dashboard-nvim", enabled = false },
+    { "dstein64/vim-startuptime", enabled = false },
+    { "folke/neodev.nvim", enabled = false },
+    { "folke/noice.nvim", enabled = false },
 }
