@@ -74,6 +74,7 @@ mas "Bitwarden", id: 1352778147
 
 brew "gh"
 brew "minikube"
+cask "android-platform-tools"
 cask "calibre"
 cask "google-drive"
 cask "protonvpn"
@@ -97,3 +98,6 @@ cask "arc"
 {{ end -}}
 
 EOF
+
+echo "Symlinking docker..."
+ln -sfn /opt/homebrew/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx
