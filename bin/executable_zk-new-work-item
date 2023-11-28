@@ -1,0 +1,40 @@
+#!/usr/bin/env fish
+
+# TODO: rewrite to execute zk new from here so we can set the title and fail if az is not installed
+
+if test (count $argv) -lt 2
+    echo "Usage: zk-new-work-item <identifier> <notebook directory>"
+    return 400
+end
+
+if not command -qs az
+    echo "az not found in path"
+    return 500
+end
+
+if not command -qs jq
+    echo "jq not found in path"
+    return 500
+end
+
+if not command -qs tr
+    echo "tr not found in path"
+    return 500
+end
+
+set -l workItemPayload (az boards work-item show --id=$argv[1] --org=$AZ_ORG_URL --fields=Custom.Repository,JBH.InstallDate,System.BoardColumn,System.Title --output=json)
+
+if test $status -ne 0
+    echo
+    echo "Error from Azure CLI. There may be additional error output above."
+    return 500
+end
+
+set -l application (echo $workItemPayload | jq '.fields."Custom.Repository"' -r)
+set -l installDate (echo $workItemPayload | jq '.fields."JBH.InstallDate"' -r | cut -c 1-10)
+set -l state (echo $workItemPayload | jq '.fields."System.BoardColumn"' -r | tr "[:upper:]" "[:lower:]" | tr " " "-")
+set -l workItemTitle (echo $workItemPayload | jq '.fields."System.Title"' -r)
+
+set -l extras "application=$application,install-date=$installDate,state=$state,work-item-title=$workItemTitle,work-item=$argv[1]"
+
+zk new --no-input "$argv[2]/work-item" --title="$argv[1]" --extra=$extras

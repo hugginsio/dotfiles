@@ -40,16 +40,23 @@ pager = "less -FIRX"
 
 [filter]
 journal = "--sort created journal"
-recents = "--sort created- --created-after 'last two weeks'"
+recent = "--sort created- --created-after 'last two weeks'"
 
 [alias]
-ed = 'zk edit --interactive "$@"'
+alias = 'yq ".alias" ~/.config/zk/config.toml -oy'
+ed = 'zk edit --sort modified- --interactive "$@"'
+edclosed = 'zk ed -t "work-item, closed"'
 edlast = 'zk edit --limit 1 --sort modified- "$@"'
+edpending = 'zk ed -t "work-item, NOT closed"'
 journal = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
 ls = 'zk list -foneline "$@"'
+lsclosed = 'zk ls -t "work-item, closed"'
+lspending = 'zk ls -t "work-item, NOT closed"'
 lucky = 'zk list --quiet --format full --sort random --limit 1'
-new-work-item = 'zk new --no-input "$ZK_NOTEBOOK_DIR/work-item" "$@"'
+nwi = 'zk-new-work-item $1 $ZK_NOTEBOOK_DIR'
 recent = 'zk edit --sort created- --created-after "last two weeks" --interactive'
+vwi = 'zk edit $(rg -l "work-item: $1" $ZK_NOTEBOOK_DIR)'
+wi = 'zk edit -i -t "work-item"'
 
 [lsp]
 [lsp.diagnostics]

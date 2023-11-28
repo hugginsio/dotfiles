@@ -22,6 +22,12 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
     set -Ux PRE_COMMIT_COLOR never
     set -Ux j_path $HOME/Workspaces/Develop/
 
+    {{- if .personal }}
+    set -Ux AZ_ORG_URL "https://dev.azure.com/hugginsio/"
+    {{- else if .work }}
+    set -Ux AZ_ORG_URL "https://dev.azure.com/jbhunt/"
+    {{ end }}
+
     # NOTE: send confirmation and suppress failing exit code
     echo y | fish_config theme save "Catppuccin Mocha" || true
 
