@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-# TODO: rewrite to execute zk new from here so we can set the title and fail if az is not installed
-
 if test (count $argv) -lt 2
     echo "Usage: zk-new-work-item <identifier> <notebook directory>"
     return 400
@@ -22,7 +20,7 @@ if not command -qs tr
     return 500
 end
 
-set -l workItemPayload (az boards work-item show --id=$argv[1] --org=$AZ_ORG_URL --fields=Custom.Repository,JBH.InstallDate,System.BoardColumn,System.Title --output=json)
+set -l workItemPayload (az boards work-item show --id=$argv[1] --org=$AZ_ORG_URL --output=json)
 
 if test $status -ne 0
     echo
@@ -35,6 +33,14 @@ set -l installDate (echo $workItemPayload | jq '.fields."JBH.InstallDate"' -r | 
 set -l state (echo $workItemPayload | jq '.fields."System.BoardColumn"' -r | tr "[:upper:]" "[:lower:]" | tr " " "-")
 set -l workItemTitle (echo $workItemPayload | jq '.fields."System.Title"' -r)
 
-set -l extras "application=$application,install-date=$installDate,state=$state,work-item-title=$workItemTitle,work-item=$argv[1]"
+set -l extras "state=$state,work-item-title=$workItemTitle,work-item=$argv[1]"
+
+if test $application != null
+    set -l extras "$extras,application=$application"
+end
+
+if test $installDate != null
+    set -l extras "$extras,install-date=$installDate"
+end
 
 zk new --no-input "$argv[2]/work-item" --title="$argv[1]" --extra=$extras
