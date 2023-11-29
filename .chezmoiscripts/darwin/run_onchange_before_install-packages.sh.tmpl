@@ -10,14 +10,12 @@ echo "Installing essentials..."
 brew update && brew upgrade && brew cleanup
 brew bundle --no-lock --file=/dev/stdin <<EOF
 
-tap "cooklang/tap"
 tap "derailed/k9s"
 tap "go-task/homebrew-tap"
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit"
 
 brew "bat"
-brew "cooklang/tap/cook"
 brew "coreutils"
 brew "curl"
 brew "docker"
@@ -74,6 +72,9 @@ mas "Bitwarden", id: 1352778147
 
 {{ if .personal -}}
 
+tap "cooklang/tap"
+
+brew "cooklang/tap/cook"
 brew "gh"
 brew "minikube"
 cask "android-platform-tools"
