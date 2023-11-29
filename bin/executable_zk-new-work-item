@@ -1,41 +1,80 @@
-#!/usr/bin/env fish
+#!/usr/bin/env python
+# vim: ft=python
 
-if test (count $argv) -lt 2
-    echo "Usage: zk-new-work-item <identifier> <notebook directory>"
-    return 400
-end
+import argparse
+import json
+import subprocess
+import sys
 
-if not command -qs az
-    echo "az not found in path"
-    return 500
-end
+parser = argparse.ArgumentParser(
+    prog="zk-new-work-item",
+    description="Create a new work item note via `zk` with details from `az`.",
+)
 
-if not command -qs jq
-    echo "jq not found in path"
-    return 500
-end
+parser.add_argument(
+    "notebook",
+    help="Notebook directory from `zk` ($ZK_NOTEBOOK_DIR)",
+    type=str,
+)
 
-if not command -qs tr
-    echo "tr not found in path"
-    return 500
-end
+parser.add_argument(
+    "identifier",
+    help="The work item identifier",
+    type=int,
+)
 
-set -l workItemPayload (az boards work-item show --id=$argv[1] --org=$AZ_ORG_URL --output=json)
+args = parser.parse_args()
 
-if test $status -ne 0
-    echo
-    echo "Error from Azure CLI. There may be additional error output above."
-    return 500
-end
+azOutput = subprocess.run(
+    [
+        "az",
+        "boards",
+        "work-item",
+        "show",
+        "--id",
+        str(args.identifier),
+        "--org",
+        "https://dev.azure.com/jbhunt/",
+        "--output",
+        "json",
+    ],
+    stdout=subprocess.PIPE,
+    check=True,
+)
 
-set -l application (echo $workItemPayload | jq '.fields."Custom.Repository" // ""' -r)
-set -l installDate (echo $workItemPayload | jq '.fields."JBH.InstallDate" // ""' -r | cut -c 1-10)
-set -l state (echo $workItemPayload | jq '.fields."System.BoardColumn" // ""' -r | tr "[:upper:]" "[:lower:]" | tr " " "-")
-set -l workItemTitle (echo $workItemPayload | jq '.fields."System.Title" // ""' -r)
+azJson = json.loads(azOutput.stdout.decode("utf-8"))
 
-set -l extras "application=$application,install-date=$installDate,state=$state,work-item-title=$workItemTitle,work-item=$argv[1]"
+if "fields" not in azJson:
+    print("Could not get work item details from Azure CLI.")
+    sys.exit(5)
 
-echo "Adding work item to notebook:"
-echo $extras
+jsonFields = azJson["fields"]
 
-zk new --no-input "$argv[2]/work-item" --title="$argv[1]" --extra=$extras
+application = jsonFields.get("Custom.Repository", "")
+installDate = jsonFields.get("JBH.InstallDate", "")
+state = str(jsonFields["System.BoardColumn"]).lower().replace(" ", "-")
+workItemTitle = jsonFields["System.Title"]
+
+extras = "application=%s,install-date=%s,state=%s,work-item-title=%s,work-item=%s" % (
+    application,
+    installDate,
+    state,
+    workItemTitle,
+    args.identifier,
+)
+
+print("Adding work item %d to notebook:" % (args.identifier))
+print(extras)
+
+subprocess.run(
+    [
+        "zk",
+        "new",
+        "--no-input",
+        "%s/work-item" % args.notebook,
+        "--title",
+        workItemTitle,
+        "--extra",
+        extras,
+    ]
+)
