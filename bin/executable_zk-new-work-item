@@ -28,19 +28,14 @@ if test $status -ne 0
     return 500
 end
 
-set -l application (echo $workItemPayload | jq '.fields."Custom.Repository"' -r)
-set -l installDate (echo $workItemPayload | jq '.fields."JBH.InstallDate"' -r | cut -c 1-10)
-set -l state (echo $workItemPayload | jq '.fields."System.BoardColumn"' -r | tr "[:upper:]" "[:lower:]" | tr " " "-")
-set -l workItemTitle (echo $workItemPayload | jq '.fields."System.Title"' -r)
+set -l application (echo $workItemPayload | jq '.fields."Custom.Repository" // ""' -r)
+set -l installDate (echo $workItemPayload | jq '.fields."JBH.InstallDate" // ""' -r | cut -c 1-10)
+set -l state (echo $workItemPayload | jq '.fields."System.BoardColumn" // ""' -r | tr "[:upper:]" "[:lower:]" | tr " " "-")
+set -l workItemTitle (echo $workItemPayload | jq '.fields."System.Title" // ""' -r)
 
-set -l extras "state=$state,work-item-title=$workItemTitle,work-item=$argv[1]"
+set -l extras "application=$application,install-date=$installDate,state=$state,work-item-title=$workItemTitle,work-item=$argv[1]"
 
-if test $application != null
-    set -l extras "$extras,application=$application"
-end
-
-if test $installDate != null
-    set -l extras "$extras,install-date=$installDate"
-end
+echo "Adding work item to notebook:"
+echo $extras
 
 zk new --no-input "$argv[2]/work-item" --title="$argv[1]" --extra=$extras
