@@ -4,6 +4,7 @@
 import argparse
 import json
 import subprocess
+import sys
 
 parser = argparse.ArgumentParser(
     prog="zk-new-work-item",
@@ -24,8 +25,6 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-# TODO: check for error with az
-
 azOutput = subprocess.run(
     [
         "az",
@@ -40,10 +39,15 @@ azOutput = subprocess.run(
         "json",
     ],
     stdout=subprocess.PIPE,
+    check=True,
 )
 
 azJson = json.loads(azOutput.stdout.decode("utf-8"))
-# TODO: validate fields is present before continuing
+
+if "fields" not in azJson:
+    print("Could not get work item details from Azure CLI.")
+    sys.exit(5)
+
 jsonFields = azJson["fields"]
 
 application = jsonFields.get("Custom.Repository", "")
@@ -62,4 +66,15 @@ extras = "application=%s,install-date=%s,state=%s,work-item-title=%s,work-item=%
 print("Adding work item %d to notebook:" % (args.identifier))
 print(extras)
 
-# zk new --no-input "$argv[2]/work-item" --title="$argv[1]" --extra=$extras
+subprocess.run(
+    [
+        "zk",
+        "new",
+        "--no-input",
+        "%s/work-item" % args.notebook,
+        "--title",
+        workItemTitle,
+        "--extra",
+        extras,
+    ]
+)
