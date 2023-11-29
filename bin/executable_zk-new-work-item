@@ -73,7 +73,7 @@ subprocess.run(
         "--no-input",
         "%s/work-item" % args.notebook,
         "--title",
-        workItemTitle,
+        str(args.identifier),
         "--extra",
         extras,
     ]
