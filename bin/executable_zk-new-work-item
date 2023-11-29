@@ -51,7 +51,7 @@ if "fields" not in azJson:
 jsonFields = azJson["fields"]
 
 application = jsonFields.get("Custom.Repository", "")
-installDate = jsonFields.get("JBH.InstallDate", "")
+installDate = jsonFields.get("JBH.InstallDate", "")  # TODO: convert UTC date to central
 state = str(jsonFields["System.BoardColumn"]).lower().replace(" ", "-")
 workItemTitle = jsonFields["System.Title"]
 

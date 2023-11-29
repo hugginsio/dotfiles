@@ -16,9 +16,11 @@ install-date: "{{extra.install-date}}"
 
 # Installation
 
-{{#if extra.application}}{{extra.application}}{{else}}application{{/if}} ({{#if extra.work-item}}{{extra.work-item}}{{else}}000000{{/if}})
+{{#if extra.application}}{{extra.application}}{{else}}application{{/if}} ([{{#if extra.work-item}}{{extra.work-item}}{{else}}000000{{/if}}](https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{extra.work-item}}))
 
 ## Results
+
+- TODO
 
 # Notes
 
