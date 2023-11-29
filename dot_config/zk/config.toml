@@ -19,7 +19,6 @@ id-length = 4
 paths = ["journal"]
 
 [group.journal.note]
-filename = "{{format-date now}}"
 template = "journal.md"
 
 [group.work-item]
@@ -48,15 +47,17 @@ ed = 'zk edit --sort modified- --interactive "$@"'
 edclosed = 'zk ed -t "work-item, closed"'
 edlast = 'zk edit --limit 1 --sort modified- "$@"'
 edpending = 'zk ed -t "work-item, NOT closed"'
-journal = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal"'
+journal = 'zk-journal "$ZK_NOTEBOOK_DIR" today'
 ls = 'zk list --sort modified- -foneline "$@"'
 lsclosed = 'zk ls -t "work-item, closed"'
 lspending = 'zk ls -t "work-item, NOT closed"'
 lucky = 'zk list --quiet --format full --sort random --limit 1'
 nwi = 'zk-new-work-item $ZK_NOTEBOOK_DIR $1'
 recent = 'zk edit --sort created- --created-after "last two weeks" --interactive'
+tomorrow = 'zk-journal "$ZK_NOTEBOOK_DIR" tomorrow'
 vwi = 'zk edit $(rg -l "work-item: $1" $ZK_NOTEBOOK_DIR)'
-wi = 'zk edit -i -t "work-item"'
+wi = 'zk ed -t "work-item"'
+yesterday = 'zk-journal "$ZK_NOTEBOOK_DIR" yesterday'
 
 [lsp]
 [lsp.diagnostics]

@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+# vim: ft=python
+
+import argparse
+import datetime
+import subprocess
+
+parser = argparse.ArgumentParser(
+    prog="zk-journal",
+    description="Create or open journal items in `zk` in a given $ZK_NOTEBOOK_DIR.",
+)
+
+parser.add_argument(
+    "notebook",
+    help="Notebook directory from `zk` ($ZK_NOTEBOOK_DIR)",
+    type=str,
+)
+
+parser.add_argument(
+    "day",
+    help="The work item identifier",
+    type=str,
+    choices=["yesterday", "today", "tomorrow"],
+)
+
+args = parser.parse_args()
+
+
+def datemod(day):
+    match day:
+        case "yesterday":
+            return datetime.timedelta(days=-1)
+        case "tomorrow":
+            return datetime.timedelta(days=1)
+        case _:
+            return datetime.timedelta(days=0)
+
+
+date = datetime.datetime.today() + datemod(args.day)
+
+subprocess.run(
+    [
+        "zk",
+        "new",
+        "--no-input",
+        "%s/journal" % args.notebook,
+        "--id",
+        date.strftime("%Y"),
+        "--title",
+        date.strftime("%m-%d"),
+        "--extra",
+        "date=%s" % (date.strftime("%Y-%m-%d")),
+    ]
+)
