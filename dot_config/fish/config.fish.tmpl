@@ -22,12 +22,6 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
     set -Ux PRE_COMMIT_COLOR never
     set -Ux j_path $HOME/Workspaces/Develop/
 
-    {{- if .personal }}
-    set -Ux AZ_ORG_URL "https://dev.azure.com/hugginsio/"
-    {{- else if .work }}
-    set -Ux AZ_ORG_URL "https://dev.azure.com/jbhunt/"
-    {{ end }}
-
     # NOTE: send confirmation and suppress failing exit code
     echo y | fish_config theme save "Catppuccin Mocha" || true
 
@@ -38,15 +32,15 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
     # source prompt theme
     dotfiles_source "$__fish_config_dir/prompt.fish"
 
-    # source os-specific dotfile
-    dotfiles_source "$__fish_config_dir/{{ .chezmoi.os }}.fish"
-
     # configure paths (https://fishshell.com/docs/current/cmds/fish_add_path.html)
     set -Ux XDG_CONFIG_HOME "$HOME/.config"
-    fish_add_path "$HOME/.cargo/bin"
-    fish_add_path "$HOME/.local/bin"
     fish_add_path "$HOME/bin"
+    fish_add_path "$HOME/.local/bin"
+    fish_add_path "$HOME/.cargo/bin"
     fish_add_path "$HOME/go/bin"
+
+    # source os-specific dotfile
+    dotfiles_source "$__fish_config_dir/{{ .chezmoi.os }}.fish"
 
     # set configured flag
     set -U DOTFILES_ARE_CONFIGURED true
