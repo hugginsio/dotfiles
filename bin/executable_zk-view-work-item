@@ -2,13 +2,15 @@
 # vim: ft=python
 
 import argparse
+import datetime
 import json
+import os
 import subprocess
-import sys
+from zoneinfo import ZoneInfo
 
 parser = argparse.ArgumentParser(
-    prog="zk-new-work-item",
-    description="Create a new work item note via `zk` with details from `az`.",
+    prog="zk-view-work-item",
+    description="View or create a work item note in `zk` with details from `az`",
 )
 
 parser.add_argument(
@@ -24,6 +26,14 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+
+workItemFile = "%s/work-item/wi-%s.md" % (args.notebook, args.identifier)
+
+if os.path.isfile(workItemFile):
+    subprocess.run(["zk", "edit", workItemFile])
+    quit(0)
+
+# If file does not exist, create it
 
 azOutput = subprocess.run(
     [
@@ -46,14 +56,24 @@ azJson = json.loads(azOutput.stdout.decode("utf-8"))
 
 if "fields" not in azJson:
     print("Could not get work item details from Azure CLI.")
-    sys.exit(5)
+    exit(5)
 
 jsonFields = azJson["fields"]
-
 application = jsonFields.get("Custom.Repository", "")
-installDate = jsonFields.get("JBH.InstallDate", "")  # TODO: convert UTC date to central
+installDate = jsonFields.get("JBH.InstallDate", "")
 state = str(jsonFields["System.BoardColumn"]).lower().replace(" ", "-")
 workItemTitle = jsonFields["System.Title"]
+
+print(installDate)
+
+if installDate:
+    date = datetime.datetime.strptime(installDate, "%Y-%m-%dT%H:%M:%SZ").replace(
+        tzinfo=ZoneInfo("UTC")
+    )
+
+    installDate = date.astimezone(datetime.datetime.now().astimezone().tzinfo).strftime(
+        "%Y-%m-%d"
+    )
 
 extras = "application=%s,install-date=%s,state=%s,work-item-title=%s,work-item=%s" % (
     application,
@@ -63,15 +83,14 @@ extras = "application=%s,install-date=%s,state=%s,work-item-title=%s,work-item=%
     args.identifier,
 )
 
-print("Adding work item %d to notebook:" % (args.identifier))
-print(extras)
-
 subprocess.run(
     [
         "zk",
         "new",
         "--no-input",
         "%s/work-item" % args.notebook,
+        "--id",
+        "wi",
         "--title",
         str(args.identifier),
         "--extra",
