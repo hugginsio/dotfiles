@@ -34,7 +34,8 @@ multiword-tags = false
 
 [tool]
 editor = "nvim"
-fzf-preview = "bat -p --color always {-1}"
+fzf-line = "{{#if metadata.work-item}}{{#style 'path'}}{{metadata.work-item}}{{/style}} {{/if}}{{style 'title' title}}"
+fzf-preview = "bat -l markdown -p --color always {-1}"
 pager = "less -FIRX"
 
 [filter]
@@ -52,7 +53,7 @@ ls = 'zk list --sort modified- -foneline "$@"'
 lsclosed = 'zk lwi -t "closed"'
 lspending = 'zk lwi -t "NOT closed"'
 lucky = 'zk list --quiet --format full --sort random --limit 1'
-lwi = 'zk ls -f "{{#style \"path\"}}{{metadata.work-item}}{{/style}}: {{style \"title\" metadata.title}} {{#if metadata.install-date}}({{metadata.install-date}}){{/if}}" -t "work-item" "$@"'
+lwi = 'zk ls -f "{{#style \"path\"}}{{metadata.work-item}}{{/style}} {{style \"title\" metadata.title}} {{#if metadata.install-date}}({{metadata.install-date}}){{/if}}" -t "work-item" "$@"'
 recent = 'zk edit --sort created- --created-after "last two weeks" --interactive'
 today = 'zk-journal "$ZK_NOTEBOOK_DIR" today'
 tomorrow = 'zk-journal "$ZK_NOTEBOOK_DIR" tomorrow'
