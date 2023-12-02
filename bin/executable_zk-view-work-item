@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # vim: ft=python
 
+from zoneinfo import ZoneInfo
 import argparse
 import datetime
-import json
 import os
-import subprocess
-from zoneinfo import ZoneInfo
+import zklib
 
 parser = argparse.ArgumentParser(
     prog="zk-view-work-item",
@@ -30,70 +29,19 @@ args = parser.parse_args()
 workItemFile = "%s/work-item/wi-%s.md" % (args.notebook, args.identifier)
 
 if os.path.isfile(workItemFile):
-    subprocess.run(["zk", "edit", workItemFile])
+    zklib.zkEditFile(workItemFile)
     quit(0)
 
 # If file does not exist, create it
 
-azOutput = subprocess.run(
-    [
-        "az",
-        "boards",
-        "work-item",
-        "show",
-        "--id",
-        str(args.identifier),
-        "--org",
-        "https://dev.azure.com/jbhunt/",
-        "--output",
-        "json",
-    ],
-    stdout=subprocess.PIPE,
-    check=True,
-)
-
-azJson = json.loads(azOutput.stdout.decode("utf-8"))
-
-if "fields" not in azJson:
-    print("Could not get work item details from Azure CLI.")
-    exit(5)
-
-jsonFields = azJson["fields"]
-application = jsonFields.get("Custom.Repository", "")
-installDate = jsonFields.get("JBH.InstallDate", "")
-state = str(jsonFields["System.BoardColumn"]).lower().replace(" ", "-")
-workItemTitle = jsonFields["System.Title"]
-
-print(installDate)
-
-if installDate:
-    date = datetime.datetime.strptime(installDate, "%Y-%m-%dT%H:%M:%SZ").replace(
-        tzinfo=ZoneInfo("UTC")
-    )
-
-    installDate = date.astimezone(datetime.datetime.now().astimezone().tzinfo).strftime(
-        "%Y-%m-%d"
-    )
+workItem = zklib.azGetWorkItem(args.identifier)
 
 extras = "application=%s,install-date=%s,state=%s,work-item-title=%s,work-item=%s" % (
-    application,
-    installDate,
-    state,
-    workItemTitle,
+    workItem.application,
+    workItem.installDate,
+    workItem.state,
+    workItem.title,
     args.identifier,
 )
 
-subprocess.run(
-    [
-        "zk",
-        "new",
-        "--no-input",
-        "%s/work-item" % args.notebook,
-        "--id",
-        "wi",
-        "--title",
-        str(args.identifier),
-        "--extra",
-        extras,
-    ]
-)
+zklib.zkNewNote("{}/work-item".format(args.notebook), str(args.identifier), extras)
