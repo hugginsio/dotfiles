@@ -20,7 +20,6 @@ class WorkItem:
 def subprocessRunner(*runargs, **kwargs) -> Any:
     kwargs.setdefault("stdout", subprocess.PIPE)
     kwargs.setdefault("check", False)
-
     cmd = subprocess.run(*runargs, **kwargs)
 
     try:
@@ -73,7 +72,7 @@ def azConvertInstallDate(installDateZulu: str) -> str:
 
 
 def zkNewNote(notebookPath: str, title: str, extra: str = "") -> None:
-    subprocessRunner(
+    subprocess.run(
         [
             "zk",
             "new",
@@ -90,4 +89,4 @@ def zkNewNote(notebookPath: str, title: str, extra: str = "") -> None:
 
 
 def zkEditFile(workItemFile: str) -> None:
-    subprocessRunner(["zk", "edit", workItemFile])
+    subprocess.run(["zk", "edit", workItemFile])
