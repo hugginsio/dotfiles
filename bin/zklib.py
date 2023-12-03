@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any
 from zoneinfo import ZoneInfo
 import json
 import subprocess
@@ -16,8 +17,23 @@ class WorkItem:
     title: str
 
 
+def subprocessRunner(*runargs, **kwargs) -> Any:
+    kwargs.setdefault("stdout", subprocess.PIPE)
+    kwargs.setdefault("check", False)
+
+    cmd = subprocess.run(*runargs, **kwargs)
+
+    try:
+        cmd.check_returncode()
+    except subprocess.CalledProcessError as err:
+        print(err.stdout.decode("utf-8"))
+        return None
+
+    return cmd.stdout.decode("utf-8")
+
+
 def azGetWorkItem(identifier: str | int) -> WorkItem:
-    azOutput = subprocess.run(
+    azOutput = subprocessRunner(
         [
             "az",
             "boards",
@@ -30,11 +46,9 @@ def azGetWorkItem(identifier: str | int) -> WorkItem:
             "--output",
             "json",
         ],
-        stdout=subprocess.PIPE,
-        check=True,
     )
 
-    azJson = json.loads(azOutput.stdout.decode("utf-8"))
+    azJson = json.loads(azOutput)
     fields = azJson["fields"]
 
     installDate = fields.get("JBH.InstallDate", "")
@@ -58,8 +72,8 @@ def azConvertInstallDate(installDateZulu: str) -> str:
     return date.astimezone(datetime.now().astimezone().tzinfo).strftime("%Y-%m-%d")
 
 
-def zkNewNote(notebookPath: str, title: str, extra: str = ""):
-    subprocess.run(
+def zkNewNote(notebookPath: str, title: str, extra: str = "") -> None:
+    subprocessRunner(
         [
             "zk",
             "new",
@@ -75,5 +89,5 @@ def zkNewNote(notebookPath: str, title: str, extra: str = ""):
     )
 
 
-def zkEditFile(workItemFile: str):
-    subprocess.run(["zk", "edit", workItemFile])
+def zkEditFile(workItemFile: str) -> None:
+    subprocessRunner(["zk", "edit", workItemFile])

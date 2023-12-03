@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # vim: ft=python
 
-from zoneinfo import ZoneInfo
 import argparse
-import datetime
+import json
 import os
 import zklib
 
@@ -13,20 +12,28 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
+    "pwd",
+    help="The current working directory according to `zk`",
+    type=str,
+)
+
+parser.add_argument(
     "notebook",
     help="Notebook directory from `zk` ($ZK_NOTEBOOK_DIR)",
     type=str,
 )
 
-parser.add_argument(
-    "identifier",
-    help="The work item identifier",
-    type=int,
-)
+parser.add_argument("identifier", help="The work item identifier", type=int, nargs="?")
 
 args = parser.parse_args()
 
 workItemFile = "%s/work-item/wi-%s.md" % (args.notebook, args.identifier)
+
+if not args.identifier:
+    properties = zklib.subprocessRunner(["git-vwi", "--raw"], cwd=args.pwd)
+    identifier = json.loads(properties)["Identifier"]
+    zklib.zkEditFile("%s/work-item/wi-%s.md" % (args.notebook, identifier))
+    exit(0)
 
 if os.path.isfile(workItemFile):
     zklib.zkEditFile(workItemFile)

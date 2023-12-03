@@ -54,12 +54,11 @@ lsclosed = 'zk lwi -t "closed"'
 lspending = 'zk lwi -t "NOT closed"'
 lucky = 'zk list --quiet --format full --sort random --limit 1'
 lwi = 'zk ls -f "{{#style \"path\"}}{{metadata.work-item}}{{/style}} {{style \"title\" metadata.title}} {{#if metadata.install-date}}({{metadata.install-date}}){{/if}}" -t "work-item" "$@"'
-notebook = 'echo $ZK_NOTEBOOK_DIR'
 recent = 'zk edit --sort created- --created-after "last two weeks" --interactive'
 today = 'zk-journal "$ZK_NOTEBOOK_DIR" today'
 tomorrow = 'zk-journal "$ZK_NOTEBOOK_DIR" tomorrow'
 uwi = 'zk-update-work-item $ZK_NOTEBOOK_DIR'
-vwi = 'zk-view-work-item $ZK_NOTEBOOK_DIR $1'
+vwi = 'zk-view-work-item $OLDPWD $ZK_NOTEBOOK_DIR $1'
 yesterday = 'zk-journal "$ZK_NOTEBOOK_DIR" yesterday'
 
 [lsp]
