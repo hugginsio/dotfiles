@@ -6,15 +6,14 @@
     clone.args = ["--depth", "1"]
     refreshPeriod = "168h"
 
+["bin/gtask"]
+    type = "archive-file"
+    url = "https://github.com/go-task/task/releases/download/{{ (gitHubLatestRelease "go-task/task").TagName }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+    path = "task"
+
 [".config/k9s/skin.yml"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
-    refreshPeriod = "168h"
-
-[".vim/pack/hugginsio/start/eunuch"]
-    type = "git-repo"
-    url = "https://github.com/tpope/vim-eunuch.git"
-    clone.args = ["--depth", "1"]
     refreshPeriod = "168h"
 
 [".config/fish/themes/Catppuccin Mocha.theme"]
@@ -42,5 +41,11 @@
 [".config/fish/plugins/autopair"]
     type = "git-repo"
     url = "https://github.com/jorgebucaran/autopair.fish.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/eunuch"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-eunuch.git"
     clone.args = ["--depth", "1"]
     refreshPeriod = "168h"
