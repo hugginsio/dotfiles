@@ -5,7 +5,9 @@ return {
             require("neoclip").setup()
             require("telescope").load_extension("neoclip")
         end,
-        dependencies = { "nvim-telescope/telescope.nvim" },
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
         keys = {
             { "<leader>p", "<cmd>lua require('telescope').extensions.neoclip.default()<CR>", desc = "Open clipboard" },
         },
@@ -23,7 +25,9 @@ return {
         "ellisonleao/glow.nvim",
         cmd = "Glow",
         opts = { border = "single" },
-        keys = { { "<leader>fg", "<cmd>Glow<CR>", desc = "Preview markdown with Glow" } },
+        keys = {
+            { "<leader>fg", "<cmd>Glow<CR>", desc = "Preview markdown with Glow" },
+        },
     },
     {
         "fladson/vim-kitty",
@@ -50,7 +54,7 @@ return {
         "hugginsio/twig.nvim",
         event = "VeryLazy",
         opts = {
-            project_pattern = "-(.*)",
+            project_pattern = "[0-9]+",
         },
     },
     {
