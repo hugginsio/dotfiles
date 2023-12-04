@@ -5,6 +5,9 @@
 {{- $personal := false -}}{{/*  true if this machine is for personal use */}}
 {{- $work := false -}}{{/*      true if this machine is for work use */}}
 
+{{/* misc. values */}}
+{{- $mfg := "unknown" -}}
+
 {{/* combo OS ID, e.g. linux-debian */}}
 {{- $osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "idLike" -}}
@@ -21,6 +24,7 @@
 {{- $hostname := .chezmoi.hostname -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-     $hostname := output "scutil" "--get" "ComputerName" | trim -}}
+{{-     $mfg = "apple" -}}
 {{- end -}}
 
 {{/* determine if personal, work, or neither */}}
@@ -49,6 +53,7 @@
     email = {{ $email | quote }}
     ephemeral = {{ $ephemeral }}
     headless = {{ $headless }}
+    mfg = {{ $mfg | quote}}
     name = {{ $name | quote }}
     osid = {{ $osid | quote }}
     personal = {{ $personal }}

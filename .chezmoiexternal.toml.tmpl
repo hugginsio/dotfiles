@@ -11,6 +11,11 @@
     url = "https://github.com/go-task/task/releases/download/{{ (gitHubLatestRelease "go-task/task").TagName }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     path = "task"
 
+["bin/taskwarrior-tui"]
+    type = "archive-file"
+    url = "https://github.com/kdheepak/taskwarrior-tui/releases/download/{{ (gitHubLatestRelease "kdheepak/taskwarrior-tui").TagName }}/taskwarrior-tui-x86_64-{{ .mfg }}-{{ .chezmoi.os }}.tar.gz"
+    path = "taskwarrior-tui"
+
 [".config/k9s/skin.yml"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/mocha.yml"
