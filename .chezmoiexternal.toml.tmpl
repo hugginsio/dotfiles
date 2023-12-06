@@ -10,11 +10,13 @@
     type = "archive-file"
     url = "https://github.com/go-task/task/releases/download/{{ (gitHubLatestRelease "go-task/task").TagName }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     path = "task"
+    refreshPeriod = "168h"
 
 ["bin/taskwarrior-tui"]
     type = "archive-file"
     url = "https://github.com/kdheepak/taskwarrior-tui/releases/download/{{ (gitHubLatestRelease "kdheepak/taskwarrior-tui").TagName }}/taskwarrior-tui-x86_64-{{ .mfg }}-{{ .chezmoi.os }}.tar.gz"
     path = "taskwarrior-tui"
+    refreshPeriod = "168h"
 
 [".config/k9s/skin.yml"]
     type = "file"
@@ -30,6 +32,7 @@
     type = "archive"
     url = "https://github.com/IlanCosman/tide/archive/refs/tags/{{ (gitHubLatestRelease "IlanCosman/tide").TagName }}.tar.gz"
     stripComponents = 1
+    refreshPeriod = "168h"
 
 [".config/fish/plugins/asdf"]
     type = "git-repo"
@@ -47,6 +50,11 @@
     type = "git-repo"
     url = "https://github.com/jorgebucaran/autopair.fish.git"
     clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+["Workspaces/tasks/hooks/on-modify.timewarrior"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/GothenburgBitFactory/timewarrior/develop/ext/on-modify.timewarrior"
     refreshPeriod = "168h"
 
 [".vim/pack/hugginsio/start/eunuch"]
