@@ -12,20 +12,20 @@ color.error=
 color.debug=
 
 # Task state
-color.completed=
-color.deleted=
-color.active=blue
+color.completed=black on green
+color.deleted=black
+color.active=black on blue
 color.recurring=
 color.scheduled=
 color.until=
-color.blocked=
-color.blocking=
+color.blocked=black on red
+color.blocking=black on yellow
 
 # Project
 color.project.none=
 
 # Priority
-color.uda.priority.H=
+color.uda.priority.H=bold
 color.uda.priority.L=
 color.uda.priority.M=
 
@@ -36,8 +36,8 @@ color.tagged=
 
 # Due
 color.due=white
-color.due.today=yellow
-color.overdue=black on red
+color.due.today=
+color.overdue=red
 
 # Report: burndown
 color.burndown.done=
@@ -50,18 +50,18 @@ color.history.delete=
 color.history.done=
 
 # Report: summary
-color.summary.background=on black
-color.summary.bar=on white
+color.summary.background=
+color.summary.bar=
 
 # Command: calendar
-color.calendar.due.today=
-color.calendar.due=black on cyan
+color.calendar.due.today=black on blue
+color.calendar.due=black on blue
 color.calendar.holiday=
-color.calendar.overdue=black on magenta
-color.calendar.scheduled=black on cyan
+color.calendar.overdue=black on red
+color.calendar.scheduled=black on green
 color.calendar.today=black on white
 color.calendar.weekend=
-color.calendar.weeknumber=white on black
+color.calendar.weeknumber=black
 
 # Command: sync
 color.sync.added=
