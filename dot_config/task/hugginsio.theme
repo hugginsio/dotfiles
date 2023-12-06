@@ -51,7 +51,7 @@ color.history.done=
 
 # Report: summary
 color.summary.background=
-color.summary.bar=
+color.summary.bar=black on green
 
 # Command: calendar
 color.calendar.due.today=black on yellow
