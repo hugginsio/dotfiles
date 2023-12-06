@@ -20,3 +20,4 @@ abbr -a pc pre-commit
 abbr -a please sudo
 abbr -a rmdsstore 'find . -type f -name ".DS_Store" -delete'
 abbr -a rmnodemodules 'find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
+abbr -a ttui taskwarrior-tui
