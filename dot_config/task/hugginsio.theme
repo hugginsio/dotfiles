@@ -35,8 +35,8 @@ color.tag.none=
 color.tagged=
 
 # Due
-color.due=white
-color.due.today=
+color.due=
+color.due.today=bold
 color.overdue=red
 
 # Report: burndown
@@ -54,7 +54,7 @@ color.summary.background=
 color.summary.bar=
 
 # Command: calendar
-color.calendar.due.today=black on blue
+color.calendar.due.today=black on yellow
 color.calendar.due=black on blue
 color.calendar.holiday=
 color.calendar.overdue=black on red
