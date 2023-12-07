@@ -11,12 +11,14 @@
     url = "https://github.com/go-task/task/releases/download/{{ (gitHubLatestRelease "go-task/task").TagName }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     path = "task"
     refreshPeriod = "168h"
+    executable = true
 
 ["bin/taskwarrior-tui"]
     type = "archive-file"
     url = "https://github.com/kdheepak/taskwarrior-tui/releases/download/{{ (gitHubLatestRelease "kdheepak/taskwarrior-tui").TagName }}/taskwarrior-tui-x86_64-{{ .mfg }}-{{ .chezmoi.os }}.tar.gz"
     path = "taskwarrior-tui"
     refreshPeriod = "168h"
+    executable = true
 
 [".config/k9s/skin.yml"]
     type = "file"
@@ -56,6 +58,7 @@
     type = "file"
     url = "https://raw.githubusercontent.com/GothenburgBitFactory/timewarrior/develop/ext/on-modify.timewarrior"
     refreshPeriod = "168h"
+    executable = true
 
 [".vim/pack/hugginsio/start/eunuch"]
     type = "git-repo"
