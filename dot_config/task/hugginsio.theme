@@ -18,7 +18,7 @@ color.active=black on blue
 color.recurring=
 color.scheduled=
 color.until=
-color.blocked=black on red
+color.blocked=black on magenta
 color.blocking=black on yellow
 
 # Project
@@ -37,7 +37,7 @@ color.tagged=
 # Due
 color.due=
 color.due.today=bold
-color.overdue=red
+color.overdue=black on red bold
 
 # Report: burndown
 color.burndown.done=
