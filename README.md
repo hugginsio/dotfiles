@@ -13,4 +13,4 @@ The software referenced in this repository that I use each day.
 - [LazyVim](https://www.lazyvim.org/): a well-built starter kit for Neovim.
 - [Neovim](https://neovim.io/): a Vim-based text editor.
 - [Taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior): a command line task list management utility.
-- [zk](https://github.com/mickael-menu/zk): a plain text note-taking assistant.
+- [zk](https://github.com/zk-org/zk): a plain text note-taking assistant.
