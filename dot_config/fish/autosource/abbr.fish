@@ -9,6 +9,7 @@ abbr -a cdg 'cd "$HOME/Workspaces/Develop/"'
 abbr -a cdp 'cd "$HOME/Workspaces/Photograph/"'
 abbr -a cdv 'cd "$HOME/Workspaces/Vault/"'
 abbr -a cdw 'cd "$HOME/Workspaces/"'
+abbr -a k kubectl
 abbr -a l la
 abbr -a la 'ls -loFcgha'
 abbr -a ld 'ls -loFcghd .*'
