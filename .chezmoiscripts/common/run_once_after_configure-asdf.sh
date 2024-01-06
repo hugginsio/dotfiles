@@ -5,7 +5,7 @@
 # -u: exit on unset variables
 set -eu
 
-if [[ $(command -v asdf) == "" ]]; then
+if [ "$(command -v asdf)" = "" ]; then
     echo "ERR! asdf-vm is not installed. Try re-applying your dotfiles."
     exit
 fi
