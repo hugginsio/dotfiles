@@ -6,21 +6,17 @@ work-item: {{extra.work-item}}
 install-date: "{{extra.install-date}}"
 ---
 
-# Description
+## Description
 
 {{content}}
 
-# Acceptance Criteria
+## Installation
 
-- [ ] TODO
+`{{#if extra.application}}{{extra.application}}{{else}}application{{/if}}` ([{{#if extra.work-item}}{{extra.work-item}}{{else}}000000{{/if}}](https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{extra.work-item}}))
 
-# Installation
+### Results
 
-{{#if extra.application}}{{extra.application}}{{else}}application{{/if}} ([{{#if extra.work-item}}{{extra.work-item}}{{else}}000000{{/if}}](https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{extra.work-item}}))
+- TBA
 
-## Results
-
-- TODO
-
-# Notes
+## Notes
 
