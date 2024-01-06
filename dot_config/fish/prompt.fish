@@ -74,6 +74,7 @@ set -U tide_java_icon ' '
 set -U tide_jobs_bg_color normal
 set -U tide_jobs_color blue
 set -U tide_jobs_icon '󰫢'
+set -U tide_jobs_number_threshold 2
 
 set -U tide_kubectl_bg_color normal
 set -U tide_kubectl_color blue
