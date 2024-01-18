@@ -1,0 +1,88 @@
+# vi: ft=toml
+
+{{/* feature flags */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $server := false -}}{{/*    true if this machine is for server use */}}
+{{- $personal := false -}}{{/*  true if this machine is for personal use */}}
+{{- $work := false -}}{{/*      true if this machine is for work use */}}
+
+{{/* misc. values */}}
+{{- $mfg := "unknown" -}}
+
+{{/* combo OS ID, e.g. linux-debian */}}
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "idLike" -}}
+{{-     $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
+{{- end -}}
+
+{{/* determine if GitHub codespace, VSCode remote container, Docker container, or Coder workspace */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "vscode" "root" "coder") -}}
+{{-     $ephemeral = true -}}
+{{- end -}}
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-     $hostname := output "scutil" "--get" "ComputerName" | trim -}}
+{{-     $mfg = "apple" -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-     $mfg = "apple" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-     $mfg = "unknown" -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-     $mfg = "pc" -}}
+{{- end -}}
+
+{{/* determine if personal, work, server, or none */}}
+{{- if not $ephemeral -}}
+{{-    if eq .chezmoi.username "hugginsio" -}}
+{{-         $personal = true -}}
+{{-         $server = false -}}
+{{-         $work = false -}}
+{{-     else if eq .chezmoi.username "kylehuggins" -}}
+{{-         $personal = false -}}
+{{-         $server = false -}}
+{{-         $work = true -}}
+{{-     else if eq .chezmoi.username "host" -}}
+{{-         $personal = true -}}
+{{-         $server = true -}}
+{{-         $work = false -}}
+{{-     else if stdinIsATTY -}}
+{{-         $personal = promptBoolOnce . "personal" "personal" -}}
+{{-         $server = promptBoolOnce . "server" "server" -}}
+{{-         $work = promptBoolOnce . "work" "work" -}}
+{{-     else -}}
+{{-         $personal = false -}}
+{{-         $server = false -}}
+{{-         $work = false -}}
+{{-     end -}}
+{{- end -}}
+
+{{- $name := "" -}}
+{{- $email := "" -}}
+{{- if or $personal $work -}}
+{{-     $name = "Kyle Huggins" -}}
+{{- else if $server -}}
+{{-     $name = "host" -}}
+{{- end -}}
+{{- if $personal -}}
+{{-     $email = "kyle@huggins.io" -}}
+{{- else if $work -}}
+{{-     $email = "kyle.huggins@jbhunt.com" -}}
+{{- end -}}
+
+[data]
+    email = {{ $email | quote }}
+    ephemeral = {{ $ephemeral }}
+    mfg = {{ $mfg | quote}}
+    name = {{ $name | quote }}
+    osid = {{ $osid | quote }}
+    personal = {{ $personal }}
+    server = {{ $server }}
+    work = {{ $work }}
+
+[hooks.apply.post]
+    command = "echo"
+    args = ["Don't forget to reload!"]

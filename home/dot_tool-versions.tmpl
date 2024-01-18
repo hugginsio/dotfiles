@@ -1,0 +1,9 @@
+{{ range $lang, $version := get .lang "default" -}}
+{{     $lang }} {{ $version }}
+{{ end -}}
+
+{{ if .work -}}
+{{     range $lang, $version := get .lang "work" -}}
+{{         $lang }} {{ $version }}
+{{     end -}}
+{{ end -}}

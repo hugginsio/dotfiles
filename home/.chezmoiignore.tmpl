@@ -1,0 +1,19 @@
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiexternals/darwin.*
+.chezmoiscripts/darwin/**
+Library/Application Support/nushell/**
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiexternals/linux.*
+.chezmoiscripts/linux/**
+.config/nushell/**
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiexternals/windows.*
+.chezmoiscripts/windows/**
+{{ else }}
+.chezmoiexternals/unix.*
+.chezmoiscripts/unix/**
+{{ end }}

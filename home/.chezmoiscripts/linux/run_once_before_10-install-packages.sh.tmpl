@@ -1,0 +1,40 @@
+#!/bin/sh
+# vi: ft=bash
+
+# -e: exit on error
+# -u: exit on unset variables
+set -eu
+
+{{ if eq .osid "linux-ubuntu" -}}
+
+{{ $ppas := list -}}
+
+{{ $packages := list
+     "build-essential"
+     "curl"
+     "fzf"
+     "git"
+     "jq"
+     "libssl-dev"
+     "pkg-config"
+     "ripgrep"
+-}}
+
+{{ if not .ephemeral -}}
+{{     $ppas = mustAppend $packages "ppa:fish-shell/release-3" -}}
+{{     $ppas = mustAppend $packages "ppa:neovim-ppa/unstable" -}}
+{{     $packages = mustAppend $packages "fish" -}}
+{{     $packages = mustAppend $packages "golang" -}}
+{{     $packages = mustAppend $packages "neovim" -}}
+{{ end -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{     $sudo = "" -}}
+{{ end -}}
+
+{{ $sudo }}apt-get update -y
+{{ $sudo }}apt-get upgrade -y
+{{ $sudo }}apt-get install -y {{ $packages | join " " }}
+
+{{ end -}}

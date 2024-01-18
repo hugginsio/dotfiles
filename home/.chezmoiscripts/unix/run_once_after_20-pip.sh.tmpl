@@ -1,0 +1,12 @@
+#!/bin/sh
+# vi: ft=bash
+
+# -e: exit on error
+# -u: exit on unset variables
+set -eu
+
+{{ range get .python "packages" -}}
+    pip install -U -I --no-input {{ . }}
+{{ end -}}
+
+pre-commit init-templatedir ~/.config/git/template/

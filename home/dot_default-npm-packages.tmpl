@@ -1,0 +1,11 @@
+# vi: ft=config
+# The next line must be blank.
+
+@bitwarden/cli
+@fsouza/prettierd
+npm
+
+{{ if .personal -}}
+vercel
+wrangler
+{{ end -}}

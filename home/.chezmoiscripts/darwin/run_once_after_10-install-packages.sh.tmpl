@@ -1,0 +1,108 @@
+#!/bin/sh
+# vi: ft=bash
+
+# -e: exit on error
+# -u: exit on unset variables
+set -eu
+
+echo "Installing essentials..."
+
+brew update && brew upgrade && brew cleanup
+brew bundle --no-lock --file=/dev/stdin <<EOF
+
+tap "derailed/k9s"
+tap "homebrew/cask-fonts"
+tap "jesseduffield/lazygit"
+
+brew "bat"
+brew "coreutils"
+brew "curl"
+brew "docker"
+brew "docker-buildx"
+brew "docker-completion"
+brew "docker-compose"
+brew "ed"
+brew "findutils"
+brew "fish"
+brew "fzf"
+brew "gawk"
+brew "gh"
+brew "git"
+brew "git-extras"
+brew "gitleaks"
+brew "glow"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "golang"
+brew "gpg"
+brew "grep"
+brew "helm"
+brew "jq"
+brew "k9s"
+brew "lazygit"
+brew "make"
+brew "mas"
+brew "neovim"
+brew "plantuml"
+brew "qemu"
+brew "ripgrep"
+brew "slides"
+brew "task"
+brew "terminal-notifier"
+brew "timewarrior"
+brew "tree"
+brew "yq"
+brew "zk"
+cask "appcleaner"
+cask "balenaetcher"
+cask "bruno"
+cask "font-jetbrains-mono-nerd-font"
+cask "kitty"
+cask "logi-options-plus"
+cask "logseq"
+cask "microsoft-teams"
+cask "pocket-casts"
+cask "qmk-toolbox"
+cask "raycast"
+cask "stats"
+cask "syntax-highlight"
+
+mas "AdGuard for Safari", id: 1440147259
+mas "Amphetamine", id: 937984704
+mas "Bitwarden", id: 1352778147
+
+{{ if .personal -}}
+
+tap "cooklang/tap"
+
+brew "cooklang/tap/cook"
+brew "gh"
+brew "minikube"
+cask "android-platform-tools"
+cask "calibre"
+cask "google-drive"
+cask "protonvpn"
+cask "signal"
+
+mas "Fantastical", id: 975937182
+mas "Keka", id: 470158793
+mas "LimeChat", id: 414030210
+mas "Slack", id: 803453959
+mas "Tailscale", id: 1475387142
+mas "WireGuard", id: 1451685025
+
+{{ end -}}
+
+{{ if .work -}}
+
+brew "colima"
+brew "skaffold"
+cask "arc"
+cask "elgato-stream-deck"
+
+{{ end -}}
+
+EOF
+
+echo "Symlinking docker..."
+ln -sfn /opt/homebrew/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx

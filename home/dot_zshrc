@@ -1,0 +1,10 @@
+# zsh runtime config
+
+# initialise completions with ZSH's compinit
+autoload -Uz compinit promptinit && compinit
+
+typeset -U path PATH
+
+# update path
+path[1,0]="$HOME/bin"
+path[1,0]="/opt/homebrew/bin"

@@ -1,0 +1,5 @@
+[python]
+packages = [
+    "pip",
+    "pre-commit"
+]

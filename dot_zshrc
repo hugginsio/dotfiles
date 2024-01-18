@@ -1,7 +1,0 @@
-# zsh runtime config
-
-# initialise completions with ZSH's compinit
-autoload -Uz compinit promptinit && compinit
-
-# update path
-export PATH="$HOME/bin":$PATH
