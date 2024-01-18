@@ -1,5 +1,6 @@
 [python]
 packages = [
+    "neovim",
     "pip",
-    "pre-commit"
+    "pre-commit",
 ]
