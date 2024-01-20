@@ -2,13 +2,13 @@ local Util = require("util")
 
 return {
     {
-        'echasnovski/mini.ai',
+        "echasnovski/mini.ai",
         event = "VeryLazy",
         opts = {},
         version = '*',
     },
     {
-        'echasnovski/mini.bufremove',
+        "echasnovski/mini.bufremove",
         event = "VeryLazy",
         opts = {},
         version = '*',
@@ -35,7 +35,7 @@ return {
         },
     },
     {
-        'echasnovski/mini.comment',
+        "echasnovski/mini.comment",
         event = "VeryLazy",
         opts = {},
         version = '*'
@@ -58,5 +58,35 @@ return {
                 desc = "Toggle auto pairs",
             },
         },
-    }
+    },
+    {
+        "echasnovski/mini.surround",
+        event = "VeryLazy",
+        opts = {
+            mappings = {
+                add = "gsa",
+                delete = "gsd",
+                find = "gsf",
+                find_left = "gsF",
+                highlight = "gsh",
+                replace = "gsr",
+                update_n_lines = "gsn",
+            },
+        },
+        keys = {
+            { "<leader>gsa", desc = "Add surrounding", mode = { "n", "v" } },
+            { "<leader>gsd", desc = "Delete surrounding" },
+            { "<leader>gsf", desc = "Find right surrounding" },
+            { "<leader>gsF", desc = "Find left surrounding" },
+            { "<leader>gsh", desc = "Highlight surrounding" },
+            { "<leader>gsr", desc = "Replace surrounding" },
+            { "<leader>gsn", desc = "Update `MiniSurround.config.n_lines`" },
+        },
+    },
+    {
+        "echasnovski/mini.trailspace",
+        event = "VeryLazy",
+        opts = {},
+        version = '*'
+    },
 }
