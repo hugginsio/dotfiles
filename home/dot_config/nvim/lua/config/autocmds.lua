@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup("terminal_open"),
   callback = function()
       vim.cmd([[
-        setlocal nonumber norelativenumber
+        setlocal nonumber norelativenumber signcolumn=no
         startinsert
       ]])
   end,
