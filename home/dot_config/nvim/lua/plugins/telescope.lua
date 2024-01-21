@@ -1,9 +1,16 @@
+local Util = require("util")
+
 return {
     {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         dependencies = {
             { "nvim-lua/plenary.nvim" },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+                enabled = vim.fn.executable("make") == 1,
+            },
         },
         keys = {
             { "<leader>,", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
