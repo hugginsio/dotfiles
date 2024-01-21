@@ -39,8 +39,38 @@ return {
         },
         opts = {
             defaults = {
+                layout_config = {
+                    center = {
+                        height = 0.9,
+                        preview_cutoff = 160,
+                        prompt_position = "top",
+                        width = 0.9,
+                    },
+                    horizontal = {
+                        height = 0.9,
+                        preview_cutoff = 160,
+                        prompt_position = "bottom",
+                        width = 0.9,
+                    },
+                    vertical = {
+                        height = 0.9,
+                        preview_cutoff = 160,
+                        prompt_position = "bottom",
+                        width = 0.9,
+                    }
+                },
                 prompt_prefix = " ",
                 selection_caret = " ",
+            },
+            pickers = {
+                autocommands = { theme = "dropdown" },
+                buffers = { theme = "dropdown" },
+                current_buffer_fuzzy_find = { previewer = false },
+                find_files = { theme = "dropdown" },
+                git_commits = { theme = "dropdown" },
+                git_status = { theme = "dropdown" },
+                help_tags = { theme = "dropdown" },
+                live_grep = { theme = "dropdown" },
             }
         }
     },
