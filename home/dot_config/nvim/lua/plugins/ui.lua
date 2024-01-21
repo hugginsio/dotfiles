@@ -73,4 +73,34 @@ return {
             { "<leader>e", "<cmd>Oil<CR>", desc = "Open parent directory" },
         },
     },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "VimEnter",
+        opts = {},
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            options = {
+                component_separators = { left = "", right = "" },
+                icons_enabled = true,
+                section_separators = { left = "", right = "" },
+                theme = "auto",
+            },
+            sections = {
+                lualine_a = { "mode" },
+                lualine_b = { "branch", "diff", "diagnostics" },
+                lualine_c = {
+                    {
+                        "filename",
+                        path = 1,
+                    }
+                },
+                lualine_x = { "filetype" },
+                lualine_y = { "progress" },
+                lualine_z = { "location" }
+            },
+        },
+    },
 }
