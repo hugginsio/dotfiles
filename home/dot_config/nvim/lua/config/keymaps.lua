@@ -15,7 +15,7 @@ end
 
 map("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-map("n", "<leader>r", "<cmd>:Telescope oldfiles<CR>", { desc = "Recent Files" })
+map("n", "<leader>r", "<cmd>:Telescope oldfiles<CR>", { desc = "Recent files" })
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
@@ -54,8 +54,12 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
+
+-- tabs
+map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
+map("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<leader><tab>n", "<cmd>tabnew<cr>", { desc = "New tab" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
