@@ -60,6 +60,8 @@ return {
             },
             float = {
                 border = "single",
+                max_height = 100,
+                max_width = 100,
             },
             preview = {
                 border = "single",
