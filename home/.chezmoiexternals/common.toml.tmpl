@@ -24,6 +24,12 @@
     clone.args = ["--depth", "1"]
     refreshPeriod = "168h"
 
+[".vim/pack/hugginsio/start/surround/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-surround.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
 ["bin/"]
     type = "archive"
     {{ $nuVersion := (gitHubLatestRelease "nushell/nushell").TagName -}}
