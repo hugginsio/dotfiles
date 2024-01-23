@@ -62,7 +62,7 @@ function up -d "Update available package managers and programs."
         "brew update && brew upgrade && brew cleanup" \
         "gcloud components update -q" \
         "sudo snap refresh" \
-        "nvim --headless '+Lazy! update' +qa" \
+        "nvim --headless '+Lazy! sync' +qa" \
         "mas upgrade" \
         "chezmoi upgrade"
 
