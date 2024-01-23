@@ -30,4 +30,23 @@ function M.on_load(name, fn)
     end
 end
 
+-- Adapted from LazyVim: https://github.com/LazyVim/LazyVim/blob/54ae77e164e62ae9f45e864dfd727bfe1809a419/lua/lazyvim/util/telescope.lua#L20
+function M.telescope(builtin)
+  local params = { builtin = builtin, opts = {} }
+  return function()
+    builtin = params.builtin
+    opts = params.opts
+    if builtin == "files" then
+      if vim.loop.fs_stat(vim.loop.cwd() .. "/.git") then
+        opts.show_untracked = true
+        builtin = "git_files"
+      else
+        builtin = "find_files"
+      end
+    end
+
+    require("telescope.builtin")[builtin](opts)
+  end
+end
+
 return M
