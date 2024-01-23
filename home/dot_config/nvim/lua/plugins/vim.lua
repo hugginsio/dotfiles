@@ -1,5 +1,17 @@
 return {
     {
+        "tpope/vim-characterize",
+        build = ":helptags ~/.vim/pack/hugginsio/start/characterize",
+        dir = "~/.vim/pack/hugginsio/start/characterize",
+        event = "VeryLazy",
+    },
+    {
+        "tpope/vim-dotenv",
+        build = ":helptags ~/.vim/pack/hugginsio/start/dotenv",
+        dir = "~/.vim/pack/hugginsio/start/dotenv",
+        event = "VeryLazy",
+    },
+    {
         "tpope/vim-eunuch",
         build = ":helptags ~/.vim/pack/hugginsio/start/eunuch",
         dir = "~/.vim/pack/hugginsio/start/eunuch",
@@ -15,6 +27,12 @@ return {
         "tpope/vim-sensible",
         build = ":helptags ~/.vim/pack/hugginsio/start/sensible",
         dir = "~/.vim/pack/hugginsio/start/sensible",
+        event = "VeryLazy",
+    },
+    {
+        "tpope/vim-speeddating",
+        build = ":helptags ~/.vim/pack/hugginsio/start/speeddating",
+        dir = "~/.vim/pack/hugginsio/start/speeddating",
         event = "VeryLazy",
     },
     {
