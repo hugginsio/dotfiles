@@ -41,6 +41,20 @@ return {
         version = '*'
     },
     {
+        "echasnovski/mini.indentscope",
+        event = "VeryLazy",
+        opts = {
+            draw = {
+                animation = function()
+                    return 5
+                end
+            },
+            options = { try_as_border = true },
+            symbol = "│",
+        },
+        version = '*'
+    },
+    {
         "echasnovski/mini.pairs",
         event = "VeryLazy",
         opts = {},
