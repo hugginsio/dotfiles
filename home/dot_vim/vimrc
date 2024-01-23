@@ -40,6 +40,11 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.md,*.csv :call CleanExtraSpaces()
 endif
 
+" Return to last edit position when re-opening a file
+if has("autocmd")
+    autocmd BufReadPost * silent! normal! g`"zv
+endif
+
 " Disable scrollbars.
 set guioptions-=r
 set guioptions-=R
