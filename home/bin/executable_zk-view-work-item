@@ -43,9 +43,8 @@ if os.path.isfile(workItemFile):
 
 workItem = zklib.azGetWorkItem(args.identifier)
 
-extras = "application=%s,install-date=%s,state=%s,work-item-title=%s,work-item=%s" % (
+extras = "application=%s,state=%s,work-item-title=%s,work-item=%s" % (
     workItem.application,
-    workItem.installDate,
     workItem.state,
     workItem.title,
     args.identifier,

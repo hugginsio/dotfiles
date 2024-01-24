@@ -1,12 +1,9 @@
 # vim: ft=python
 
 from dataclasses import dataclass
-from datetime import datetime
 from typing import Any
-from zoneinfo import ZoneInfo
 import json
 import subprocess
-
 
 @dataclass
 class WorkItem:
@@ -50,25 +47,12 @@ def azGetWorkItem(identifier: str | int) -> WorkItem:
     azJson = json.loads(azOutput)
     fields = azJson["fields"]
 
-    installDate = fields.get("JBH.InstallDate", "")
-    if installDate:
-        installDate = azConvertInstallDate(installDate)
-
     return WorkItem(
         application=fields.get("Custom.Repository", ""),
         identifier=azJson["id"],
-        installDate=installDate,
         state=str(fields["System.BoardColumn"]).lower().replace(" ", "-"),
         title=fields["System.Title"],
     )
-
-
-def azConvertInstallDate(installDateZulu: str) -> str:
-    date = datetime.strptime(installDateZulu, "%Y-%m-%dT%H:%M:%SZ").replace(
-        tzinfo=ZoneInfo("UTC")
-    )
-
-    return date.astimezone(datetime.now().astimezone().tzinfo).strftime("%Y-%m-%d")
 
 
 def zkNewNote(notebookPath: str, title: str, extra: str = "") -> None:

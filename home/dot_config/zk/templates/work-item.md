@@ -3,7 +3,6 @@ title: "{{extra.work-item-title}}"
 date: "{{format-date now '%F %R'}}"
 tags: [work-item, {{#if extra.application}}{{extra.application}}{{else}}application{{/if}}, project, {{#if extra.state}}{{extra.state}}{{else}}in-development{{/if}}]
 work-item: {{extra.work-item}}
-install-date: "{{extra.install-date}}"
 ---
 
 ## Description
