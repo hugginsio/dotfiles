@@ -1,3 +1,4 @@
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/lazy-loading-with-lazy-nvim.md
 return {
    {
         "VonHeikemen/lsp-zero.nvim",
@@ -54,6 +55,10 @@ return {
                 },
                 handlers = {
                     zero.default_setup,
+                    lua_ls = function()
+                        local lua_ls = zero.nvim_lua_ls()
+                        require("lspconfig").lua_ls.setup(lua_ls)
+                    end,
                 },
             })
         end,
