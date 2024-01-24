@@ -3,13 +3,16 @@
 # Global abbreviations for built-ins
 abbr -a .. 'cd ../'
 abbr -a ... 'cd ../../'
+abbr -a G git
+abbr -a K kubectl
+abbr -a T task
+abbr -a TT taskwarrior-tui
 abbr -a c clear
 abbr -a cdd 'cd "$HOME/.local/share/chezmoi/"'
 abbr -a cdg 'cd "$HOME/Workspaces/Develop/"'
 abbr -a cdp 'cd "$HOME/Workspaces/Photograph/"'
 abbr -a cdv 'cd "$HOME/Workspaces/Vault/"'
 abbr -a cdw 'cd "$HOME/Workspaces/"'
-abbr -a k kubectl
 abbr -a l la
 abbr -a la 'ls -loFcgha'
 abbr -a ld 'ls -loFcghd .*'
