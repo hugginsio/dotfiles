@@ -27,12 +27,12 @@ lvim.builtin.which_key.setup.plugins.presets.windows = true
 lvim.builtin.which_key.setup.plugins.presets.z = true
 lvim.builtin.which_key.setup.plugins.registers = true
 
-
 -- Modify built-in keymaps
 lvim.builtin.which_key.mappings[";"] = {}
-lvim.builtin.which_key.mappings["q"] = { "<cmd>confirm q<CR>", "Quit Window" }
-lvim.builtin.which_key.mappings["s"]["p"] = {}
 lvim.builtin.which_key.mappings["o"] = { desc = "+Open" }
+lvim.builtin.which_key.mappings["q"] = { "<cmd>confirm q<cr>", "Quit Window" }
+lvim.builtin.which_key.mappings["s"]["g"] = { "<cmd>Telescope live_grep<cr>", "Grep Files" }
+lvim.builtin.which_key.mappings["s"]["p"] = {}
 lvim.builtin.which_key.mappings["z"] = { desc = "+Zettelkasten" }
 
 -- Add new keymaps
@@ -70,12 +70,6 @@ lvim.plugins = {
     event = "VeryLazy",
   },
   {
-    "tpope/vim-sensible",
-    build = ":helptags ~/.vim/pack/hugginsio/start/sensible",
-    dir = "~/.vim/pack/hugginsio/start/sensible",
-    event = "VeryLazy",
-  },
-  {
     "tpope/vim-speeddating",
     build = ":helptags ~/.vim/pack/hugginsio/start/speeddating",
     dir = "~/.vim/pack/hugginsio/start/speeddating",
@@ -107,6 +101,7 @@ lvim.plugins = {
   },
   {
     "folke/flash.nvim",
+    event = "VeryLazy",
     opts = {
       modes = {
         search = {
@@ -133,14 +128,15 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     cmd = {
       "MarkdownPreview",
       "MarkdownPreviewStop",
       "MarkdownPreviewToggle",
     },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
+    ft = "markdown",
     keys = {
       { "<leader>oG", "<cmd>MarkdownPreview<CR>", desc = "Markdown preview (browser)" },
     },
@@ -180,6 +176,22 @@ lvim.plugins = {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = true,
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
   }
 }
 
