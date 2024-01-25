@@ -5,9 +5,8 @@
 " Leader
 let mapleader=" "
 let maplocalleader=" "
-nnoremap <SPACE> <Nop>
 
-" Set relative and normal  numbers.
+" Set relative and normal numbers.
 set nu rnu
 
 " Theme
@@ -88,8 +87,6 @@ au FocusGained,BufEnter * checktime
 set ai
 set belloff=all
 set cmdheight=1
-set commentstring=""
-set complete=.,w,b,u,t,kspell
 set encoding=utf-8
 set expandtab
 set ffs=unix,dos,mac
@@ -99,8 +96,6 @@ set hlsearch
 set ignorecase
 set magic
 set modelines=3
-set mouse=vcr
-set mousemodel=popup_setpos
 set noerrorbells
 set nofsync
 set noshowmode
@@ -117,7 +112,5 @@ set splitbelow
 set splitright
 set switchbuf=uselast
 set t_vb=
-set ttyfast
 set whichwrap+=<,>,h,l
-set wildoptions="pum,tagfile"
 set wrap
