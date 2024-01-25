@@ -3,4 +3,5 @@ packages = [
     "neovim",
     "pip",
     "pre-commit",
+    "pynvim",
 ]
