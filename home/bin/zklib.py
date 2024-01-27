@@ -9,7 +9,6 @@ import subprocess
 class WorkItem:
     application: str
     identifier: int
-    installDate: str
     state: str
     title: str
 
