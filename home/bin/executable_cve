@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+# vim: ft=python
+
+from urllib.request import urlopen
+import argparse
+import json
+
+parser = argparse.ArgumentParser(
+    prog="cve",
+    description="View CVE details from your terminal.",
+)
+
+parser.add_argument(
+    "identifier",
+    help="CVE identifier (CVE-YYYY-NNNN)",
+    type=str,
+)
+
+args = parser.parse_args()
+baseUrl = "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId="
+
+identifier = args.identifier
+
+
+def PrintItem(header: str, body: str):
+    print("\n" + header)
+    print(body)
+
+
+with urlopen(baseUrl + identifier) as res:
+    body = res.read()
+    jsonBody = json.loads(body)
+    if jsonBody.get("totalResults") == 0:
+        print("Identifier not found in CVE database.")
+        exit(4)
+    cve = jsonBody.get("vulnerabilities")[0].get("cve")
+    description = ""
+    for desc in cve.get("descriptions"):
+        if desc.get("lang") == "en":
+            description = desc.get("value")
+
+    PrintItem("Assigner", cve.get("sourceIdentifier"))
+    PrintItem("Published", cve.get("published"))
+    PrintItem("Updated", cve.get("lastModified"))
+    PrintItem("Title", cve.get("cisaVulnerabilityName"))
+    PrintItem("Description", description)
