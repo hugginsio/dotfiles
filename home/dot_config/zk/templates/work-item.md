@@ -18,4 +18,3 @@ work-item: {{extra.work-item}}
 - TBA
 
 ## Notes
-
