@@ -1,11 +1,107 @@
 -- https://www.lunarvim.org/
 
--- Source existing vim configuration (https://neovim.io/doc/user/nvim.html#nvim-from-vim)
-vim.cmd('source ~/.vim/vimrc')
+-- Helper functions
+local function augroup(name)
+  return vim.api.nvim_create_augroup("hugginsio_" .. name, { clear = true })
+end
 
 -- Disable built-in plugins
 lvim.builtin.alpha.active = false
 lvim.builtin.lir.active = false
+
+-- Undo files
+local undodir = vim.fn.glob(vim.fn.stdpath "data" .. "/undo/")
+local stat = vim.loop.fs_stat(undodir)
+if stat and not stat.type == "directory" then
+  vim.fn.mkdir(undodir, "p")
+end
+
+-- Force set defaults
+vim.opt.autoindent = true
+vim.opt.backup = false
+vim.opt.belloff = "all"
+vim.opt.clipboard = ""
+vim.opt.cmdheight = 1
+vim.opt.conceallevel = 0
+vim.opt.cursorline = true
+vim.opt.expandtab = true
+vim.opt.fileencoding = "utf-8"
+vim.opt.fileformats = "unix,dos,mac"
+vim.opt.foldexpr = ""
+vim.opt.foldmethod = "manual"
+vim.opt.guifont = "monospace:h17"
+vim.opt.hidden = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.laststatus = 3
+vim.opt.magic = true
+vim.opt.modelines = 3
+vim.opt.mouse = ""
+vim.opt.number = true
+vim.opt.numberwidth = 2
+vim.opt.pumheight = 10
+vim.opt.relativenumber = true
+vim.opt.ruler = false
+vim.opt.scrolloff = 7
+vim.opt.shiftwidth = 2
+vim.opt.shortmess = "aoOtTf"
+vim.opt.showcmd = false
+vim.opt.showmatch = true
+vim.opt.sidescrolloff = 7
+vim.opt.signcolumn = "yes"
+vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.startofline = false
+vim.opt.swapfile = false
+vim.opt.tabstop = 2
+vim.opt.termguicolors = true
+vim.opt.undodir = undodir
+vim.opt.undofile = true
+vim.opt.updatetime = 100
+vim.opt.whichwrap = "<,>,h,l"
+vim.opt.wildignore = "*.o,*~,*.pyc,*.dll,*.pdb,*.nupkg,*.exe,*.jpg,*.png,*.bin,tags,**/target/**,**/node_modules/**,.git/*,.DS_Store"
+vim.opt.wrap = false
+vim.opt.writebackup = false
+
+-- Bash like keys for the command line
+vim.keymap.set("c", "<C-a>", "<home>")
+vim.keymap.set("c", "<C-e>", "<end>")
+vim.keymap.set("c", "<C-k>", "<C-u>")
+vim.keymap.set("c", "<C-n>", "<Down>")
+vim.keymap.set("c", "<C-p>", "<Up>")
+
+-- 0 goes to first character in line
+vim.keymap.set("n", "0", "^")
+vim.keymap.set({ "v", "n" }, "#", "<cmd>call VisualSelection('', '')<cr>?<cr>=@/<cr><cr>")
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = augroup("highlight_yank"),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+-- wrap and check for spell in text filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("wrap_spell"),
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
+
+-- Check if any buffers were changed outside Neovim
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
+  group = augroup("check_time"),
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_command('checktime')
+  end,
+})
 
 -- lualine
 lvim.builtin.lualine.style = "lvim"
@@ -40,164 +136,176 @@ lvim.builtin.which_key.mappings[","] = { "<cmd>Telescope buffers sort_mru=true s
 
 -- User plugins
 lvim.plugins = {
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 100,
-    },
-    {
-        "tpope/vim-characterize",
-        build = ":helptags ~/.vim/pack/hugginsio/start/characterize",
-        dir = "~/.vim/pack/hugginsio/start/characterize",
-        event = "VeryLazy",
-    },
-    {
-        "tpope/vim-dotenv",
-        build = ":helptags ~/.vim/pack/hugginsio/start/dotenv",
-        dir = "~/.vim/pack/hugginsio/start/dotenv",
-        event = "VeryLazy",
-    },
-    {
-        "tpope/vim-eunuch",
-        build = ":helptags ~/.vim/pack/hugginsio/start/eunuch",
-        dir = "~/.vim/pack/hugginsio/start/eunuch",
-        event = "VeryLazy",
-    },
-    {
-        "tpope/vim-fugitive",
-        build = ":helptags ~/.vim/pack/hugginsio/start/fugitive",
-        dir = "~/.vim/pack/hugginsio/start/fugitive",
-        event = "VeryLazy",
-    },
-    {
-        "tpope/vim-speeddating",
-        build = ":helptags ~/.vim/pack/hugginsio/start/speeddating",
-        dir = "~/.vim/pack/hugginsio/start/speeddating",
-        event = "VeryLazy",
-    },
-    {
-        "tpope/vim-surround",
-        build = ":helptags ~/.vim/pack/hugginsio/start/surround",
-        dir = "~/.vim/pack/hugginsio/start/surround",
-        event = "VeryLazy",
-        keys = {
-            { "S",   desc = "Surround",                           mode = "v" },
-            { "cS",  desc = "Change surround on own line" },
-            { "cs",  desc = "Change surround" },
-            { "ds",  desc = "Delete surround" },
-            { "yS",  desc = "You surround on own line" },
-            { "ySS", desc = "You surround on own line and indent" },
-            { "ys",  desc = "You surround" },
-            { "yss", desc = "You surround on current line" },
-        }
-    },
-    {
-        "ellisonleao/glow.nvim",
-        cmd = "Glow",
-        opts = { border = "single" },
-        keys = {
-            { "<leader>og", "<cmd>Glow<CR>", desc = "Glow" },
-        },
-    },
-    {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        opts = {
-            modes = {
-                search = {
-                    enabled = false,
-                },
-            },
-        },
-    },
-    {
-        "fladson/vim-kitty",
-        ft = "kitty",
-    },
-    {
-        "hugginsio/twig.nvim",
-        event = "VeryLazy",
-        ft = "markdown",
-        opts = {
-            project_pattern = "[0-9]+",
-        },
-    },
-    {
-        "luizribeiro/vim-cooklang",
-        ft = "cook",
-    },
-    {
-        "iamcco/markdown-preview.nvim",
-        build = function()
-            vim.fn["mkdp#util#install"]()
-        end,
-        cmd = {
-            "MarkdownPreview",
-            "MarkdownPreviewStop",
-            "MarkdownPreviewToggle",
-        },
-        ft = "markdown",
-        keys = {
-            { "<leader>oG", "<cmd>MarkdownPreview<CR>", desc = "Markdown preview (browser)" },
-        },
-    },
-    {
-        "mickael-menu/zk-nvim",
-        config = function(opts)
-            require("zk").setup(opts)
-            require("telescope").load_extension("zk")
-        end,
-        event = "VeryLazy",
-        ft = { "markdn", "markdown", "md", "mdown" },
-        keys = {
-            { "<leader>zb", "<cmd>ZkBacklinks<CR>",        desc = "Open backlinks picker" },
-            { "<leader>zl", "<cmd>ZkLinks<CR>",            desc = "Open outbound links picker" },
-            { "<leader>zo", "<cmd>Telescope zk notes<CR>", desc = "Open notes picker" },
-            { "<leader>zt", "<cmd>Telescope zk tags<CR>",  desc = "Open notes picker, filtered by tags" },
-        },
-        opts = {
-            picker = "telescope",
-            lsp = {
-                config = { cmd = { "zk", "lsp" }, name = "zk" },
-                auto_attach = { enabled = true, filetypes = { "markdn", "markdown", "md", "mdown" } },
-            },
-        },
-    },
-    {
-        -- FIX: this does not work with my gtask binary
-        "stevearc/overseer.nvim",
-        opts = {},
-        keys = {
-            { "<leader>oo", "<cmd>OverseerRun<CR>",    desc = "Overseer (run)" },
-            { "<leader>oO", "<cmd>OverseerToggle<CR>", desc = "Overseer (task history)" },
-        },
-    },
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {}
-    },
-    {
-        "stevearc/dressing.nvim",
-        lazy = true,
-        init = function()
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.ui.select = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.select(...)
-            end
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.ui.input = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.input(...)
-            end
-        end,
-    },
-    {
-        "hugginsio/vim-x12"
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 100,
+  },
+  {
+    "tpope/vim-characterize",
+    build = ":helptags ~/.vim/pack/hugginsio/start/characterize",
+    dir = "~/.vim/pack/hugginsio/start/characterize",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-dotenv",
+    build = ":helptags ~/.vim/pack/hugginsio/start/dotenv",
+    dir = "~/.vim/pack/hugginsio/start/dotenv",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-eunuch",
+    build = ":helptags ~/.vim/pack/hugginsio/start/eunuch",
+    dir = "~/.vim/pack/hugginsio/start/eunuch",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-fugitive",
+    build = ":helptags ~/.vim/pack/hugginsio/start/fugitive",
+    dir = "~/.vim/pack/hugginsio/start/fugitive",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-speeddating",
+    build = ":helptags ~/.vim/pack/hugginsio/start/speeddating",
+    dir = "~/.vim/pack/hugginsio/start/speeddating",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-surround",
+    build = ":helptags ~/.vim/pack/hugginsio/start/surround",
+    dir = "~/.vim/pack/hugginsio/start/surround",
+    event = "VeryLazy",
+    keys = {
+      { "S",   desc = "Surround",                           mode = "v" },
+      { "cS",  desc = "Change surround on own line" },
+      { "cs",  desc = "Change surround" },
+      { "ds",  desc = "Delete surround" },
+      { "yS",  desc = "You surround on own line" },
+      { "ySS", desc = "You surround on own line and indent" },
+      { "ys",  desc = "You surround" },
+      { "yss", desc = "You surround on current line" },
     }
+  },
+  {
+    "ellisonleao/glow.nvim",
+    cmd = "Glow",
+    opts = { border = "single" },
+    keys = {
+      { "<leader>og", "<cmd>Glow<CR>", desc = "Glow" },
+    },
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      modes = {
+        search = {
+          enabled = false,
+        },
+      },
+    },
+  },
+  {
+    "fladson/vim-kitty",
+    ft = "kitty",
+  },
+  {
+    "hugginsio/twig.nvim",
+    event = "VeryLazy",
+    ft = "markdown",
+    opts = {
+      project_pattern = "[0-9]+",
+    },
+  },
+  {
+    "luizribeiro/vim-cooklang",
+    ft = "cook",
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+    cmd = {
+      "MarkdownPreview",
+      "MarkdownPreviewStop",
+      "MarkdownPreviewToggle",
+    },
+    ft = "markdown",
+    keys = {
+      { "<leader>oG", "<cmd>MarkdownPreview<CR>", desc = "Markdown preview (browser)" },
+    },
+  },
+  {
+    "mickael-menu/zk-nvim",
+    config = function(opts)
+      require("zk").setup(opts)
+      require("telescope").load_extension("zk")
+    end,
+    event = "VeryLazy",
+    ft = { "markdn", "markdown", "md", "mdown" },
+    keys = {
+      { "<leader>zb", "<cmd>ZkBacklinks<CR>",        desc = "Open backlinks picker" },
+      { "<leader>zl", "<cmd>ZkLinks<CR>",            desc = "Open outbound links picker" },
+      { "<leader>zo", "<cmd>Telescope zk notes<CR>", desc = "Open notes picker" },
+      { "<leader>zt", "<cmd>Telescope zk tags<CR>",  desc = "Open notes picker, filtered by tags" },
+    },
+    opts = {
+      picker = "telescope",
+      lsp = {
+        config = { cmd = { "zk", "lsp" }, name = "zk" },
+        auto_attach = { enabled = true, filetypes = { "markdn", "markdown", "md", "mdown" } },
+      },
+    },
+  },
+  {
+    -- FIX: this does not work with my gtask binary
+    "stevearc/overseer.nvim",
+    opts = {},
+    keys = {
+      { "<leader>oo", "<cmd>OverseerRun<CR>",    desc = "Overseer (run)" },
+      { "<leader>oO", "<cmd>OverseerToggle<CR>", desc = "Overseer (task history)" },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = true,
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
+  },
+  {
+    "hugginsio/vim-x12",
+    dir = "~/Workspaces/Develop/vim-x12"
+  }
 }
 
 -- Misc.
 lvim.builtin.cmp.completion.keyword_length = 2
 lvim.colorscheme = "catppuccin-mocha"
+lvim.format_on_save.pattern = {
+  "*.py",
+}
+
+-- https://github.com/LunarVim/starter.lvim/tree/python-ide
+lvim.builtin.treesitter.ensure_installed = {
+  "python",
+}
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup { { name = "black" }, }
