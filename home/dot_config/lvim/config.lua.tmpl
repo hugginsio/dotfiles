@@ -211,7 +211,6 @@ lvim.plugins = {
         },
         keys = {
             { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
             { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
             { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         },
@@ -272,10 +271,25 @@ lvim.plugins = {
     {
         -- FIX: this does not work with my gtask binary
         "stevearc/overseer.nvim",
+        cmd = {
+            "OverseerBuild",
+            "OverseerClearCache",
+            "OverseerClose",
+            "OverseerDeleteBundle",
+            "OverseerInfo",
+            "OverseerLoadBundle",
+            "OverseerOpen",
+            "OverseerQuickAction",
+            "OverseerRun",
+            "OverseerRunCmd",
+            "OverseerSaveBundle",
+            "OverseerTaskAction",
+            "OverseerToggle",
+        },
         opts = {},
         keys = {
             { "<leader>oo", "<cmd>OverseerRun<CR>",    desc = "Overseer (run)" },
-            { "<leader>oO", "<cmd>OverseerToggle<CR>", desc = "Overseer (task history)" },
+            { "<leader>oO", "<cmd>OverseerToggle bottom<CR>", desc = "Overseer (task history)" },
         },
     },
     {
