@@ -17,3 +17,7 @@ Library/Application Support/nushell/**
 .chezmoiexternals/unix.*
 .chezmoiscripts/unix/**
 {{ end }}
+
+{{ if not .personal }}
+.chezmoitemplates/**/personal.*
+{{ end }}

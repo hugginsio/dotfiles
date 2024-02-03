@@ -31,7 +31,7 @@ vim.opt.expandtab = true
 vim.opt.fileencoding = "utf-8"
 vim.opt.fileformats = "unix,dos,mac"
 vim.opt.foldexpr = ""
-vim.opt.foldmethod = "manual"
+vim.opt.foldmethod = "expr"
 vim.opt.guifont = "monospace:h17"
 vim.opt.hidden = true
 vim.opt.hlsearch = true
@@ -129,6 +129,7 @@ lvim.builtin.which_key.setup.plugins.registers = true
 
 -- Modify built-in keymaps
 lvim.builtin.which_key.mappings[";"] = {}
+lvim.builtin.which_key.mappings["a"] = { desc = "+AI" }
 lvim.builtin.which_key.mappings["o"] = { desc = "+Open" }
 lvim.builtin.which_key.mappings["q"] = { "<cmd>confirm q<cr>", "Quit Window" }
 lvim.builtin.which_key.mappings["s"]["g"] = { "<cmd>Telescope live_grep<cr>", "Grep Files" }
@@ -166,8 +167,10 @@ lvim.plugins = {
   {
     "tpope/vim-fugitive",
     build = ":helptags ~/.vim/pack/hugginsio/start/fugitive",
+    cmd = { "G", "GBrowse", "GDelete", "GMove", "GRemove", "GRename", "Gdiffsplit", "Gedit", "Ggrep", "Git", "Glgrep", "Gread", "Gwrite" },
     dir = "~/.vim/pack/hugginsio/start/fugitive",
     event = "VeryLazy",
+    ft = "fugitive",
   },
   {
     "tpope/vim-speeddating",
@@ -316,8 +319,10 @@ lvim.plugins = {
   {
     "hugginsio/vim-x12",
     dir = "~/Workspaces/Develop/vim-x12"
-  }
+  },
 }
+
+-- {{- template "nvim/personal.lua" }}
 
 -- Misc.
 lvim.builtin.cmp.completion.keyword_length = 2
