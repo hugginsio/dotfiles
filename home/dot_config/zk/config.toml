@@ -53,7 +53,6 @@ hashtags = false
 multiword-tags = false
 
 [tool]
-editor = "nvim"
 fzf-line = "{{#if metadata.work-item}}{{#style 'path'}}{{metadata.work-item}}{{/style}} {{/if}}{{style 'title' title}}"
 fzf-preview = "bat -l md -p --color always {-1}"
 pager = "less -FIRX"

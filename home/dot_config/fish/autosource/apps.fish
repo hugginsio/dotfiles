@@ -28,9 +28,13 @@ if command -qs nvim
     set -Ux VISUAL nvim
 
     abbr -a nvimdiff nvim -d
-    abbr -a vi nvim
-    abbr -a vim nvim
-    abbr -a vimdiff nvim -d
+end
+
+# configure lvim
+if command -qs lvim
+    set -Ux VISUAL lvim
+
+    abbr -a lvimdiff lvim -d
 end
 
 # configure Node
