@@ -317,15 +317,16 @@ lvim.plugins = {
     end,
   },
   {
-    "hugginsio/vim-x12",
-    dir = "~/Workspaces/Develop/vim-x12"
-  },
-  {
     "farmergreg/vim-lastplace",
   },
 }
 
--- {{- template "nvim/personal.lua" }}
+-- {{- if .personal -}}
+-- {{- template "nvim/personal.lua" -}}
+-- {{- end }}
+-- {{- if .work -}}
+-- {{- template "nvim/work.lua" -}}
+-- {{- end }}
 
 -- Misc.
 lvim.builtin.cmp.completion.keyword_length = 2
