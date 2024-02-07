@@ -346,7 +346,54 @@ lvim.plugins = {
         },
       },
     },
-  }
+  },
+  {
+    "preservim/vim-pencil",
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        group = augroup("pencil"),
+        pattern = { "markdown", "text", },
+        callback = function()
+          vim.g["pencil#wrapModeDefault"] = "soft"
+          vim.fn["pencil#init"]()
+        end,
+      })
+    end,
+    event = "VeryLazy",
+    ft = { "markdown", "text" },
+  },
+  {
+    "preservim/vim-litecorrect",
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        group = augroup("litecorrect"),
+        pattern = { "markdown", "text", },
+        callback = function()
+          vim.fn["litecorrect#init"]()
+        end,
+      })
+    end,
+    event = "VeryLazy",
+    ft = { "markdown", "text" },
+  },
+  {
+    "preservim/vim-lexical",
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        group = augroup("lexical"),
+        pattern = { "markdown", "text", },
+        callback = function()
+          vim.fn["lexical#init"]()
+        end,
+      })
+    end,
+    event = "VeryLazy",
+    ft = { "markdown", "text" },
+  },
+  {
+    "preservim/vim-wordy",
+    cmd = { "NextWordy", "NoWordy", "PrevWordy", "Wordy" },
+  },
 }
 
 -- {{- if .personal -}}
