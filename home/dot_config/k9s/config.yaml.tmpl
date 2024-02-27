@@ -1,0 +1,12 @@
+# https://k9scli.io/
+# vim:ft=yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/derailed/k9s/master/internal/config/json/schemas/k9s.json
+
+k9s:
+  liveViewAutoRefresh: true
+  readOnly: {{ .work }}
+  ui:
+    headless: true
+    logoless: true
+    noIcons: false
+    skin: catppuccin-mocha
