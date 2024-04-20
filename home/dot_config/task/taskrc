@@ -1,8 +1,9 @@
 # https://taskwarrior.org/
+# vim: ft=conf
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=$HOME/Workspaces/tasks
+data.location=$HOME/Workspaces/taskwarrior/tasks/
 
 # Theme
 include hugginsio.theme
@@ -25,7 +26,11 @@ urgency.user.tag.CUSTOMER.coefficient=-5
 urgency.user.tag.NEXT.coefficient=5
 urgency.user.tag.STAGED.coefficient=-5
 urgency.user.tag.TEAM.coefficient=-5
-urgency.uda.priority.H.coefficient=9
 
 # Built-in urgency
 urgency.active.coefficient=10
+urgency.uda.priority.H.coefficient=9
+urgency.uda.priority.L.coefficient=-3
+
+# Sync
+sync.local.server_dir=$HOME/Workspaces/taskwarrior/sync/
