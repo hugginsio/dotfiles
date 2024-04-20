@@ -30,9 +30,11 @@ color.uda.priority.L=
 color.uda.priority.M=
 
 # Tags
+color.tag.BLOCKED=black on magenta
+color.tag.CUSTOMER=black on magenta
 color.tag.NEXT=black on cyan
 color.tag.STAGED=white on black
-color.tag.BLOCKED=black on magenta
+color.tag.TEAM=black on magenta
 color.tag.none=
 color.tagged=
 

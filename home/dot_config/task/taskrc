@@ -19,3 +19,13 @@ uda.taskwarrior-tui.task-report.prompt-on-delete=true
 uda.taskwarrior-tui.style.report.selection=black on white
 uda.taskwarrior-tui.style.report.scrollbar=white
 uda.taskwarrior-tui.quick-tag.name=NEXT
+
+# Tag urgency
+urgency.user.tag.CUSTOMER.coefficient=-5
+urgency.user.tag.NEXT.coefficient=5
+urgency.user.tag.STAGED.coefficient=-5
+urgency.user.tag.TEAM.coefficient=-5
+urgency.uda.priority.H.coefficient=9
+
+# Built-in urgency
+urgency.active.coefficient=10
