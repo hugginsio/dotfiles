@@ -56,6 +56,11 @@ config.keys = {
   { key = "T",     mods = "SHIFT|CTRL", action = act.SpawnTab "CurrentPaneDomain" },
   { key = "V",     mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
   { key = "W",     mods = "SHIFT|CTRL", action = act.CloseCurrentTab { confirm = true } },
+
+  -- {{- if eq .chezmoi.os "darwin" }}
+  { key = "C",     mods = "SUPER",      action = act.CopyTo "Clipboard" },
+  { key = "V",     mods = "SUPER",      action = act.PasteFrom "Clipboard" },
+  -- {{- end }}
 }
 
 return config
