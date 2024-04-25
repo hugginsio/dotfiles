@@ -8,6 +8,7 @@
 
 {{/* misc. values */}}
 {{- $mfg := "unknown" -}}
+{{- $hostpartial := "unknown" -}}
 
 {{/* combo OS ID, e.g. linux-debian */}}
 {{- $osid := .chezmoi.os -}}
@@ -35,17 +36,20 @@
 {{-     $mfg = "pc" -}}
 {{- end -}}
 
+{{/* set host partial */}}
+{{- $hostpartial = upper (trunc 4 .chezmoi.hostname) -}}
+
 {{/* determine if personal, work, server, or none */}}
 {{- if not $ephemeral -}}
-{{-    if eq .chezmoi.username "hugginsio" -}}
+{{-    if eq $hostpartial "KYLE" -}}
 {{-         $personal = true -}}
 {{-         $server = false -}}
 {{-         $work = false -}}
-{{-     else if eq .chezmoi.username "kylehuggins" -}}
+{{-     else if eq $hostpartial "MACX" "WINX" -}}
 {{-         $personal = false -}}
 {{-         $server = false -}}
 {{-         $work = true -}}
-{{-     else if eq .chezmoi.username "host" -}}
+{{-     else if eq $hostpartial "HLAB" -}}
 {{-         $personal = true -}}
 {{-         $server = true -}}
 {{-         $work = false -}}
@@ -76,6 +80,7 @@
 [data]
     email = {{ $email | quote }}
     ephemeral = {{ $ephemeral }}
+    hostpartial = {{ $hostpartial | quote }}
     mfg = {{ $mfg | quote}}
     name = {{ $name | quote }}
     osid = {{ $osid | quote }}
