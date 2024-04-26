@@ -5,8 +5,7 @@
 # -u: exit on unset variables
 set -eu
 
-if ! command -v asdf &> /dev/null
-then
+if ! command -v asdf &> /dev/null; then
     echo "ERR! asdf-vm is not installed. Try re-applying your dotfiles."
 else
     echo "Configuring asdf-vm $(asdf --version)..."

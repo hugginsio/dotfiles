@@ -5,8 +5,12 @@
 # -u: exit on unset variables
 set -eu
 
-{{ range get .python "packages" -}}
-    pip install -U -I --no-input {{ . }}
-{{ end -}}
+if command -v asdf &> /dev/null; then
+  {{ range get .python "packages" -}}
+      pip install -U -I --no-input {{ . }}
+  {{ end -}}
 
-pre-commit init-templatedir ~/.config/git/template/
+  pre-commit init-templatedir ~/.config/git/template/
+else
+  echo "ERR! Python is not installed. Try re-applying your dotfiles."
+fi
