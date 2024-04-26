@@ -8,9 +8,10 @@ esac
 
 pathadd() {
     if [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="$1${PATH:+"$PATH:"}"
+        PATH="$1${PATH:+":$PATH"}"
     fi
 }
 
-pathadd "~/bin/"
-pathadd "~/.asdf/bin/"
+pathadd "$HOME/bin/"
+pathadd "$HOME/.asdf/bin/"
+pathadd "$HOME/.asdf/shims/"
