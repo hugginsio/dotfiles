@@ -19,7 +19,7 @@
     {{ if eq $nuArch "arm64" -}}
     {{     $nuArch = "aarch64" -}}
     {{ end -}}
-    {{ $nuOs := .osid -}}
+    {{ $nuOs := .chezmoi.os -}}
     {{ if eq $nuOs "linux" -}}
     {{     $nuOs = "linux-gnu" -}}
     {{ end -}}
@@ -41,7 +41,7 @@
     type = "archive-file"
     {{ $lgVersion := (gitHubLatestRelease "jesseduffield/lazygit").TagName -}}
     {{ $lgArch := .chezmoi.arch -}}
-    {{ $lgOs := .osid -}}
+    {{ $lgOs := .chezmoi.os -}}
     {{ if eq $lgOs "linux" -}}
     {{     $lgOs = "Linux" -}}
     {{ else if eq $lgOs "darwin" -}}
@@ -89,7 +89,7 @@
 ["bin/taskwarrior-tui"]
     type = "archive-file"
     {{ $ttuiVersion := (gitHubLatestRelease "kdheepak/taskwarrior-tui").TagName -}}
-    {{ $ttuiOs := .osid -}}
+    {{ $ttuiOs := .chezmoi.os -}}
     {{ if eq $ttuiOs "linux" -}}
     {{     $ttuiOs = "linux-gnu" -}}
     {{ end -}}
