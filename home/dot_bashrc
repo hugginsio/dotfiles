@@ -13,3 +13,4 @@ pathadd() {
 }
 
 pathadd "~/bin/"
+pathadd "~/.asdf/bin/"
