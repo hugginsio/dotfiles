@@ -1,0 +1,15 @@
+# vim: ft=bash
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1${PATH:+"$PATH:"}"
+    fi
+}
+
+pathadd "~/bin/"
