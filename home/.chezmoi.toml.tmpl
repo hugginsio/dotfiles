@@ -12,8 +12,8 @@
 
 {{/* combo OS ID, e.g. linux-debian */}}
 {{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "idLike" -}}
-{{-     $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.idLike -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-     $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
 {{/* determine if GitHub codespace, VSCode remote container, Docker container, or Coder workspace */}}
