@@ -19,7 +19,7 @@
     {{ if eq $nuArch "arm64" -}}
     {{     $nuArch = "aarch64" -}}
     {{ end -}}
-    {{ $nuOs := .chezmoi.os -}}
+    {{ $nuOs := .osid -}}
     {{ if eq $nuOs "linux" -}}
     {{     $nuOs = "linux-gnu" -}}
     {{ end -}}
@@ -34,6 +34,21 @@
     type = "archive-file"
     url = "https://github.com/go-task/task/releases/download/{{ (gitHubLatestRelease "go-task/task").TagName }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     path = "task"
+    refreshPeriod = "168h"
+    executable = true
+
+["bin/lazygit"]
+    type = "archive-file"
+    {{ $lgVersion := (gitHubLatestRelease "jesseduffield/lazygit").TagName -}}
+    {{ $lgArch := .chezmoi.arch -}}
+    {{ $lgOs := .osid -}}
+    {{ if eq $lgOs "linux" -}}
+    {{     $lgOs = "Linux" -}}
+    {{ else if eq $lgOs "darwin" -}}
+    {{     $lgOs = "Darwin" -}}
+    {{ end -}}
+    url = "https://github.com/jesseduffield/lazygit/releases/download/{{ $lgVersion }}/lazygit_{{ substr 1 -1 $lgVersion }}_{{ $lgOs }}_{{ $lgArch }}.tar.gz"
+    path = "lazygit"
     refreshPeriod = "168h"
     executable = true
 
@@ -74,7 +89,7 @@
 ["bin/taskwarrior-tui"]
     type = "archive-file"
     {{ $ttuiVersion := (gitHubLatestRelease "kdheepak/taskwarrior-tui").TagName -}}
-    {{ $ttuiOs := .chezmoi.os -}}
+    {{ $ttuiOs := .osid -}}
     {{ if eq $ttuiOs "linux" -}}
     {{     $ttuiOs = "linux-gnu" -}}
     {{ end -}}
