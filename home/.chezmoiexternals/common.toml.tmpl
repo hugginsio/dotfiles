@@ -9,7 +9,7 @@
 ["bin/"]
     type = "archive"
     {{ $nuVersion := (gitHubLatestRelease "nushell/nushell").TagName -}}
-    {{ $nuArch := .normalarch -}}
+    {{ $nuArch := .narch -}}
     {{ if eq $nuArch "arm64" -}}
     {{     $nuArch = "aarch64" -}}
     {{ end -}}

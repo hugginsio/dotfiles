@@ -11,7 +11,7 @@
 ["bin/zellij"]
     type = "archive-file"
     {{ $zellijVersion := (gitHubLatestRelease "zellij-org/zellij").TagName -}}
-    {{ $zellijArch := .normalarch -}}
+    {{ $zellijArch := .narch -}}
     {{ if eq $zellijArch "arm64" -}}
     {{     $zellijArch = "aarch64" -}}
     {{ end -}}
@@ -80,7 +80,7 @@
 ["bin/kubectx"]
     type = "archive-file"
     {{ $kctxVersion := (gitHubLatestRelease "ahmetb/kubectx").TagName -}}
-    url = "https://github.com/ahmetb/kubectx/releases/download/{{ $kctxVersion }}/kubectx_{{ $kctxVersion }}_{{ .chezmoi.os }}_{{ .normalarch }}.tar.gz"
+    url = "https://github.com/ahmetb/kubectx/releases/download/{{ $kctxVersion }}/kubectx_{{ $kctxVersion }}_{{ .chezmoi.os }}_{{ .narch }}.tar.gz"
     path = "kubectx"
     refreshPeriod = "168h"
     executable = true

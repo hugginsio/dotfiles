@@ -9,7 +9,7 @@
 {{/* misc. values */}}
 {{- $mfg := "unknown" -}}
 {{- $hostpartial := "unknown" -}}
-{{- $narch := "unknown" -}}
+{{- $narch := .chezmoi.arch -}}
 
 {{/* combo OS ID, e.g. linux-debian */}}
 {{- $osid := .chezmoi.os -}}
