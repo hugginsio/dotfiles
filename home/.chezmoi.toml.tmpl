@@ -9,6 +9,7 @@
 {{/* misc. values */}}
 {{- $mfg := "unknown" -}}
 {{- $hostpartial := "unknown" -}}
+{{- $narch := "unknown" -}}
 
 {{/* combo OS ID, e.g. linux-debian */}}
 {{- $osid := .chezmoi.os -}}
@@ -38,6 +39,11 @@
 
 {{/* set host partial */}}
 {{- $hostpartial = upper (trunc 4 .chezmoi.hostname) -}}
+
+{{/* attempt to normalize architecture */}}
+{{- if eq .chezmoi.arch "amd64" -}}
+{{-     $narch = "x86_64" -}}
+{{- end -}}
 
 {{/* determine if personal, work, server, or none */}}
 {{- if not $ephemeral -}}
@@ -78,16 +84,22 @@
 {{- end -}}
 
 [data]
-    email = {{ $email | quote }}
-    ephemeral = {{ $ephemeral }}
-    hostpartial = {{ $hostpartial | quote }}
-    mfg = {{ $mfg | quote}}
-    name = {{ $name | quote }}
-    osid = {{ $osid | quote }}
-    personal = {{ $personal }}
-    server = {{ $server }}
-    work = {{ $work }}
+  email = {{ $email | quote }}
+  ephemeral = {{ $ephemeral }}
+  hostpartial = {{ $hostpartial | quote }}
+  mfg = {{ $mfg | quote }}
+  name = {{ $name | quote }}
+  narch = {{ $narch |quote }}
+  osid = {{ $osid | quote }}
+  personal = {{ $personal }}
+  server = {{ $server }}
+  work = {{ $work }}
 
 [hooks.apply.post]
-    command = "echo"
-    args = ["Don't forget to reload!"]
+{{ if eq .chezmoi.os "windows" }}
+  command = "Write-Host"
+{{ else }}
+  command = "echo"
+{{ end }}
+
+  args = ["Don't forget to reload!"]
