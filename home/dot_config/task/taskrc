@@ -34,3 +34,7 @@ urgency.uda.priority.L.coefficient=-3
 
 # Sync
 sync.local.server_dir=$HOME/Workspaces/taskwarrior/sync/
+
+# Custom reports
+report.next.columns=id,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description
+report.next.labels=ID,Deps,P,Project,Tag,Recur,S,Due,Until,Description
