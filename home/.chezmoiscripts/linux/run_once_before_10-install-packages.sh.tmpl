@@ -7,40 +7,19 @@ set -eu
 
 {{ if eq .osid "linux-ubuntu" -}}
 
-{{ $ppas := list -}}
-
-{{ $packages := list
-  "build-essential"
-  "curl"
-  "fzf"
-  "git"
-  "jq"
-  "libbz2-dev"
-  "libffi-dev"
-  "liblzma-dev"
-  "libncursesw5-dev"
-  "libreadline-dev"
-  "libsqlite3-dev"
-  "libssl-dev"
-  "libxml2-dev"
-  "libxmlsec1-dev"
-  "pkg-config"
-  "ripgrep"
-  "tk-dev"
-  "unzip"
-  "xz-utils"
-  "zlib1g-dev"
--}}
+{{ $packages := .packages.ubuntu.common -}}
 
 {{ if not .ephemeral -}}
-{{     $ppas = mustAppend $ppas "ppa:fish-shell/release-3" -}}
-{{     $packages = mustAppend $packages "fish" -}}
-{{     $packages = mustAppend $packages "golang" -}}
+{{   $packages = concat $packages .packages.ubuntu.nonephemeral -}}
 {{ end -}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{     $sudo = "" -}}
+{{ end -}}
+
+{{ range .packages.ubuntu.ppa -}}
+  {{ $sudo }}apt-add-repository -y {{ . }}
 {{ end -}}
 
 {{ $sudo }}apt-get update -y

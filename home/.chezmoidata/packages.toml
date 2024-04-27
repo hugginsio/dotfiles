@@ -1,0 +1,32 @@
+[packages.ubuntu]
+common = [
+  "build-essential",
+  "curl",
+  "fish",
+  "fzf",
+  "git",
+  "jq",
+  "libbz2-dev",
+  "libffi-dev",
+  "liblzma-dev",
+  "libncursesw5-dev",
+  "libreadline-dev",
+  "libsqlite3-dev",
+  "libssl-dev",
+  "libxml2-dev",
+  "libxmlsec1-dev",
+  "pkg-config",
+  "ripgrep",
+  "tk-dev",
+  "unzip",
+  "xz-utils",
+  "zlib1g-dev",
+]
+
+nonephemeral = [
+  "golang"
+]
+
+ppa = [
+  "ppa:fish-shell/release-3",
+]
