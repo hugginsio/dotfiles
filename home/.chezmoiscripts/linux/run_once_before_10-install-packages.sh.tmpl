@@ -10,22 +10,32 @@ set -eu
 {{ $ppas := list -}}
 
 {{ $packages := list
-     "build-essential"
-     "curl"
-     "fzf"
-     "git"
-     "jq"
-     "libssl-dev"
-     "pkg-config"
-     "ripgrep"
+  "build-essential"
+  "curl"
+  "fzf"
+  "git"
+  "jq"
+  "libbz2-dev"
+  "libffi-dev"
+  "liblzma-dev"
+  "libncursesw5-dev"
+  "libreadline-dev"
+  "libsqlite3-dev"
+  "libssl-dev"
+  "libxml2-dev"
+  "libxmlsec1-dev"
+  "pkg-config"
+  "ripgrep"
+  "tk-dev"
+  "unzip"
+  "xz-utils"
+  "zlib1g-dev"
 -}}
 
 {{ if not .ephemeral -}}
-{{     $ppas = mustAppend $packages "ppa:fish-shell/release-3" -}}
-{{     $ppas = mustAppend $packages "ppa:neovim-ppa/unstable" -}}
+{{     $ppas = mustAppend $ppas "ppa:fish-shell/release-3" -}}
 {{     $packages = mustAppend $packages "fish" -}}
 {{     $packages = mustAppend $packages "golang" -}}
-{{     $packages = mustAppend $packages "neovim" -}}
 {{ end -}}
 
 {{ $sudo := "sudo " -}}
