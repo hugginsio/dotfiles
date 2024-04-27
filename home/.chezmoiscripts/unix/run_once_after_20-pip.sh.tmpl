@@ -6,7 +6,7 @@
 set -eu
 
 if command -v asdf &> /dev/null; then
-  {{ range get .python "packages" -}}
+  {{ range .packages.python.common -}}
       pip install -U -I --no-input {{ . }}
   {{ end -}}
 

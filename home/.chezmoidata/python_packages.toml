@@ -1,7 +1,0 @@
-[python]
-packages = [
-    "neovim",
-    "pip",
-    "pre-commit",
-    "pynvim",
-]

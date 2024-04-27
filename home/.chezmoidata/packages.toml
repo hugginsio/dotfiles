@@ -1,3 +1,11 @@
+[packages.python]
+common = [
+  "neovim",
+  "pip",
+  "pre-commit",
+  "pynvim",
+]
+
 [packages.ubuntu]
 common = [
   "build-essential",
