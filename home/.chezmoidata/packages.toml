@@ -51,3 +51,18 @@ nonephemeral = [
 ppa = [
   "ppa:fish-shell/release-3",
 ]
+
+[packages.winget]
+work = [
+  "Git.Git",
+  "GitHub.GitLFS",
+  "JetBrains.IntelliJIDEA.Ultimate",
+  "Microsoft.PowerShell",
+  "Microsoft.PowerToys",
+  "Microsoft.Teams",
+  "Neovim.Neovim",
+  "Notepad++.Notepad++",
+  "SomePythonThings.WingetUIStore",
+  "TheBrowserCompany.Arc",
+  "elgato.streamdeck",
+]

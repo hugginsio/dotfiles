@@ -1,0 +1,9 @@
+# https://learn.microsoft.com/en-us/windows/wsl/wsl-config
+
+[automount]
+enabled = true
+
+[boot]
+command = service docker start
+
+[network]
