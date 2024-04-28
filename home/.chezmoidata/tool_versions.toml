@@ -1,7 +1,0 @@
-[lang.default]
-nodejs = "20.11.0"
-python = "3.12.1"
-
-[lang.work]
-java = "zulu-17.46.19"
-maven = "3.9.6"
