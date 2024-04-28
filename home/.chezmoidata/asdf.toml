@@ -1,0 +1,25 @@
+[asdf.common.plugins]
+nodejs = "https://github.com/asdf-vm/asdf-nodejs.git"
+python = "https://github.com/asdf-community/asdf-python.git"
+
+[asdf.work.plugins]
+java = "https://github.com/halcyon/asdf-java"
+maven = "https://github.com/halcyon/asdf-maven.git"
+
+[asdf.common.versions]
+nodejs = [
+  "latest"
+]
+
+[asdf.work.versions]
+java = [
+  "latest:zulu-8",
+  "latest:zulu-11",
+  "latest:zulu-17",
+  "latest:zulu-21",
+]
+
+maven = [
+  "3.8.5",
+  "3.9.6",
+]
