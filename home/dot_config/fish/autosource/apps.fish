@@ -30,13 +30,6 @@ if command -qs nvim
     abbr -a nvimdiff nvim -d
 end
 
-# configure lvim
-if command -qs lvim
-    set -Ux VISUAL lvim
-
-    abbr -a lvimdiff lvim -d
-end
-
 # configure Node
 abbr -a npmcheck 'npx npm-check -u'
 abbr -a npmvet 'npx npmvet -s'
