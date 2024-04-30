@@ -13,7 +13,6 @@ Library/Application Support/nushell/**
 {{ if ne .chezmoi.os "windows" -}}
 .chezmoiexternals/windows.*
 .chezmoiscripts/windows/**
-.wslconfig
 {{ else -}}
 .chezmoiexternals/unix.*
 .chezmoiscripts/unix/**
