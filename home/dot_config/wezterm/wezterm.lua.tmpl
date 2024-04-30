@@ -21,7 +21,13 @@ config.color_scheme = "catppuccin-mocha-custom"
 
 config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
 config.font = wezterm.font("JetBrains Mono", { weight = "Medium" })
-config.font_size = 15
+
+-- {{- $fontSize := 15 }}
+-- {{- if eq .chezmoi.os "windows" }}
+-- {{- $fontSize = 13 }}
+-- {{- end }}
+
+config.font_size = {{ $fontSize }}
 config.force_reverse_video_cursor = false
 config.hide_tab_bar_if_only_one_tab = true
 config.switch_to_last_active_tab_when_closing_tab = true

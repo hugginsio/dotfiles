@@ -1,0 +1,68 @@
+[packages.node]
+common = [
+  "@bitwarden/cli",
+  "@fsouza/prettierd",
+  "neovim",
+  "npm",
+]
+
+personal = [
+  "vercel",
+  "wrangler",
+]
+
+[packages.python]
+common = [
+  "neovim",
+  "pip",
+  "pre-commit",
+  "pynvim",
+]
+
+[packages.ubuntu]
+common = [
+  "build-essential",
+  "curl",
+  "fish",
+  "fzf",
+  "git",
+  "jq",
+  "libbz2-dev",
+  "libffi-dev",
+  "liblzma-dev",
+  "libncursesw5-dev",
+  "libreadline-dev",
+  "libsqlite3-dev",
+  "libssl-dev",
+  "libxml2-dev",
+  "libxmlsec1-dev",
+  "pkg-config",
+  "ripgrep",
+  "tk-dev",
+  "unzip",
+  "xz-utils",
+  "zlib1g-dev",
+]
+
+nonephemeral = [
+  "golang"
+]
+
+ppa = [
+  "ppa:fish-shell/release-3",
+]
+
+[packages.winget]
+work = [
+  "Git.Git",
+  "GitHub.GitLFS",
+  "JetBrains.IntelliJIDEA.Ultimate",
+  "Microsoft.PowerShell",
+  "Microsoft.PowerToys",
+  "Microsoft.Teams",
+  "Neovim.Neovim",
+  "Notepad++.Notepad++",
+  "SomePythonThings.WingetUIStore",
+  "TheBrowserCompany.Arc",
+  "elgato.streamdeck",
+]

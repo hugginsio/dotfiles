@@ -7,30 +7,19 @@ set -eu
 
 {{ if eq .osid "linux-ubuntu" -}}
 
-{{ $ppas := list -}}
-
-{{ $packages := list
-     "build-essential"
-     "curl"
-     "fzf"
-     "git"
-     "jq"
-     "libssl-dev"
-     "pkg-config"
-     "ripgrep"
--}}
+{{ $packages := .packages.ubuntu.common -}}
 
 {{ if not .ephemeral -}}
-{{     $ppas = mustAppend $packages "ppa:fish-shell/release-3" -}}
-{{     $ppas = mustAppend $packages "ppa:neovim-ppa/unstable" -}}
-{{     $packages = mustAppend $packages "fish" -}}
-{{     $packages = mustAppend $packages "golang" -}}
-{{     $packages = mustAppend $packages "neovim" -}}
+{{   $packages = concat $packages .packages.ubuntu.nonephemeral -}}
 {{ end -}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{     $sudo = "" -}}
+{{ end -}}
+
+{{ range .packages.ubuntu.ppa -}}
+  {{ $sudo }}apt-add-repository -y {{ . }}
 {{ end -}}
 
 {{ $sudo }}apt-get update -y

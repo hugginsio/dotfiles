@@ -1,0 +1,17 @@
+# vim: ft=bash
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+pathadd() {
+    if [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1${PATH:+":$PATH"}"
+    fi
+}
+
+pathadd "$HOME/bin/"
+pathadd "$HOME/.asdf/bin/"
+pathadd "$HOME/.asdf/shims/"

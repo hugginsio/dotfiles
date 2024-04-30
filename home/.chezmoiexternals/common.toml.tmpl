@@ -1,11 +1,5 @@
 # vim:ft=toml
 
-[".asdf"]
-    type = "git-repo"
-    url = "https://github.com/asdf-vm/asdf.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
-
 [".vim/pack/hugginsio/start/eunuch/"]
     type = "git-repo"
     url = "https://github.com/tpope/vim-eunuch.git"
@@ -15,7 +9,7 @@
 ["bin/"]
     type = "archive"
     {{ $nuVersion := (gitHubLatestRelease "nushell/nushell").TagName -}}
-    {{ $nuArch := .chezmoi.arch -}}
+    {{ $nuArch := .narch -}}
     {{ if eq $nuArch "arm64" -}}
     {{     $nuArch = "aarch64" -}}
     {{ end -}}
@@ -30,56 +24,13 @@
 
 {{ if not .ephemeral -}}
 
-["bin/gtask"]
+["bin/lazygit"]
     type = "archive-file"
-    url = "https://github.com/go-task/task/releases/download/{{ (gitHubLatestRelease "go-task/task").TagName }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-    path = "task"
-    refreshPeriod = "168h"
-    executable = true
-
-[".config/fish/themes/Catppuccin Mocha.theme"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
-    refreshPeriod = "168h"
-
-[".config/k9s/skins/catppuccin-mocha.yaml"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
-    refreshPeriod = "168h"
-
-[".config/fish/plugins/tide"]
-    type = "archive"
-    url = "https://github.com/IlanCosman/tide/archive/refs/tags/{{ (gitHubLatestRelease "IlanCosman/tide").TagName }}.tar.gz"
-    stripComponents = 1
-    refreshPeriod = "168h"
-
-[".config/fish/plugins/asdf"]
-    type = "git-repo"
-    url = "https://github.com/rstacruz/fish-asdf.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
-
-[".config/fish/plugins/jump"]
-    type = "git-repo"
-    url = "https://github.com/mattgreen/jump.fish.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
-
-[".config/fish/plugins/autopair"]
-    type = "git-repo"
-    url = "https://github.com/jorgebucaran/autopair.fish.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
-
-["bin/taskwarrior-tui"]
-    type = "archive-file"
-    {{ $ttuiVersion := (gitHubLatestRelease "kdheepak/taskwarrior-tui").TagName -}}
-    {{ $ttuiOs := .chezmoi.os -}}
-    {{ if eq $ttuiOs "linux" -}}
-    {{     $ttuiOs = "linux-gnu" -}}
-    {{ end -}}
-    url = "https://github.com/kdheepak/taskwarrior-tui/releases/download/{{ $ttuiVersion }}/taskwarrior-tui-x86_64-{{ .mfg }}-{{ $ttuiOs }}.tar.gz"
-    path = "taskwarrior-tui"
+    {{ $lgVersion := (gitHubLatestRelease "jesseduffield/lazygit").TagName -}}
+    {{ $lgArch := .narch -}}
+    {{ $lgOs := title .chezmoi.os -}}
+    url = "https://github.com/jesseduffield/lazygit/releases/download/{{ $lgVersion }}/lazygit_{{ substr 1 -1 $lgVersion }}_{{ $lgOs }}_{{ $lgArch }}.tar.gz"
+    path = "lazygit"
     refreshPeriod = "168h"
     executable = true
 
@@ -112,13 +63,5 @@
     url = "https://github.com/tpope/vim-surround.git"
     clone.args = ["--depth", "1"]
     refreshPeriod = "168h"
-
-["bin/kubectx"]
-    type = "archive-file"
-    {{ $kctxVersion := (gitHubLatestRelease "ahmetb/kubectx").TagName -}}
-    url = "https://github.com/ahmetb/kubectx/releases/download/{{ $kctxVersion }}/kubectx_{{ $kctxVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-    path = "kubectx"
-    refreshPeriod = "168h"
-    executable = true
 
 {{ end -}}
