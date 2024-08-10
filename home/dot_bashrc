@@ -13,5 +13,3 @@ pathadd() {
 }
 
 pathadd "$HOME/bin/"
-pathadd "$HOME/.asdf/bin/"
-pathadd "$HOME/.asdf/shims/"
