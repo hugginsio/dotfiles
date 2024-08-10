@@ -1,0 +1,15 @@
+# vim:ft=toml
+
+{{ if not .ephemeral -}}
+
+["bin/lazygit"]
+    type = "archive-file"
+    {{ $lgVersion := (gitHubLatestRelease "jesseduffield/lazygit").TagName -}}
+    {{ $lgArch := .narch -}}
+    {{ $lgOs := title .chezmoi.os -}}
+    url = "https://github.com/jesseduffield/lazygit/releases/download/{{ $lgVersion }}/lazygit_{{ substr 1 -1 $lgVersion }}_{{ $lgOs }}_{{ $lgArch }}.tar.gz"
+    path = "lazygit"
+    refreshPeriod = "168h"
+    executable = true
+
+{{ end -}}

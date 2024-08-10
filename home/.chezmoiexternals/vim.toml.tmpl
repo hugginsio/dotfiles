@@ -1,0 +1,41 @@
+# vim:ft=toml
+
+{{ if not .ephemeral -}}
+
+[".vim/pack/hugginsio/start/eunuch/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-eunuch.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/characterize/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-characterize.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/dotenv/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-dotenv.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/fugitive/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-fugitive.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/speeddating/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-speeddating.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".vim/pack/hugginsio/start/surround/"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-surround.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+{{ end -}}
