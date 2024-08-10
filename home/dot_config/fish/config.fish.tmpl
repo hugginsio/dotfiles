@@ -26,9 +26,6 @@ if not test "$DOTFILES_ARE_CONFIGURED" = true
     # NOTE: send confirmation and suppress failing exit code
     echo y | fish_config theme save "Catppuccin Mocha" || true
 
-    # source prompt theme
-    dotfiles_source "$__fish_config_dir/prompt.fish"
-
     # source os-specific dotfile
     dotfiles_source "$__fish_config_dir/{{ .chezmoi.os }}.fish"
 

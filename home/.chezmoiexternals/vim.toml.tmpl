@@ -1,6 +1,6 @@
 # vim:ft=toml
 
-{{ if (and (not .ephemeral) (not .server) .personal) -}}
+{{ if (and (not .ephemeral) (not .server)) -}}
 
 [".vim/pack/hugginsio/start/eunuch/"]
     type = "git-repo"

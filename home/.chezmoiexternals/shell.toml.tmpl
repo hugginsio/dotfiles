@@ -1,0 +1,22 @@
+# vim:ft=toml
+
+{{ if (and (not .ephemeral) (not .server)) -}}
+
+[".config/fish/themes/Catppuccin Mocha.theme"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
+    refreshPeriod = "168h"
+
+[".config/fish/plugins/jump"]
+    type = "git-repo"
+    url = "https://github.com/mattgreen/jump.fish.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+[".config/fish/plugins/autopair"]
+    type = "git-repo"
+    url = "https://github.com/jorgebucaran/autopair.fish.git"
+    clone.args = ["--depth", "1"]
+    refreshPeriod = "168h"
+
+{{ end -}}
