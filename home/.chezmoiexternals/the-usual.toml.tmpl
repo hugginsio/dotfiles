@@ -1,6 +1,6 @@
 # vim:ft=toml
 
-{{ if not .ephemeral -}}
+{{ if (and (not .ephemeral) (not .server) .personal) -}}
 
 ["bin/lazygit"]
     type = "archive-file"
