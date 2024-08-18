@@ -1,0 +1,60 @@
+; https://git-scm.com
+; vi: ft=gitconfig
+
+[user]
+    name = {{ .name | quote }}
+    email = {{ .email | quote }}
+
+{{ if (and .personal (eq .osid "darwin")) -}}
+
+[credential "https://github.com"]
+    helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper = !/opt/homebrew/bin/gh auth git-credential
+
+{{ end -}}
+
+[alias]
+    a = add
+    b = branch
+    c = clone
+    co = checkout
+    cob = checkout -b
+    d = diff
+    dc = diff --cached
+    f = fetch
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    m = merge
+    ol = log --pretty=oneline
+    s = status -sb
+    su = submodule update
+
+[commit]
+    template = "~/.config/git/gitmessage"
+
+[core]
+    excludesFile = "~/.config/git/gitignore"
+
+[init]
+    defaultBranch = "main"
+    templateDir = "~/.config/git/template"
+
+[git-extras "feature"]
+{{- if .personal }}
+    prefix = "hugginsio"
+{{- else if .work }}
+    prefix = "huggins"
+{{ end }}
+    separator = "/"
+
+[git-view-work-item]
+    regex = "[0-9]+"
+
+{{- if .personal }}
+    {{- /* GitHub repository issues */}}
+    url = "{{ "{{ .Url }}" }}/issues/{{ "{{ .Identifier }}" }}"
+{{- else if .work }}
+    {{- /* Azure DevOps work items */}}
+    url = "https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{ "{{ .Identifier }}" }}"
+{{ end -}}
+
