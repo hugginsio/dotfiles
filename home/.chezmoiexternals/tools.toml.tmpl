@@ -2,6 +2,14 @@
 
 {{ if (and (not .ephemeral) (not .server)) -}}
 
+["bin/kubectx"]
+    type = "archive-file"
+    {{ $kctxVersion := (gitHubLatestRelease "ahmetb/kubectx").TagName -}}
+    url = "https://github.com/ahmetb/kubectx/releases/download/{{ $kctxVersion }}/kubectx_{{ $kctxVersion }}_{{ .chezmoi.os }}_{{ .narch }}.tar.gz"
+    path = "kubectx"
+    refreshPeriod = "168h"
+    executable = true
+
 ["bin/lazygit"]
     type = "archive-file"
     {{ $lgVersion := (gitHubLatestRelease "jesseduffield/lazygit").TagName -}}
@@ -12,11 +20,19 @@
     refreshPeriod = "168h"
     executable = true
 
-["bin/kubectx"]
+["bin/pkgx"]
     type = "archive-file"
-    {{ $kctxVersion := (gitHubLatestRelease "ahmetb/kubectx").TagName -}}
-    url = "https://github.com/ahmetb/kubectx/releases/download/{{ $kctxVersion }}/kubectx_{{ $kctxVersion }}_{{ .chezmoi.os }}_{{ .narch }}.tar.gz"
-    path = "kubectx"
+    {{ $pkgxVersion := (gitHubLatestRelease "pkgxdev/pkgx").TagName -}}
+    {{ $pkgxArch := .chezmoi.arch -}}
+    {{/* attempt to normalize architecture */}}
+    {{- if eq .chezmoi.arch "amd64" -}}
+    {{-     $pkgxArch = "x86-64" -}}
+    {{- else if eq .chezmoi.arch "arm64" -}}
+    {{-     $pkgxArch = "aarch64" -}}
+    {{- end -}}
+    {{ $pkgxOs := .chezmoi.os -}}
+    url = "https://github.com/pkgxdev/pkgx/releases/download/{{ $pkgxVersion }}/pkgx-{{ substr 1 -1 $pkgxVersion }}+{{ $pkgxOs }}+{{ $pkgxArch }}.tar.xz"
+    path = "pkgx"
     refreshPeriod = "168h"
     executable = true
 
