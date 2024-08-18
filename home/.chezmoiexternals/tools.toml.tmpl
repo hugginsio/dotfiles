@@ -12,4 +12,12 @@
     refreshPeriod = "168h"
     executable = true
 
+["bin/kubectx"]
+    type = "archive-file"
+    {{ $kctxVersion := (gitHubLatestRelease "ahmetb/kubectx").TagName -}}
+    url = "https://github.com/ahmetb/kubectx/releases/download/{{ $kctxVersion }}/kubectx_{{ $kctxVersion }}_{{ .chezmoi.os }}_{{ .narch }}.tar.gz"
+    path = "kubectx"
+    refreshPeriod = "168h"
+    executable = true
+
 {{ end -}}
