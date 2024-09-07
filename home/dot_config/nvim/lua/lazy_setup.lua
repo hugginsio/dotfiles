@@ -7,7 +7,7 @@ require("lazy").setup({
     { import = "community" },
     { import = "plugins" },
 } --[[@as LazySpec]], {
-    install = { colorscheme = { "astrotheme" } },
+    install = { colorscheme = { "catppuccin-frappe", "astrotheme" } },
     ui = { backdrop = 100 },
     performance = {
         rtp = {
