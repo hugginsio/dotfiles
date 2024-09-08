@@ -2,6 +2,11 @@
 
 # app specific configuration
 
+# configure atuin
+if command -qs atuin
+    atuin init fish | source
+end
+
 # configure chezmoi
 if command -qs chezmoi
     chezmoi completion fish | source
@@ -16,9 +21,6 @@ end
 if command -qs gh
     gh completion -s fish | source
 end
-
-# configure kitty
-abbr -a kssh 'kitty +kitten ssh'
 
 # configure lazygit
 abbr -a lg lazygit
