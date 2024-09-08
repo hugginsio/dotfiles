@@ -49,4 +49,10 @@ return {
             { "yss", desc = "You surround on current line" },
         },
     },
+    {
+        "LhKipp/nvim-nu",
+        build = ":TSInstall nu",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = true,
+    },
 }
