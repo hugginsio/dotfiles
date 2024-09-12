@@ -1,14 +1,24 @@
 # https://www.nushell.sh/book/environment.html
 
+$env.ROOT_DIR = (sys | get disks.0.mount)
 $env.PATH = (
-  $env.PATH
-  | split row (char esep)
-  | prepend ($env.HOME | path join bin)
-  | prepend ($env.HOME | path join .nix-profile bin)
-  | prepend ('/nix/var/nix/profiles/default/bin')
-  | prepend ($env.HOME | path join go bin)
+  []
+  | append ($env.HOME | path join 'bin')
+  | append ($env.HOME | path join '.nix-profile' 'bin')
+  | append ($env.ROOT_DIR | path join 'nix' 'var' 'nix' 'profiles' 'default' 'bin')
+  | append ($env.HOME | path join 'go' 'bin')
+  | append ($env.ROOT_DIR | path join 'opt' 'homebrew' 'bin')
+  | append ($env.PATH | split row (char esep))
   | uniq
 )
 
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+$env.NU_CACHE_DIR = ($nu.default-config-dir | path join 'cache')
+mkdir $env.NU_CACHE_DIR
+
+if (which starship | is-not-empty) {
+    starship init nu | save -f ($env.NU_CACHE_DIR | path join 'starship.nu')
+}
+
+if (which atuin | is-not-empty) {
+    atuin init nu | save -f ($env.NU_CACHE_DIR | path join 'atuin.nu')
+}
