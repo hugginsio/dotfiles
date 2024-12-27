@@ -80,3 +80,6 @@ $RECYCLE.BIN/
 # Windows security zone file
 *Zone.Identifier
 
+# Temporary files and directories
+tmp.*
+tmp/
