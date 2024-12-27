@@ -5,6 +5,7 @@ set -l PATHS_LIST "$HOME/bin/" \
     "/nix/var/nix/profiles/default/bin" \
     "$HOME/.local/bin/" \
     "$HOME/go/bin" \
+    "$HOME/.deno/bin/" \
     "$HOME/.krew/bin" \
 
 for P in $PATHS_LIST
