@@ -7,6 +7,8 @@ $env.PATH = (
   | append ($env.HOME | path join '.nix-profile' 'bin')
   | append ($env.ROOT_DIR | path join 'nix' 'var' 'nix' 'profiles' 'default' 'bin')
   | append ($env.HOME | path join 'go' 'bin')
+  | append ($env.HOME | path join '.deno' 'bin')
+  | append ($env.HOME | path join '.krew' 'bin')
   | append ($env.ROOT_DIR | path join 'opt' 'homebrew' 'bin')
   | append ($env.PATH | split row (char esep))
   | uniq
