@@ -24,3 +24,7 @@ if (which starship | is-not-empty) {
 if (which atuin | is-not-empty) {
     atuin init nu | save -f ($env.NU_CACHE_DIR | path join 'atuin.nu')
 }
+
+if (which carapace | is-not-empty) {
+    carapace _carapace nushell | save -f ($env.NU_CACHE_DIR | path join 'carapace.nu')
+}
