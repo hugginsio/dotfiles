@@ -1,5 +1,4 @@
 ; https://git-scm.com
-; vi: ft=gitconfig
 
 [user]
     name = {{ .name | quote }}
@@ -57,4 +56,3 @@
     {{- /* Azure DevOps work items */}}
     url = "https://dev.azure.com/jbhunt/EngAndTech/_workitems/edit/{{ "{{ .Identifier }}" }}"
 {{ end -}}
-

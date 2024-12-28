@@ -2,7 +2,11 @@
 
 {
     "file_types": {
+        "Git Commit": ["**/git/gitmessage"],
+        "Git Config": ["**/git/config.tmpl"],
+        "Git Ignore": ["**/git/gitignore"],
         "Nu": ["**/*.nu.tmpl"],
-        "TOML": ["**/*.toml.tmpl"]
+        "TOML": ["**/*.toml.tmpl"],
+        "YAML": ["**/*.yaml.tmpl", "**/*.yml.tmpl"]
     }
 }
