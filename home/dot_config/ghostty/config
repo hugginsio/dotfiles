@@ -1,0 +1,7 @@
+# https://ghostty.org/docs/config
+
+command = "$HOME/bin/nu --login --interactive"
+font-family = "JetBrains Mono"
+font-size = 15
+theme = "catppuccin-mocha"
+window-vsync = true
