@@ -1,0 +1,10 @@
+# https://docs.atuin.sh/configuration/config/
+
+dialect = "us"
+keymap_cursor = { vim_insert = "blink-bar", vim_normal = "blink-block" }
+keymap_mode = "vim-normal"
+search_mode = "fuzzy"
+store_failed = false
+style = "full"
+update_check = false
+workspaces = true

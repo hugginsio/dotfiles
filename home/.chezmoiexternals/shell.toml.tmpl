@@ -1,20 +1,19 @@
 {{ if (and (not .ephemeral) (not .server)) -}}
 
-[".config/fish/themes/Catppuccin Mocha.theme"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme"
+["bin/"]
+    type = "archive"
+    {{ $nuVersion := (gitHubLatestRelease "nushell/nushell").TagName -}}
+    {{ $nuArch := .narch -}}
+    {{ if eq $nuArch "arm64" -}}
+    {{     $nuArch = "aarch64" -}}
+    {{ end -}}
+    {{ $nuOs := .chezmoi.os -}}
+    {{ if eq $nuOs "linux" -}}
+    {{     $nuOs = "linux-gnu" -}}
+    {{ end -}}
+    url = "https://github.com/nushell/nushell/releases/download/{{ $nuVersion }}/nu-{{ $nuVersion }}-{{ $nuArch }}-{{ .mfg }}-{{ $nuOs }}.tar.gz"
+    stripComponents = 1
     refreshPeriod = "168h"
-
-[".config/fish/plugins/jump"]
-    type = "git-repo"
-    url = "https://github.com/mattgreen/jump.fish.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
-
-[".config/fish/plugins/autopair"]
-    type = "git-repo"
-    url = "https://github.com/jorgebucaran/autopair.fish.git"
-    clone.args = ["--depth", "1"]
-    refreshPeriod = "168h"
+    executable = true
 
 {{ end -}}
