@@ -3,17 +3,26 @@
 ["bin/"]
     type = "archive"
     {{ $nuVersion := (gitHubLatestRelease "nushell/nushell").TagName -}}
-    {{ $nuArch := .narch -}}
-    {{ if eq $nuArch "arm64" -}}
-    {{     $nuArch = "aarch64" -}}
-    {{ end -}}
     {{ $nuOs := .chezmoi.os -}}
     {{ if eq $nuOs "linux" -}}
     {{     $nuOs = "linux-gnu" -}}
     {{ end -}}
-    url = "https://github.com/nushell/nushell/releases/download/{{ $nuVersion }}/nu-{{ $nuVersion }}-{{ $nuArch }}-{{ .mfg }}-{{ $nuOs }}.tar.gz"
+    url = "https://github.com/nushell/nushell/releases/download/{{ $nuVersion }}/nu-{{ $nuVersion }}-{{ .narch }}-{{ .mfg }}-{{ $nuOs }}.tar.gz"
     stripComponents = 1
     refreshPeriod = "168h"
     executable = true
+
+{{ if not (eq .chezmoi.os "windows") -}}
+
+["bin/atuin"]
+    type = "archive-file"
+    {{ $atuinVersion := (gitHubLatestRelease "atuinsh/atuin").TagName -}}
+    url = "https://github.com/atuinsh/atuin/releases/download/{{ $atuinVersion }}/atuin-{{ .narch }}-{{ .mfg }}-{{ .chezmoi.os }}.tar.gz"
+    path = "atuin"
+    stripComponents = 1
+    refreshPeriod = "168h"
+    executable = true
+
+{{ end -}}
 
 {{ end -}}

@@ -43,6 +43,8 @@
 {{/* attempt to normalize architecture */}}
 {{- if eq .chezmoi.arch "amd64" -}}
 {{-     $narch = "x86_64" -}}
+{{- else if eq .chezmoi.arch "arm64" -}}
+{{-     $narch = "aarch64" -}}
 {{- end -}}
 
 {{/* determine if personal, work, server, or none */}}
