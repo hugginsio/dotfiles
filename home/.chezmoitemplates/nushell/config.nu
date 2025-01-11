@@ -15,9 +15,9 @@ $env.config.history = {
 # TODO: recursively remove .DS_Store
 # TODO: recursively remove node_modules
 alias cdd = cd (chezmoi source-path)
-alias cdg = cd ($env.HOME | path join 'Workspaces' 'Develop')
-alias cdp = cd ($env.HOME | path join 'Workspaces' 'Photograph')
-alias cdw = cd ($env.HOME | path join 'Workspaces')
+alias cdg = cd $env.DEV_DIR
+alias cdp = cd ($env.WORKSPACES | path join 'Photograph')
+alias cdw = cd $env.WORKSPACES
 alias g = git
 alias k = kubectl
 alias l = ls -asm

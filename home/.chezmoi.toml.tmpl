@@ -1,5 +1,3 @@
-# vi: ft=toml
-
 {{/* feature flags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $server := false -}}{{/*    true if this machine is for server use */}}
@@ -96,12 +94,3 @@
   personal = {{ $personal }}
   server = {{ $server }}
   work = {{ $work }}
-
-[hooks.apply.post]
-{{ if eq .chezmoi.os "windows" }}
-  command = "Write-Host"
-{{ else }}
-  command = "echo"
-{{ end }}
-
-  args = ["Don't forget to reload!"]
