@@ -2,6 +2,8 @@
 
 {{ if (and (not .ephemeral) (not .server)) -}}
 
+{{ if (ne .osid "windows") -}}
+
 ["bin/kubectx"]
     type = "archive-file"
     {{ $kctxVersion := (gitHubLatestRelease "ahmetb/kubectx").TagName -}}
@@ -35,5 +37,7 @@
     path = "pkgx"
     refreshPeriod = "168h"
     executable = true
+
+{{ end -}}
 
 {{ end -}}

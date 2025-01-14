@@ -1,5 +1,17 @@
 {{ if (and (not .ephemeral) (not .server)) -}}
 
+["AppData\\Local\\k9s\\skins\\catppuccin-mocha.yaml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
+    refreshPeriod = "168h"
+
+{{ if (ne .osid ".windows") -}}
+
+["Library/Application Support/k9s/skins/catppuccin-mocha.yaml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
+    refreshPeriod = "168h"
+
 ["bin/"]
     type = "archive"
     {{ $nuVersion := (gitHubLatestRelease "nushell/nushell").TagName -}}
@@ -11,8 +23,6 @@
     stripComponents = 1
     refreshPeriod = "168h"
     executable = true
-
-{{ if not (eq .chezmoi.os "windows") -}}
 
 ["bin/atuin"]
     type = "archive-file"

@@ -1,9 +1,8 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{- if eq .osid "darwin" -}}
 AppData/
 {{- end -}}
 
-{{- if eq .chezmoi.os "windows" -}}
+{{- if eq .osid "windows" -}}
 .bashrc
-.chezmoiexternals/
 Library/
 {{- end -}}
