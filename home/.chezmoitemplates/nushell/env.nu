@@ -1,10 +1,14 @@
 # https://www.nushell.sh/book/environment.html
 
 # Paths
+if (sys host | get name | str downcase | $in == "windows") {
+    $env.HOME = $env.USERPROFILE
+}
+
 $env.ROOT_DIR = (sys disks | get 0.mount)
 $env.WORKSPACES = ($env.HOME | path join 'Workspaces')
 
-if ($env.ROOT_DIR | str starts-with "C:") {
+if (sys host | get name | str downcase | $in == "windows") {
     $env.DEV_DRIVE = (sys disks | where device == "DEV" | get 0.mount)
     $env.DEV_DIR = ($env.DEV_DRIVE | path join "git")
 } else {
