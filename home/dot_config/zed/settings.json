@@ -1,0 +1,52 @@
+// https://zed.dev/docs/configuring-zed
+
+{
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "file_types": {
+    "Helm": ["**/helm/**/*.yaml", "**/helm/**/*.tpl"]
+  },
+  "preferred_line_length": 130,
+  "base_keymap": "VSCode",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 14,
+  "calls": {
+    "mute_on_join": true
+  },
+  "features": {
+    "inline_completion_provider": "none"
+  },
+  "languages": {
+    "Markdown": {
+      "soft_wrap": "editor_width"
+    }
+  },
+  "project_panel": {
+    "indent_size": 10,
+    "indent_guides": {
+      "show": "never"
+    }
+  },
+  "relative_line_numbers": true,
+  "terminal": {
+    "shell": {
+      "with_arguments": {
+        "program": "nu",
+        "args": ["--interactive", "--login"]
+      }
+    }
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_size": 14,
+  "vim_mode": true
+}
