@@ -24,6 +24,7 @@ $env.PATH = (
   | append ($env.HOME | path join '.cargo' 'bin')
   | append ($env.HOME | path join '.deno' 'bin')
   | append ($env.HOME | path join '.krew' 'bin')
+  | append ($env.ROOT_DIR | path join 'Library' 'TeX' 'texbin')
   | append ($env.ROOT_DIR | path join 'opt' 'homebrew' 'bin')
   | append ($env.PATH | split row (char esep))
   | uniq
