@@ -26,6 +26,17 @@
       "soft_wrap": "editor_width"
     }
   },
+  "lsp": {
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            "onSave": true
+          }
+        }
+      }
+    }
+  },
   "project_panel": {
     "indent_size": 10,
     "indent_guides": {
