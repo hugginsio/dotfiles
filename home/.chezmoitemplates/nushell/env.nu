@@ -8,6 +8,8 @@ if (sys host | get name | str downcase | $in == "windows") {
 $env.ROOT_DIR = (sys disks | get 0.mount)
 $env.WORKSPACES = ($env.HOME | path join 'Workspaces')
 
+$env.PNPM_HOME = ($env.HOME | path join 'Library' 'pnpm')
+
 if (sys host | get name | str downcase | $in == "windows") {
     $env.DEV_DRIVE = (sys disks | where device == "DEV" | get 0.mount)
     $env.DEV_DIR = ($env.DEV_DRIVE | path join "git")
@@ -24,6 +26,7 @@ $env.PATH = (
   | append ($env.HOME | path join '.cargo' 'bin')
   | append ($env.HOME | path join '.deno' 'bin')
   | append ($env.HOME | path join '.krew' 'bin')
+  | append ($env.PNPM_HOME)
   | append ($env.ROOT_DIR | path join 'Library' 'TeX' 'texbin')
   | append ($env.ROOT_DIR | path join 'opt' 'homebrew' 'bin')
   | append ($env.PATH | split row (char esep))
