@@ -1,6 +1,11 @@
 // https://zed.dev/docs/configuring-zed
 
 {
+  "edit_predictions_disabled_in": ["comment"],
+  "edit_predictions": {
+    "disabled_globs": [],
+    "mode": "subtle"
+  },
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
@@ -19,24 +24,11 @@
     "mute_on_join": true
   },
   "features": {
-    "inline_completion_provider": "none"
+    "edit_prediction_provider": "zed"
   },
   "languages": {
     "Markdown": {
       "soft_wrap": "editor_width"
-    }
-  },
-  "lsp": {
-    "texlab": {
-      "settings": {
-        "texlab": {
-          "build": {
-            "executable": "/Library/TeX/texbin/latexmk",
-            "forwardSearchAfter": false,
-            "onSave": true
-          }
-        }
-      }
     }
   },
   "project_panel": {
