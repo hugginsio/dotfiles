@@ -30,6 +30,7 @@ alias nvimdiff = nvim -d
 alias p = ps
 alias pc = pre-commit
 alias please = sudo
+alias t = talosctl
 alias y = yazi
 def ld [] { ls -asm | where name starts-with "." }
 def lssh [] { open known_hosts | lines | split column " " host | sort }
