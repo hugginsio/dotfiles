@@ -1,0 +1,30 @@
+# https://k9scli.io/
+# yaml-language-server: $schema=https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/internal/config/json/schemas/plugins.json
+
+plugins:
+  pod-debug:
+    shortCut: Shift-D
+    description: Add debug container
+    dangerous: true
+    scopes:
+      - containers
+    command: bash
+    background: false
+    confirm: true
+    args:
+      - -c
+      - "kubectl --kubeconfig=$KUBECONFIG debug -it --context $CONTEXT -n=$NAMESPACE $POD --target=$NAME --image=alpine:3.21.3 -- sh"
+  cluster-debug:
+    shortCut: Shift-D
+    description: Add debug container
+    dangerous: true
+    scopes:
+      - deploy
+      - pods
+      - services
+    command: bash
+    background: false
+    confirm: true
+    args:
+      - -c
+      - "kubectl --kubeconfig=$KUBECONFIG run -it --tty --rm debug -n=$NAMESPACE --image=alpine:3.21.3 -- sh"
