@@ -1,12 +1,14 @@
 // https://zed.dev/docs/configuring-zed
 
 {
+  "show_edit_predictions": false,
   "edit_predictions_disabled_in": ["comment"],
   "edit_predictions": {
     "disabled_globs": [],
     "mode": "subtle"
   },
-  "assistant": {
+  "agent": {
+    "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-5-sonnet-latest"
@@ -53,5 +55,8 @@
   },
   "ui_font_family": "JetBrainsMono Nerd Font",
   "ui_font_size": 14,
-  "vim_mode": true
+  "vim_mode": true,
+  "vim": {
+    "enable_vim_sneak": true
+  }
 }
