@@ -1,0 +1,11 @@
+# https://ghostty.org/docs/config
+
+adjust-cursor-thickness = "100%"
+command = "$HOME/bin/nu --login --interactive"
+cursor-style = "bar"
+cursor-style-blink = true
+font-family = "JetBrains Mono"
+font-size = 15
+theme = Catppuccin Mocha
+window-vsync = true
+keybind = shift+enter=text:\x1b\r

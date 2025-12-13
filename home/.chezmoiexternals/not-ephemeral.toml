@@ -1,0 +1,18 @@
+{{ if not .ephemeral -}}
+
+{{ if eq .osid "windows" -}}
+
+["AppData\\Local\\k9s\\skins\\catppuccin-mocha.yaml"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
+  refreshPeriod = "168h"
+
+{{ else if eq .osid "darwin" -}}
+
+["Library/Application Support/k9s/skins/catppuccin-mocha.yaml"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
+  refreshPeriod = "168h"
+
+{{end -}}
+{{end -}}

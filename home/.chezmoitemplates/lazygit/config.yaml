@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/refs/heads/master/schema/config.json
+
+gui:
+  mouseEvents: false
+  showBottomLine: false
+  showCommandLog: false
+  showFileTree: true
+  showIcons: false
+  showRandomTip: false
