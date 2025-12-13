@@ -1,5 +1,3 @@
-# vim: ft=bash
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -13,5 +11,3 @@ pathadd() {
 }
 
 pathadd "$HOME/bin/"
-pathadd "$HOME/.asdf/bin/"
-pathadd "$HOME/.asdf/shims/"

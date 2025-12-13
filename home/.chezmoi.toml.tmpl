@@ -1,8 +1,5 @@
-# vi: ft=toml
-
 {{/* feature flags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $server := false -}}{{/*    true if this machine is for server use */}}
 {{- $personal := false -}}{{/*  true if this machine is for personal use */}}
 {{- $work := false -}}{{/*      true if this machine is for work use */}}
 
@@ -29,9 +26,7 @@
 {{-     $mfg = "apple" -}}
 {{- end -}}
 
-{{- if eq .chezmoi.os "darwin" -}}
-{{-     $mfg = "apple" -}}
-{{- else if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.os "linux" -}}
 {{-     $mfg = "unknown" -}}
 {{- else if eq .chezmoi.os "windows" -}}
 {{-     $mfg = "pc" -}}
@@ -49,37 +44,22 @@
 {{- if not $ephemeral -}}
 {{-    if eq $hostpartial "KYLE" -}}
 {{-         $personal = true -}}
-{{-         $server = false -}}
 {{-         $work = false -}}
 {{-     else if eq $hostpartial "MACX" "WINX" -}}
 {{-         $personal = false -}}
-{{-         $server = false -}}
 {{-         $work = true -}}
-{{-     else if eq $hostpartial "HLAB" -}}
-{{-         $personal = true -}}
-{{-         $server = true -}}
-{{-         $work = false -}}
 {{-     else if stdinIsATTY -}}
 {{-         $personal = promptBoolOnce . "personal" "personal" -}}
-{{-         $server = promptBoolOnce . "server" "server" -}}
 {{-         $work = promptBoolOnce . "work" "work" -}}
 {{-     else -}}
 {{-         $personal = false -}}
-{{-         $server = false -}}
 {{-         $work = false -}}
 {{-     end -}}
 {{- end -}}
 
-{{- $name := "" -}}
-{{- $email := "" -}}
-{{- if or $personal $work -}}
-{{-     $name = "Kyle Huggins" -}}
-{{- else if $server -}}
-{{-     $name = "host" -}}
-{{- end -}}
-{{- if $personal -}}
-{{-     $email = "kyle@huggins.io" -}}
-{{- else if $work -}}
+{{- $name := "Kyle Huggins" -}}
+{{- $email := "kyle@huggins.io" -}}
+{{- if $work -}}
 {{-     $email = "kyle.huggins@jbhunt.com" -}}
 {{- end -}}
 
@@ -92,14 +72,4 @@
   narch = {{ $narch |quote }}
   osid = {{ $osid | quote }}
   personal = {{ $personal }}
-  server = {{ $server }}
   work = {{ $work }}
-
-[hooks.apply.post]
-{{ if eq .chezmoi.os "windows" }}
-  command = "Write-Host"
-{{ else }}
-  command = "echo"
-{{ end }}
-
-  args = ["Don't forget to reload!"]
