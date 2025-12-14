@@ -13,3 +13,19 @@ Look for:
 - Data exposure risks
 - Dependency vulnerabilities
 - Configuration security issues
+
+Summarize your findings in the following format:
+
+```markdown
+1. <vulnerability title>
+
+File: <relative path to file>
+Severity: <LOW, MEDIUM, or HIGH>
+
+<description>
+
+Recommendation:
+
+<recommended remediation steps>
+
+```
