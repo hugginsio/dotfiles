@@ -1,5 +1,5 @@
 ---
-description: "Document codebase as-is with thoughts directory for historical context"
+description: "Document codebase as-is"
 agent: plan
 model: "github-copilot/claude-opus-4.5"
 ---
