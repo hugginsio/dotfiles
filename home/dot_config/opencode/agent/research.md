@@ -1,7 +1,12 @@
 ---
-description: "Document codebase as-is with thoughts directory for historical context"
-agent: plan
+description: "Document codebase as-is"
 model: "github-copilot/claude-opus-4.5"
+mode: all
+temperature: 0.1
+tools:
+  write: false
+  edit: false
+  bash: false
 ---
 
 # Research Codebase
@@ -44,10 +49,13 @@ Then wait for the user's research query.
 
 3. **Spawn parallel sub-agent tasks for comprehensive research:**
    - Create multiple Task agents to research different aspects concurrently
+   - We now have specialized agents that know how to do specific research tasks:
+    - Use the **general** agent to research complex questions, search for code, and execute multi-step tasks
+    - Use the **explore** agent to quickly find files by patterns, search code for keywords, or answer questions about the codebase
 
 4. **Wait for all sub-agents to complete and synthesize findings:**
    - IMPORTANT: Wait for ALL sub-agent tasks to complete before proceeding
-   - Compile all sub-agent results (both codebase and thoughts findings)
+   - Compile all sub-agent results
    - Prioritize live codebase findings as primary source of truth
    - Connect findings across different components
    - Include specific file paths and line numbers for reference
@@ -59,13 +67,6 @@ Then wait for the user's research query.
    - Structure the document as follows:
      ```markdown
      # Research: [User's Question/Topic]
-
-     **Date**: [Current date and time]
-     **Researcher**: [Researcher name from thoughts status]
-     **Repository**: [Repository name]
-
-     ## Research Question
-     [Original user query]
 
      ## Summary
      [High-level documentation of what was found, answering the user's question by describing what exists]
@@ -87,15 +88,6 @@ Then wait for the user's research query.
      ## Architecture Documentation
      [Current patterns, conventions, and design implementations found in the codebase]
 
-     ## Historical Context (from thoughts/)
-     [Relevant insights from thoughts/ directory with references]
-     - `thoughts/shared/something.md` - Historical decision about X
-     - `thoughts/local/notes.md` - Past exploration of Y
-     Note: Paths exclude "searchable/" even if found there
-
-     ## Related Research
-     [Links to other research documents in thoughts/shared/research/]
-
      ## Open Questions
      [Any areas that need further investigation]
      ```
@@ -113,7 +105,7 @@ Then wait for the user's research query.
 
 ## Important notes:
 
-- Always use parallel Task agents to maximize efficiency and minimize context usage
+- Always use parallel sub-agents to maximize efficiency and minimize context usage
 - Always run fresh codebase research - never rely solely on existing research documents
 - Focus on finding concrete file paths and line numbers for developer reference
 - Research documents should be self-contained with all necessary context
