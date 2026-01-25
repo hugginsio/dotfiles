@@ -8,6 +8,15 @@ return {
       {
         "productivitykit/org-journal.nvim",
         cmd = "OrgJournal",
+        keys = {
+          { "<leader>oj", "<cmd>OrgJournal<cr>", desc = "journal" },
+        },
+      },
+      {
+        "productivitykit/org-virtual-clocktime.nvim",
+      },
+      {
+        "danilshvalov/org-modern.nvim",
       },
     },
     config = function()
@@ -23,6 +32,14 @@ return {
         org_todo_keywords_faces = { WAITING = ":foreground blue" },
         win_border = "rounded",
         win_split_mode = "float",
+        ui = {
+          menu = {
+            ---@diagnostic disable-next-line: redundant-parameter
+            handler = function(data)
+              require("org-modern.menu"):new():open(data)
+            end,
+          },
+        },
       })
 
       vim.lsp.enable("org")
@@ -30,6 +47,7 @@ return {
     keys = {
       { "<leader>oa", "<cmd>Org agenda<cr>", desc = "agenda" },
       { "<leader>oc", "<cmd>Org capture<cr>", desc = "capture" },
+      { "<leader>fo", ":lua Snacks.dashboard.pick('files', {cwd = '~/orgfiles/'})<CR>", desc = "Find Org File" },
     },
   },
 }
