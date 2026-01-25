@@ -30,6 +30,20 @@ return {
         },
         },
       },
+      picker = {
+        sources = {
+          explorer = {
+            exclude = { ".DS_Store" },
+            hidden = true,
+            ignored = true,
+          },
+          files = {
+            exclude = { ".DS_Store" },
+            hidden = true,
+            ignored = true,
+          },
+        },
+      },
     },
   },
 }
