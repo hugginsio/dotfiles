@@ -15,5 +15,8 @@ vim.api.nvim_create_autocmd("FileType", {
     -- Disable line numbers
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
+
+    -- Enable soft wrap
+    vim.opt_local.wrap = true
   end,
 })
