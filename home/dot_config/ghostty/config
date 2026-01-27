@@ -1,7 +1,7 @@
 # https://ghostty.org/docs/config
 
 adjust-cursor-thickness = "100%"
-command = "$HOME/bin/nu --login --interactive"
+command = "/opt/homebrew/bin/nu --login --interactive"
 cursor-style = "bar"
 cursor-style-blink = true
 font-family = "JetBrains Mono"
