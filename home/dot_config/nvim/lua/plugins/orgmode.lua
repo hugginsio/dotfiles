@@ -6,14 +6,14 @@ return {
     cmd = "Org",
     dependencies = {
       {
-        "productivitykit/org-journal.nvim",
+        "hugginsio/org-journal.nvim",
         cmd = "OrgJournal",
         keys = {
           { "<leader>oj", "<cmd>OrgJournal<cr>", desc = "journal" },
         },
       },
       {
-        "productivitykit/org-virtual-clocktime.nvim",
+        "hugginsio/org-virtual-clocktime.nvim",
       },
       {
         "danilshvalov/org-modern.nvim",
@@ -45,8 +45,8 @@ return {
       vim.lsp.enable("org")
     end,
     keys = {
-      { "<leader>oa", "<cmd>Org agenda<cr>", desc = "agenda" },
-      { "<leader>oc", "<cmd>Org capture<cr>", desc = "capture" },
+      { "<leader>oa", "<cmd>Org agenda<cr>",                                            desc = "agenda" },
+      { "<leader>oc", "<cmd>Org capture<cr>",                                           desc = "capture" },
       { "<leader>fo", ":lua Snacks.dashboard.pick('files', {cwd = '~/orgfiles/'})<CR>", desc = "Find Org File" },
     },
   },
