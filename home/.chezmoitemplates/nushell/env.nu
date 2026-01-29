@@ -21,6 +21,7 @@ $env.PATH = (
   []
   | append ($env.HOME | path join 'bin')
   | append ($env.HOME | path join '.local' 'bin')
+  | append ($env.HOME | path join '.local' 'share' 'mise' 'shims')
   | append ($env.HOME | path join '.sledge' 'bin')
   | append ($env.HOME | path join 'go' 'bin')
   | append ($env.HOME | path join '.krew' 'bin')
