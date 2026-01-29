@@ -16,6 +16,7 @@ $env.config.history = {
 # TODO: recursively remove node_modules
 alias cdd = cd (chezmoi source-path)
 alias cdg = cd $env.DEV_DIR
+alias cdo = cd ($env.HOME | path join 'orgfiles')
 alias cdp = cd ($env.WORKSPACES | path join 'Photograph')
 alias cdw = cd $env.WORKSPACES
 alias g = git
@@ -28,6 +29,7 @@ alias npmcheck = npx npm-check -u
 alias npmvet = npx npmvet -s
 alias nuke = rm -rf
 alias nvimdiff = nvim -d
+alias org = orgctl
 alias p = ps
 alias pc = pre-commit
 alias please = sudo

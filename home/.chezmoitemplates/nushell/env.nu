@@ -20,9 +20,11 @@ if (sys host | get name | str downcase | $in == "windows") {
 $env.PATH = (
   []
   | append ($env.HOME | path join 'bin')
+  | append ($env.HOME | path join '.local' 'bin')
+  | append ($env.HOME | path join '.sledge' 'bin')
   | append ($env.HOME | path join 'go' 'bin')
-  | append ($env.HOME | path join '.cargo' 'bin')
   | append ($env.HOME | path join '.krew' 'bin')
+  | append ($env.HOME | path join '.cargo' 'bin')
   | append ($env.PNPM_HOME)
   | append ($env.ROOT_DIR | path join 'opt' 'homebrew' 'bin')
   | append ($env.PATH | split row (char esep))
