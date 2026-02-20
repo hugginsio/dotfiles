@@ -7,11 +7,31 @@
   url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
   refreshPeriod = "168h"
 
+["AppData\\Local\\k9s\\skins\\catppuccin-latte.yaml"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
+  refreshPeriod = "168h"
+
+["AppData\\Local\\k9s\\skins\\default.yaml"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/transparent.yaml"
+  refreshPeriod = "168h"
+
 {{ else if eq .osid "darwin" -}}
 
 ["Library/Application Support/k9s/skins/catppuccin-mocha.yaml"]
   type = "file"
   url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-mocha.yaml"
+  refreshPeriod = "168h"
+
+["Library/Application Support/k9s/skins/catppuccin-latte.yaml"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-latte.yaml"
+  refreshPeriod = "168h"
+
+["Library/Application Support/k9s/skins/default.yaml"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/derailed/k9s/refs/heads/master/skins/transparent.yaml"
   refreshPeriod = "168h"
 
 {{end -}}

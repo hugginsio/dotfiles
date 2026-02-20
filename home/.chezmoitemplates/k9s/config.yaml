@@ -3,9 +3,9 @@
 
 k9s:
   liveViewAutoRefresh: true
-  readOnly: {{ .work }}
+  readOnly: false
   ui:
     headless: true
     logoless: true
     noIcons: false
-    skin: catppuccin-mocha
+    skin: default

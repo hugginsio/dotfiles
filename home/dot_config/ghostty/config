@@ -6,6 +6,6 @@ cursor-style = "bar"
 cursor-style-blink = true
 font-family = "JetBrains Mono"
 font-size = 15
-theme = Catppuccin Mocha
+theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 window-vsync = true
 keybind = shift+enter=text:\x1b\r
