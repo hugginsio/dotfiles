@@ -1,0 +1,8 @@
+# <type>(<optional scope>)<!>: <description>     ^
+#
+# The body of the gitmessage should explain what and why (but not how).
+# Use GFM for formatting and links (links should not be line-wrapped)
+#
+# BREAKING CHANGE: <description>
+# Co-authored-by: First Last <first.last@example.com>
+# Reviewed-by: First Last
