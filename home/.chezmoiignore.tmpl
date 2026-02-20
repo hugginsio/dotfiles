@@ -4,6 +4,7 @@
 Library/
 {{ end }}
 
-{{ if not .personal }}
-dot_config/opencode/ # do not include opencode until cleared by security
+{{ if .work }}
+dot_config/opencode/
+dot_copilot/
 {{ end }}
