@@ -1,0 +1,31 @@
+{
+  "autoDreamEnabled": true,
+  "autoUpdatesChannel": "stable",
+  "effortLevel": "medium",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
+  },
+  "minimumVersion": "2.1.81",
+  "permissions": {
+    "defaultMode": "plan",
+    "deny": ["Read(./.env)", "Read(./.env.*)"]
+  },
+  "sandbox": {
+    "enabled": true,
+    "filesystem": {
+      "allowRead": ["."],
+      "denyRead": ["~/"],
+      "allowWrite": ["."],
+      "denyWrite": ["/"]
+    }
+  },
+  "syntaxHighlightingDisabled": false
+}
