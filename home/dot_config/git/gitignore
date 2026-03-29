@@ -25,7 +25,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -86,3 +85,6 @@ tmp/
 
 # Live environment file
 .env
+
+# worktrees
+.worktrees/
