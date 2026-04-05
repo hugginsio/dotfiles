@@ -21,6 +21,7 @@ alias cdp = cd ($env.WORKSPACES | path join 'Photograph')
 alias cdw = cd $env.WORKSPACES
 alias g = git
 alias k = kubectl
+alias kk = taskkit
 alias l = ls -asm
 alias ld = lazydocker
 alias lg = lazygit
