@@ -1,0 +1,6 @@
+aliases:
+    co: pr checkout
+git_protocol: ssh
+pager: bat
+prompt: enabled
+version: "1"
