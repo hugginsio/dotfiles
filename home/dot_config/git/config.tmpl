@@ -49,5 +49,17 @@
 {{ end }}
   separator = "/"
 
+{{ if (and .personal (eq .osid "darwin")) -}}
+
+[user]
+  signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEJzp8T7Wpoa2Lo7Qv+ISvIGjlPfZAghcD182yeK2pwr"
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+{{ else -}}
+
+{{ end -}}
+
 [gpg]
 	format = ssh

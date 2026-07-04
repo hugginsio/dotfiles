@@ -7,3 +7,6 @@ gui:
   showFileTree: true
   showIcons: false
   showRandomTip: false
+
+git:
+  overrideGpg: true
