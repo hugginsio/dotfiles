@@ -1,7 +1,7 @@
 # https://www.nushell.sh/book/environment.html
 
 # Paths
-if (sys host | get name | str downcase | $in == "windows") {
+if (sys host | get name | str lowercase | $in == "windows") {
     $env.HOME = $env.USERPROFILE
 }
 
@@ -10,7 +10,7 @@ $env.WORKSPACES = ($env.HOME | path join 'Workspaces')
 
 $env.PNPM_HOME = ($env.HOME | path join 'Library' 'pnpm')
 
-if (sys host | get name | str downcase | $in == "windows") {
+if (sys host | get name | str lowercase | $in == "windows") {
     $env.DEV_DRIVE = (sys disks | where device == "DEV" | get 0.mount)
     $env.DEV_DIR = ($env.DEV_DRIVE | path join "git")
 } else {
