@@ -88,3 +88,6 @@ tmp/
 
 # worktrees
 .worktrees/
+
+# miso
+.k0h0r9i/
