@@ -21,12 +21,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- Check if any buffers were changed outside Neovim
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
-    group = augroup("check_time"),
-    pattern = "*",
-    callback = function()
-        vim.api.nvim_command('checktime')
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = augroup("onedrive_is_pain"),
+    pattern = vim.fn.expand("~/Library/CloudStorage") .. "/OneDrive*/*",
+    callback = function(ev)
+        vim.defer_fn(function()
+            if vim.api.nvim_buf_is_valid(ev.buf) and not vim.bo[ev.buf].modified then
+                vim.cmd("silent! checktime " .. ev.buf)
+            end
+        end, 500)
     end,
 })
 
