@@ -2,12 +2,16 @@
 
 vim.opt.autoread = true
 
--- Undo files
-local undodir = vim.fn.glob(vim.fn.stdpath "data" .. "/undo/")
-local stat = vim.loop.fs_stat(undodir)
-if stat and not stat.type == "directory" then
-  vim.fn.mkdir(undodir, "p")
+-- Move backup, swap, and undo directories
+local state = vim.fn.stdpath("state")
+for opt, name in pairs({ backupdir = "backup", directory = "swap", undodir = "undo" }) do
+  local dir = vim.fs.joinpath(state, name)
+  vim.fn.mkdir(dir, "p")
+  vim.opt[opt] = dir .. "//"
 end
+
+vim.opt.backup = true
+vim.opt.undofile = true
 
 -- Bash like keys for the command line
 vim.keymap.set("c", "<C-a>", "<home>")
